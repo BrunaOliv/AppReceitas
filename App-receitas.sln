@@ -1,0 +1,53 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32319.34
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppReceitas.Domain", "AppReceitasDomain\AppReceitas.Domain.csproj", "{91F3F778-0622-48A0-900B-29DA5292DBC0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{DA5AC3E7-194D-4929-8FCE-388C923F2B24}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppReceitas.Application", "AppReceitas.Application\AppReceitas.Application.csproj", "{9C342A09-3FD7-48F2-AF83-21D5BB4A20D0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{91F3065B-4A22-41D5-8993-D5A2BA7ABD55}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppReceitas.Infra.Data", "AppReceitas.Infra.Data\AppReceitas.Infra.Data.csproj", "{0EA5DC95-7588-4581-B173-2E6F79A79B5F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppReceitas.Infra.IoC", "AppReceitas.Infra.IoC\AppReceitas.Infra.IoC.csproj", "{414618F0-A9A9-4C9B-B005-DC1B2AF71D03}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{91F3F778-0622-48A0-900B-29DA5292DBC0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{91F3F778-0622-48A0-900B-29DA5292DBC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{91F3F778-0622-48A0-900B-29DA5292DBC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{91F3F778-0622-48A0-900B-29DA5292DBC0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C342A09-3FD7-48F2-AF83-21D5BB4A20D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C342A09-3FD7-48F2-AF83-21D5BB4A20D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C342A09-3FD7-48F2-AF83-21D5BB4A20D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C342A09-3FD7-48F2-AF83-21D5BB4A20D0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0EA5DC95-7588-4581-B173-2E6F79A79B5F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0EA5DC95-7588-4581-B173-2E6F79A79B5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0EA5DC95-7588-4581-B173-2E6F79A79B5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0EA5DC95-7588-4581-B173-2E6F79A79B5F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{414618F0-A9A9-4C9B-B005-DC1B2AF71D03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{414618F0-A9A9-4C9B-B005-DC1B2AF71D03}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{414618F0-A9A9-4C9B-B005-DC1B2AF71D03}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{414618F0-A9A9-4C9B-B005-DC1B2AF71D03}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{91F3F778-0622-48A0-900B-29DA5292DBC0} = {DA5AC3E7-194D-4929-8FCE-388C923F2B24}
+		{9C342A09-3FD7-48F2-AF83-21D5BB4A20D0} = {DA5AC3E7-194D-4929-8FCE-388C923F2B24}
+		{0EA5DC95-7588-4581-B173-2E6F79A79B5F} = {91F3065B-4A22-41D5-8993-D5A2BA7ABD55}
+		{414618F0-A9A9-4C9B-B005-DC1B2AF71D03} = {91F3065B-4A22-41D5-8993-D5A2BA7ABD55}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A3DD53F6-6459-47B1-9091-D8EB9628CE04}
+	EndGlobalSection
+EndGlobal

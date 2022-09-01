@@ -1,0 +1,242 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\bruna.oliveira\\DEV\\App-receitas\\AppReceitas.Infra.IoC\\AppReceitas.Infra.IoC.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\bruna.oliveira\\DEV\\App-receitas\\AppReceitas.Application\\AppReceitas.Application.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\bruna.oliveira\\DEV\\App-receitas\\AppReceitas.Application\\AppReceitas.Application.csproj",
+        "projectName": "AppReceitas.Application",
+        "projectPath": "C:\\Users\\bruna.oliveira\\DEV\\App-receitas\\AppReceitas.Application\\AppReceitas.Application.csproj",
+        "packagesPath": "C:\\Users\\bruna.oliveira\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\bruna.oliveira\\DEV\\App-receitas\\AppReceitas.Application\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\bruna.oliveira\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "C:\\Users\\bruna.oliveira\\DEV\\App-receitas\\AppReceitasDomain\\AppReceitas.Domain.csproj": {
+                "projectPath": "C:\\Users\\bruna.oliveira\\DEV\\App-receitas\\AppReceitasDomain\\AppReceitas.Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.203\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\bruna.oliveira\\DEV\\App-receitas\\AppReceitas.Infra.Data\\AppReceitas.Infra.Data.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\bruna.oliveira\\DEV\\App-receitas\\AppReceitas.Infra.Data\\AppReceitas.Infra.Data.csproj",
+        "projectName": "AppReceitas.Infra.Data",
+        "projectPath": "C:\\Users\\bruna.oliveira\\DEV\\App-receitas\\AppReceitas.Infra.Data\\AppReceitas.Infra.Data.csproj",
+        "packagesPath": "C:\\Users\\bruna.oliveira\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\bruna.oliveira\\DEV\\App-receitas\\AppReceitas.Infra.Data\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\bruna.oliveira\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "C:\\Users\\bruna.oliveira\\DEV\\App-receitas\\AppReceitasDomain\\AppReceitas.Domain.csproj": {
+                "projectPath": "C:\\Users\\bruna.oliveira\\DEV\\App-receitas\\AppReceitasDomain\\AppReceitas.Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.203\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\bruna.oliveira\\DEV\\App-receitas\\AppReceitas.Infra.IoC\\AppReceitas.Infra.IoC.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\bruna.oliveira\\DEV\\App-receitas\\AppReceitas.Infra.IoC\\AppReceitas.Infra.IoC.csproj",
+        "projectName": "AppReceitas.Infra.IoC",
+        "projectPath": "C:\\Users\\bruna.oliveira\\DEV\\App-receitas\\AppReceitas.Infra.IoC\\AppReceitas.Infra.IoC.csproj",
+        "packagesPath": "C:\\Users\\bruna.oliveira\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\bruna.oliveira\\DEV\\App-receitas\\AppReceitas.Infra.IoC\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\bruna.oliveira\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "C:\\Users\\bruna.oliveira\\DEV\\App-receitas\\AppReceitas.Application\\AppReceitas.Application.csproj": {
+                "projectPath": "C:\\Users\\bruna.oliveira\\DEV\\App-receitas\\AppReceitas.Application\\AppReceitas.Application.csproj"
+              },
+              "C:\\Users\\bruna.oliveira\\DEV\\App-receitas\\AppReceitas.Infra.Data\\AppReceitas.Infra.Data.csproj": {
+                "projectPath": "C:\\Users\\bruna.oliveira\\DEV\\App-receitas\\AppReceitas.Infra.Data\\AppReceitas.Infra.Data.csproj"
+              },
+              "C:\\Users\\bruna.oliveira\\DEV\\App-receitas\\AppReceitasDomain\\AppReceitas.Domain.csproj": {
+                "projectPath": "C:\\Users\\bruna.oliveira\\DEV\\App-receitas\\AppReceitasDomain\\AppReceitas.Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.203\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\bruna.oliveira\\DEV\\App-receitas\\AppReceitasDomain\\AppReceitas.Domain.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\bruna.oliveira\\DEV\\App-receitas\\AppReceitasDomain\\AppReceitas.Domain.csproj",
+        "projectName": "AppReceitas.Domain",
+        "projectPath": "C:\\Users\\bruna.oliveira\\DEV\\App-receitas\\AppReceitasDomain\\AppReceitas.Domain.csproj",
+        "packagesPath": "C:\\Users\\bruna.oliveira\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\bruna.oliveira\\DEV\\App-receitas\\AppReceitasDomain\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\bruna.oliveira\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.203\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

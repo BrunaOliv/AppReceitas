@@ -1,0 +1,64 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "AppReceitas.Infra.IoC/1.0.0": {
+        "dependencies": {
+          "AppReceitas.Application": "1.0.0",
+          "AppReceitas.Domain": "1.0.0",
+          "AppReceitas.Infra.Data": "1.0.0"
+        },
+        "runtime": {
+          "AppReceitas.Infra.IoC.dll": {}
+        }
+      },
+      "AppReceitas.Application/1.0.0": {
+        "dependencies": {
+          "AppReceitas.Domain": "1.0.0"
+        },
+        "runtime": {
+          "AppReceitas.Application.dll": {}
+        }
+      },
+      "AppReceitas.Domain/1.0.0": {
+        "runtime": {
+          "AppReceitas.Domain.dll": {}
+        }
+      },
+      "AppReceitas.Infra.Data/1.0.0": {
+        "dependencies": {
+          "AppReceitas.Domain": "1.0.0"
+        },
+        "runtime": {
+          "AppReceitas.Infra.Data.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "AppReceitas.Infra.IoC/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "AppReceitas.Application/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "AppReceitas.Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "AppReceitas.Infra.Data/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
