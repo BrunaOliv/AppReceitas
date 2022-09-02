@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace AppReceitas.Domain.Entities
 {
-    public class Nivel
+    public abstract class Entity
     {
-
+        public int Id { get; protected set; }
     }
 }

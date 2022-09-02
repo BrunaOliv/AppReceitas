@@ -2,9 +2,8 @@
 
 namespace AppReceitas.Domain.Entities
 {
-    public class Categoria
+    public class Categoria : Entity
     {
-        public int Id { get; set; }
         public string Nome { get; private set; }
         public ICollection<Receitas> Receitas{ get; private set; }
 
