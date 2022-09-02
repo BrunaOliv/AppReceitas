@@ -1,15 +1,34 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using AppReceitas.Domain.Validation;
 
 namespace AppReceitas.Domain.Entities
 {
     public class Categoria
     {
-        public string Name { get; set; }
+        public int Id { get; set; }
+        public string Nome { get; private set; }
+        public ICollection<Receitas> Receitas{ get; private set; }
 
-        public ICollection<Receitas> Receitas{ get; set; }
+        public Categoria(string nome)
+        {
+            ValidateDomain(nome);
+        }
+        public Categoria(int id, string nome)
+        {
+            DomainExceptionValidation.When(id < 0, "Valor invalido.");
+            Id = id;
+            ValidateDomain(nome);
+        }
+        public void Update(string nome)
+        {
+            ValidateDomain(nome);
+        }
+
+        private void ValidateDomain(string nome)
+        {
+            DomainExceptionValidation.When(string.IsNullOrEmpty(nome), "Nome invalido");
+            DomainExceptionValidation.When(nome.Length < 3, "Nome invalido, minimo 3 caracter.");
+
+            Nome = nome;
+        }
     }
 }
