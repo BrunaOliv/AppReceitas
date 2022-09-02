@@ -7,18 +7,18 @@ using System.Threading.Tasks;
 
 namespace AppReceitas.Domain.Entities
 {
-    public class Receitas : Entity
+    public class Recipes : Entity
     {
         public string Nome { get; private set; }
         public string Ingredientes { get; private set; }
         public string ModoDePreparo { get; private set; }
         public string  Imagem { get; private set; }
 
-        public Receitas(string nome, string ingredientes, string modoDePreparo, string imagem)
+        public Recipes(string nome, string ingredientes, string modoDePreparo, string imagem)
         {
             ValidateDomain(nome, ingredientes, modoDePreparo, imagem);
         }
-        public Receitas(int id, string nome, string ingredientes, string modoDePreparo, string imagem)
+        public Recipes(int id, string nome, string ingredientes, string modoDePreparo, string imagem)
         {
             DomainExceptionValidation.When(id < 0, "Valor inválido.");
             Id = id;
@@ -48,6 +48,6 @@ namespace AppReceitas.Domain.Entities
 
         }
         public int CategoriaId { get; set; }
-        public Categoria Categoria { get; set; }
+        public Category Categoria { get; set; }
     }
 }
