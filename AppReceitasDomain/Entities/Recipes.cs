@@ -20,7 +20,7 @@ namespace AppReceitas.Domain.Entities
         }
         public Recipes(int id, string nome, string ingredientes, string modoDePreparo, string imagem)
         {
-            DomainExceptionValidation.When(id < 0, "Valor inválido.");
+            DomainExceptionValidation.When(id < 0, "Invalid value.");
             Id = id;
             ValidateDomain(nome, ingredientes, modoDePreparo, imagem);
         }

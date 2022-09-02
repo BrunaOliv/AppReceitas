@@ -13,7 +13,7 @@ namespace AppReceitas.Domain.Entities
         }
         public Category(int id, string name)
         {
-            DomainExceptionValidation.When(id < 0, "Valor invalido.");
+            DomainExceptionValidation.When(id < 0, "Invalid value.");
             Id = id;
             ValidateDomain(name);
         }
@@ -24,8 +24,8 @@ namespace AppReceitas.Domain.Entities
 
         private void ValidateDomain(string name)
         {
-            DomainExceptionValidation.When(string.IsNullOrEmpty(name), "Nome invalido");
-            DomainExceptionValidation.When(name.Length < 3, "Nome invalido, minimo 3 caracter.");
+            DomainExceptionValidation.When(string.IsNullOrEmpty(name), "Invalid Name.");
+            DomainExceptionValidation.When(name.Length < 3, "Invalid Name, minimum 3 caracters.");
 
             Name = name;
         }
