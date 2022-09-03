@@ -9,42 +9,42 @@ namespace AppReceitas.Domain.Entities
 {
     public class Recipes : Entity
     {
-        public string Nome { get; private set; }
-        public string Ingredientes { get; private set; }
-        public string ModoDePreparo { get; private set; }
-        public string  Imagem { get; private set; }
+        public string Name { get; private set; }
+        public string Ingredients { get; private set; }
+        public string PreparationMode { get; private set; }
+        public string  Image { get; private set; }
 
-        public Recipes(string nome, string ingredientes, string modoDePreparo, string imagem)
+        public Recipes(string name, string ingredients, string preparationMode, string image)
         {
-            ValidateDomain(nome, ingredientes, modoDePreparo, imagem);
+            ValidateDomain(name, ingredients, preparationMode, image);
         }
-        public Recipes(int id, string nome, string ingredientes, string modoDePreparo, string imagem)
+        public Recipes(int id, string name, string ingredients, string preparationMode, string image)
         {
             DomainExceptionValidation.When(id < 0, "Invalid value.");
             Id = id;
-            ValidateDomain(nome, ingredientes, modoDePreparo, imagem);
+            ValidateDomain(name, ingredients, preparationMode, image);
         }
 
-        public void Update(string nome, string ingredientes, string modoDePreparo, string imagem, int categoriaId)
+        public void Update(string name, string ingredients, string preparationMode, string image, int categoriaId)
         {
-            ValidateDomain(nome, ingredientes, modoDePreparo, imagem);
+            ValidateDomain(name, ingredients, preparationMode, image);
             CategoriaId = categoriaId;
         }
 
-        private void ValidateDomain(string nome, string ingredientes, string modoDePreparo, string imagem)
+        private void ValidateDomain(string name, string ingredients, string preparationMode, string image)
         {
-            DomainExceptionValidation.When(string.IsNullOrEmpty(nome), "Nome inválido.");
-            DomainExceptionValidation.When(nome.Length < 3, "Nome inválido. Minimo 3 caracter.");
-            DomainExceptionValidation.When(string.IsNullOrEmpty(ingredientes), "Ingredientes inválido.");
-            DomainExceptionValidation.When(ingredientes.Length < 5, "Ingredientes inválido. Minimo 5 caracter.");
-            DomainExceptionValidation.When(string.IsNullOrEmpty(modoDePreparo), "Modo de preparo inválido.");
-            DomainExceptionValidation.When(modoDePreparo.Length < 5, "Modo de preparo inválido. Minimo 5 caracter.");
-            DomainExceptionValidation.When(imagem.Length > 250, "Imagem inválida. Maximo 250 caracter.");
+            DomainExceptionValidation.When(string.IsNullOrEmpty(name), "Invalid Name.");
+            DomainExceptionValidation.When(name.Length < 3, "Invalid Name, minimum 3 caracters.");
+            DomainExceptionValidation.When(string.IsNullOrEmpty(ingredients), "Invalid Ingredients.");
+            DomainExceptionValidation.When(ingredients.Length < 5, "Invalid Ingredients, minimum 5 caracters.");
+            DomainExceptionValidation.When(string.IsNullOrEmpty(preparationMode), "Invalid preparation mode.");
+            DomainExceptionValidation.When(preparationMode.Length < 5, "Invalid preparation mode, minimum 5 caracters.");
+            DomainExceptionValidation.When(image.Length > 250, "Invalid image, maximum 250 caracters.");
 
-            Nome = nome;
-            Ingredientes = ingredientes;
-            ModoDePreparo = modoDePreparo;
-            Imagem = imagem;
+            Name = name;
+            Ingredients = ingredients;
+            PreparationMode = preparationMode;
+            Image = image;
 
         }
         public int CategoriaId { get; set; }
