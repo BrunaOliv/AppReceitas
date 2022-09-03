@@ -39,7 +39,7 @@ namespace AppReceitas.Domain.Entities
             DomainExceptionValidation.When(ingredients.Length < 5, "Invalid Ingredients, minimum 5 caracters.");
             DomainExceptionValidation.When(string.IsNullOrEmpty(preparationMode), "Invalid preparation mode.");
             DomainExceptionValidation.When(preparationMode.Length < 5, "Invalid preparation mode, minimum 5 caracters.");
-            DomainExceptionValidation.When(image.Length > 250, "Invalid image, maximum 250 caracters.");
+            DomainExceptionValidation.When(image?.Length > 250, "Invalid image, maximum 250 caracters.");
 
             Name = name;
             Ingredients = ingredients;
