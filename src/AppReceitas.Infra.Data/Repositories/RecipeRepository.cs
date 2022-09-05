@@ -2,11 +2,6 @@
 using AppReceitas.Domain.Interfaces;
 using AppReceitas.Infra.Data.Context;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AppReceitas.Infra.Data.Repositories
 {
@@ -15,7 +10,7 @@ namespace AppReceitas.Infra.Data.Repositories
         ApplicationDbContext _recipeContext;
         public RecipeRepository(ApplicationDbContext context)
         {
-           _recipeContext = context;
+            _recipeContext = context;
         }
 
         public async Task<Recipes> CreateAsync(Recipes recipe)

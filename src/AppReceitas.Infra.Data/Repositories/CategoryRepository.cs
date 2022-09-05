@@ -2,15 +2,10 @@
 using AppReceitas.Domain.Interfaces;
 using AppReceitas.Infra.Data.Context;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AppReceitas.Infra.Data.Repositories
 {
-    public class CategoryRepository: ICategoryRepository 
+    public class CategoryRepository : ICategoryRepository
     {
         ApplicationDbContext _categoryContext;
         public CategoryRepository(ApplicationDbContext context)
