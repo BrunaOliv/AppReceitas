@@ -27,7 +27,7 @@ namespace AppReceitas.Api.Controllers
         }
 
         [HttpGet]
-        [Route("{id:int}")]
+        [Route("{id:int}", Name = "GetCategory")]
         public async Task<IActionResult> GetById(int id)
         {
             var category = await _categoryService.GetById(id);

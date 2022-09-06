@@ -1,6 +1,7 @@
 ﻿using AppReceitas.Domain.Entities;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace AppReceitas.Application.DTOs
 {
@@ -28,8 +29,9 @@ namespace AppReceitas.Application.DTOs
         [DisplayName("Image")]
         public string Image { get; set; }
 
-        [DisplayName("Category")]
+        public Category? Category { get; set; }
+
+        [DisplayName("Categories")]
         public int CategoryId { get; set; }
-        //public Category Category { get; set; }
     }
 }
