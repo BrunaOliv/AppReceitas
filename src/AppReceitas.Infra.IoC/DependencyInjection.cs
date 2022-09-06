@@ -1,4 +1,7 @@
-﻿using AppReceitas.Domain.Interfaces;
+﻿using AppReceitas.Application.Interfaces;
+using AppReceitas.Application.Mappings;
+using AppReceitas.Application.Services;
+using AppReceitas.Domain.Interfaces;
 using AppReceitas.Infra.Data.Context;
 using AppReceitas.Infra.Data.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -17,6 +20,9 @@ namespace AppReceitas.Infra.IoC
             );
             services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddScoped<IRecipesRepository, RecipeRepository>();
+            services.AddScoped<IRecipeService, RecipeService>();
+            services.AddScoped<ICategoryService, CategoryService>();
+            services.AddAutoMapper(typeof(DomainToDTOMappingProfile));
 
             return services;
         }

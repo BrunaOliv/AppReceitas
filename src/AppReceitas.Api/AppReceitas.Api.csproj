@@ -11,9 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AppReceitas.Infra.Data\AppReceitas.Infra.Data.csproj" />
     <ProjectReference Include="..\AppReceitas.Infra.IoC\AppReceitas.Infra.IoC.csproj" />
-    <ProjectReference Include="..\AppReceitasDomain\AppReceitas.Domain.csproj" />
   </ItemGroup>
 
 </Project>
