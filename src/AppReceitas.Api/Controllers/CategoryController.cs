@@ -19,10 +19,10 @@ namespace AppReceitas.Api.Controllers
         public async Task<IActionResult> Get()
         {
             var categories = await _categoryService.GetCategories();
-            if(categories == null)
-            {
-                return NotFound("Categories Not found");
-            }
+
+            if(categories == null || !categories.Any())
+                return NotFound();
+            
             return Ok(categories);  
         }
 
@@ -31,8 +31,9 @@ namespace AppReceitas.Api.Controllers
         public async Task<IActionResult> GetById(int id)
         {
             var category = await _categoryService.GetById(id);
+
             if (category == null)
-                return NotFound("Category Not found");
+                return NotFound();
 
             return Ok(category);
         }
@@ -41,7 +42,8 @@ namespace AppReceitas.Api.Controllers
         public async Task<IActionResult> Post([FromBody] CategoryDTO category)
         {
             if (category == null)
-                return BadRequest("Invalid Category");
+                return BadRequest();
+
             await _categoryService.Add(category);
             return new CreatedAtRouteResult("GetCategory", new {id = category.Id}, category);
         }
@@ -49,11 +51,12 @@ namespace AppReceitas.Api.Controllers
         [HttpPut]
         public async Task<IActionResult> Update(int id, [FromBody] CategoryDTO category)
         {
-            if (id != category.Id)
-                return BadRequest();
 
             if (category == null)
-                return BadRequest();
+                return NotFound();
+
+            if (id != category.Id)
+                return NotFound();
 
             await _categoryService.Update(category);
 
@@ -65,7 +68,7 @@ namespace AppReceitas.Api.Controllers
         {
             var category = await _categoryService.GetById(id);
             if (category == null)
-                return NotFound("Category not found");
+                return NotFound();
 
             await _categoryService.Remove(id);
             return  Ok(category);
