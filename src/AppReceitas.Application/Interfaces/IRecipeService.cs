@@ -9,7 +9,7 @@ namespace AppReceitas.Application.Interfaces
 {
     public interface IRecipeService
     {
-        Task<IEnumerable<RecipeDTO>> GetRecipes();
+        Task<PaginationFilterResult<RecipeDTO>> GetRecipes(PaginationFilterRequest paginationFilterRequest);
         Task<RecipeDTO> GetById(int? id);
         Task<RecipeDTO> GetRecipeCategory(int? id);
         Task Add(RecipeDTO recipeDTO);

@@ -1,5 +1,6 @@
 ﻿using AppReceitas.Application.DTOs;
 using AppReceitas.Domain.Entities;
+using AppReceitas.Domain.Filters;
 using AutoMapper;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,8 @@ namespace AppReceitas.Application.Mappings
         {
             CreateMap<Category, CategoryDTO>().ReverseMap();
             CreateMap<Recipes, RecipeDTO>().ReverseMap();
+            CreateMap<PaginationFilter<Recipes>, PaginationFilterResult<RecipeDTO>>().ReverseMap();
+            CreateMap<PaginationFilter<Recipes>, PaginationFilterRequest>().ReverseMap();
         }
     }
 }

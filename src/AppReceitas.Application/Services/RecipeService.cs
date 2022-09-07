@@ -1,6 +1,7 @@
 ﻿using AppReceitas.Application.DTOs;
 using AppReceitas.Application.Interfaces;
 using AppReceitas.Domain.Entities;
+using AppReceitas.Domain.Filters;
 using AppReceitas.Domain.Interfaces;
 using AutoMapper;
 using System;
@@ -39,10 +40,11 @@ namespace AppReceitas.Application.Services
             return _mapper.Map<RecipeDTO>(recipeEntity);
         }
 
-        public async Task<IEnumerable<RecipeDTO>> GetRecipes()
+        public async Task<PaginationFilterResult<RecipeDTO>> GetRecipes(PaginationFilterRequest paginationFilterRequest)
         {
-            var recipeEntity = await _recipesRepository.GetRecipesAsync();
-            return _mapper.Map<RecipeDTO[]>(recipeEntity);
+            var paginationFilter = _mapper.Map<PaginationFilter<Recipes>>(paginationFilterRequest);
+            var recipeEntity = await _recipesRepository.GetRecipesAsync(paginationFilter);
+            return _mapper.Map<PaginationFilterResult<RecipeDTO>>(recipeEntity);
         }
 
         public async Task Remove(int? id)

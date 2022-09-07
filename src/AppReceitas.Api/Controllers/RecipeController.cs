@@ -16,11 +16,11 @@ namespace AppReceitas.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Get()
+        public async Task<IActionResult> Get([FromQuery] PaginationFilterRequest paginationFilterRequest)
         {
-            var recipes = await _recipeService.GetRecipes();
+            var recipes = await _recipeService.GetRecipes(paginationFilterRequest);
 
-            if(recipes == null || !recipes.Any())
+            if(recipes == null)
                 return NotFound();
 
             return Ok(recipes);

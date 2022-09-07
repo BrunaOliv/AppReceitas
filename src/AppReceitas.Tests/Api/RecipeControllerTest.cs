@@ -17,9 +17,10 @@ namespace AppReceitas.Tests.Api
         [Fact]
         public async Task Get_withValidList_shouldReturnOk()
         {
-            _recipeService.Setup(x => x.GetRecipes()).Returns(Task.FromResult(RecipesDTOFactory()));
+            var paginationRequest = PaginationFilterRequestFactory();
+            _recipeService.Setup(x => x.GetRecipes(paginationRequest)).Returns(Task.FromResult(RecipesDTOFactory()));
             var controller = new RecipeController(_recipeService.Object);
-            var result = await controller.Get() as OkObjectResult;
+            var result = await controller.Get(paginationRequest) as OkObjectResult;
 
             Assert.Equal((int)HttpStatusCode.OK, result.StatusCode);
         }
@@ -27,9 +28,8 @@ namespace AppReceitas.Tests.Api
         [Fact]
         public async Task Get_withEmptyList_ShouldReturnNotFound()
         {
-            _recipeService.Setup(x => x.GetRecipes()).Returns(Task.FromResult(EmptyRecipesDTOFactory()));
             var controller = new RecipeController(_recipeService.Object);
-            var result = await controller.Get() as NotFoundResult;
+            var result = await controller.Get(null) as NotFoundResult;
 
             Assert.Equal((int)HttpStatusCode.NotFound, result.StatusCode);
         }
@@ -122,10 +122,13 @@ namespace AppReceitas.Tests.Api
 
         }
 
-        public IEnumerable<RecipeDTO> RecipesDTOFactory()
+        public PaginationFilterResult<RecipeDTO> RecipesDTOFactory()
         {
-            return new List<RecipeDTO> {
-                new RecipeDTO
+            return new PaginationFilterResult<RecipeDTO> {
+               TotalItems = 2,
+               Data = new List<RecipeDTO>
+               {
+                    new RecipeDTO
                 {
                     Id = 1,
                     Name = "Suflê de Cenoura",
@@ -144,7 +147,8 @@ namespace AppReceitas.Tests.Api
                     Image = null,
                     Category = null,
                     CategoryId = 11,
-                },
+                }
+               }
             };
         }
         public static RecipeDTO RecipeDTOFactory()
@@ -160,9 +164,13 @@ namespace AppReceitas.Tests.Api
                 CategoryId = 1,
             };
         }
-        public IEnumerable<RecipeDTO> EmptyRecipesDTOFactory()
+        public static PaginationFilterRequest PaginationFilterRequestFactory()
         {
-            return new List<RecipeDTO>();
+            return new PaginationFilterRequest()
+            {
+                PageIndex = 0,
+                PageSize = 10
+            };
         }
     }
 }

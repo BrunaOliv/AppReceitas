@@ -1,4 +1,5 @@
 ﻿using AppReceitas.Domain.Entities;
+using AppReceitas.Domain.Filters;
 using AppReceitas.Domain.Interfaces;
 using AppReceitas.Infra.Data.Context;
 using Microsoft.EntityFrameworkCore;
@@ -25,9 +26,17 @@ namespace AppReceitas.Infra.Data.Repositories
             return await _recipeContext.Recipes.FindAsync(id);
         }
 
-        public async Task<IEnumerable<Recipes>> GetRecipesAsync()
+        public async Task<PaginationFilter<Recipes>> GetRecipesAsync(PaginationFilter<Recipes> paginationFilter)
         {
-            return await _recipeContext.Recipes.ToListAsync();
+            var paginationResult = new PaginationFilter<Recipes>
+            {
+                Data = await _recipeContext.Recipes
+                .Skip(paginationFilter.PageIndex)
+                .Take(paginationFilter.PageSize)
+                .ToListAsync(),
+                TotalItems = await _recipeContext.Recipes.CountAsync()
+            };
+            return paginationResult;
         }
 
         public async Task<Recipes> GetRecipesCategoryAsync(int? id)
