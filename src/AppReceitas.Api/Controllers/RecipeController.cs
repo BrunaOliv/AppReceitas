@@ -19,8 +19,9 @@ namespace AppReceitas.Api.Controllers
         public async Task<IActionResult> Get()
         {
             var recipes = await _recipeService.GetRecipes();
-            if(recipes == null)
-                return NotFound("Recipes not found");
+
+            if(recipes == null || !recipes.Any())
+                return NotFound();
 
             return Ok(recipes);
         }
@@ -32,7 +33,7 @@ namespace AppReceitas.Api.Controllers
             var recipe = await _recipeService.GetById(id);
 
             if (recipe == null)
-                return NotFound("Recipe Not found");
+                return NotFound();
 
             return Ok(recipe);
         }
@@ -43,7 +44,7 @@ namespace AppReceitas.Api.Controllers
         {
             var recipe = await _recipeService.GetRecipeCategory(id);
             if (recipe == null)
-                return NotFound("Recipe not found");
+                return NotFound();
             return Ok(recipe);
         }
 
@@ -51,7 +52,7 @@ namespace AppReceitas.Api.Controllers
         public async Task<IActionResult> Post([FromBody] RecipeDTO recipe)
         {
             if (recipe == null)
-                return BadRequest("Invalid Recipe");
+                return BadRequest();
 
             await _recipeService.Add(recipe);
             return new CreatedAtRouteResult("GetRecipe", new { id = recipe.Id }, recipe);
@@ -60,11 +61,11 @@ namespace AppReceitas.Api.Controllers
         [HttpPut]
         public async Task<IActionResult> Put(int id, [FromBody] RecipeDTO recipe)
         {
-            if (id != recipe.Id)
-                return NotFound("Recipe not found");
-
             if (recipe == null)
-                return NotFound("Recipe not found");
+                return NotFound();
+
+            if (id != recipe.Id)
+                return NotFound();
 
             await _recipeService.Update(recipe);
             return Ok(recipe);
@@ -76,7 +77,7 @@ namespace AppReceitas.Api.Controllers
             var recipe = await _recipeService.GetById(id);
 
             if (recipe == null)
-                return NotFound("Recipe not foun");
+                return NotFound();
 
             await _recipeService.Remove(id);
             return Ok(recipe);
