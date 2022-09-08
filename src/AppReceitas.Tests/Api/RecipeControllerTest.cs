@@ -38,6 +38,8 @@ namespace AppReceitas.Tests.Api
             Assert.Equal("Recipe Not Found", result.Value);
             Assert.Equal((int)HttpStatusCode.NotFound, result.StatusCode);
             Assert.IsType<NotFoundObjectResult>(result);
+
+            _recipeService.Verify(x => x.GetRecipes(paginationRequest), Times.Once);
         }
 
         [Fact]
@@ -49,6 +51,9 @@ namespace AppReceitas.Tests.Api
             var result = await controller.GetById(id) as OkObjectResult;
 
             Assert.Equal((int)HttpStatusCode.OK, result.StatusCode);
+            Assert.IsType<RecipeDTO>(result.Value);
+
+            _recipeService.Verify(x => x.GetById(id), Times.Once);
         }
 
         [Fact]
@@ -56,9 +61,13 @@ namespace AppReceitas.Tests.Api
         {
             var id = 2;
             var controller = new RecipeController(_recipeService.Object);
-            var result = await controller.GetById(id) as NotFoundResult;
+            var result = await controller.GetById(id) as NotFoundObjectResult;
 
+            Assert.Equal("Recipe Not Found", result.Value);
             Assert.Equal((int)HttpStatusCode.NotFound, result.StatusCode);
+            Assert.IsType<NotFoundObjectResult>(result);
+
+            _recipeService.Verify(x => x.GetById(id), Times.Once);
         }
 
         [Fact]
@@ -67,7 +76,11 @@ namespace AppReceitas.Tests.Api
             var recipe = RecipeDTOFactory();
             var controller = new RecipeController(_recipeService.Object);
             var result = await controller.Post(recipe) as CreatedAtRouteResult;
+
             Assert.NotNull(result);
+            Assert.IsType<RecipeDTO>(result.Value);
+
+            _recipeService.Verify(x => x.Add(recipe), Times.Once);
         }
 
         [Fact]
@@ -75,19 +88,27 @@ namespace AppReceitas.Tests.Api
         {
             RecipeDTO recipe = null;
             var controller = new RecipeController(_recipeService.Object);
-            var result = await controller.Post(recipe) as BadRequestResult;
+            var result = await controller.Post(recipe) as BadRequestObjectResult;
+
+            Assert.Equal("Recipe invalid", result.Value);
             Assert.Equal((int)HttpStatusCode.BadRequest, result.StatusCode);
+            Assert.IsType<BadRequestObjectResult>(result);
+
+            _recipeService.Verify(x => x.Add(recipe), Times.Never);
         }
 
         [Fact]
         public async Task Put_WithValidIdAndObject_ShouldReturnOk()
         {
-            var recipe = RecipeDTOFactory();
             var id = 1;
+            var recipe = RecipeDTOFactory();
             var controller = new RecipeController(_recipeService.Object);
             var result = await controller.Put(id, recipe) as OkObjectResult;
-            Assert.Equal((int)HttpStatusCode.OK, result.StatusCode);
 
+            Assert.Equal((int)HttpStatusCode.OK, result.StatusCode);
+            Assert.IsType<RecipeDTO>(result.Value);
+
+            _recipeService.Verify(x => x.Update(recipe), Times.Once);
         }
         [Fact]
         public async Task Put_withNullObject_ShouldReturnNotFound()
@@ -95,8 +116,13 @@ namespace AppReceitas.Tests.Api
             RecipeDTO recipe = null;
             var id = 1;
             var controller = new RecipeController(_recipeService.Object);
-            var result = await controller.Put(id, recipe) as NotFoundResult;
+            var result = await controller.Put(id, recipe) as NotFoundObjectResult;
+
+            Assert.Equal("Recipe Not Found", result.Value);
             Assert.Equal((int)HttpStatusCode.NotFound, result.StatusCode);
+            Assert.IsType<NotFoundObjectResult>(result);
+
+            _recipeService.Verify(x => x.Update(recipe), Times.Never);
         }
 
         [Fact]
@@ -105,8 +131,13 @@ namespace AppReceitas.Tests.Api
             var recipe = RecipeDTOFactory();
             var id = 2;
             var controller = new RecipeController(_recipeService.Object);
-            var result = await controller.Put(id, recipe) as NotFoundResult;
+            var result = await controller.Put(id, recipe) as NotFoundObjectResult;
+
+            Assert.Equal("Recipe Not Found", result.Value);
             Assert.Equal((int)HttpStatusCode.NotFound, result.StatusCode);
+            Assert.IsType<NotFoundObjectResult>(result);
+
+            _recipeService.Verify(x => x.Update(recipe), Times.Never);
         }
 
         [Fact]
@@ -116,16 +147,26 @@ namespace AppReceitas.Tests.Api
             _recipeService.Setup(x => x.GetById(id)).Returns(Task.FromResult(RecipeDTOFactory()));
             var controller = new RecipeController(_recipeService.Object);
             var result = await controller.Delete(id) as OkObjectResult;
+
             Assert.Equal((int)HttpStatusCode.OK, result.StatusCode);
+            Assert.IsType<RecipeDTO>(result.Value);
+
+            _recipeService.Verify(x => x.Remove(id), Times.Once);
+            _recipeService.Verify(x => x.GetById(id), Times.Once);
         }
         [Fact]
         public async Task Delete_withInvalidId_ShouldReturnNotFound()
         {
             var id = 2;
             var controller = new RecipeController(_recipeService.Object);
-            var result = await controller.Delete(id) as NotFoundResult;
-            Assert.Equal((int)HttpStatusCode.NotFound, result.StatusCode);
+            var result = await controller.Delete(id) as NotFoundObjectResult;
 
+            Assert.Equal("Recipe Not Found", result.Value);
+            Assert.Equal((int)HttpStatusCode.NotFound, result.StatusCode);
+            Assert.IsType<NotFoundObjectResult>(result);
+
+            _recipeService.Verify(x => x.Remove(id), Times.Never);
+            _recipeService.Verify(x => x.GetById(id), Times.Once);
         }
 
         public PaginationFilterResult<RecipeDTO> RecipesDTOFactory()
@@ -177,10 +218,6 @@ namespace AppReceitas.Tests.Api
                 PageIndex = 0,
                 PageSize = 10
             };
-        }
-        public PaginationFilterResult<RecipeDTO> EmptyRecipesDTOFactory()
-        {
-            return new PaginationFilterResult<RecipeDTO>();
         }
     }
 }

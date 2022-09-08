@@ -33,7 +33,7 @@ namespace AppReceitas.Api.Controllers
             var recipe = await _recipeService.GetById(id);
 
             if (recipe == null)
-                return NotFound();
+                return NotFound("Recipe Not Found");
 
             return Ok(recipe);
         }
@@ -43,8 +43,10 @@ namespace AppReceitas.Api.Controllers
         public async Task<IActionResult> GetRecipeCategory(int id)
         {
             var recipe = await _recipeService.GetRecipeCategory(id);
+
             if (recipe == null)
-                return NotFound();
+                return NotFound("Recipe Not Found");
+
             return Ok(recipe);
         }
 
@@ -52,7 +54,7 @@ namespace AppReceitas.Api.Controllers
         public async Task<IActionResult> Post([FromBody] RecipeDTO recipe)
         {
             if (recipe == null)
-                return BadRequest();
+                return BadRequest("Recipe invalid");
 
             await _recipeService.Add(recipe);
             return new CreatedAtRouteResult("GetRecipe", new { id = recipe.Id }, recipe);
@@ -62,10 +64,10 @@ namespace AppReceitas.Api.Controllers
         public async Task<IActionResult> Put(int id, [FromBody] RecipeDTO recipe)
         {
             if (recipe == null)
-                return NotFound();
+                return NotFound("Recipe Not Found");
 
             if (id != recipe.Id)
-                return NotFound();
+                return NotFound("Recipe Not Found");
 
             await _recipeService.Update(recipe);
             return Ok(recipe);
@@ -77,7 +79,7 @@ namespace AppReceitas.Api.Controllers
             var recipe = await _recipeService.GetById(id);
 
             if (recipe == null)
-                return NotFound();
+                return NotFound("Recipe Not Found");
 
             await _recipeService.Remove(id);
             return Ok(recipe);
