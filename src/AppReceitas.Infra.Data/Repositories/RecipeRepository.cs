@@ -31,7 +31,7 @@ namespace AppReceitas.Infra.Data.Repositories
             var paginationResult = new PaginationFilter<Recipes>
             {
                 Data = await _recipeContext.Recipes
-                .Skip(paginationFilter.PageIndex)
+                .Skip(paginationFilter.PageIndex * paginationFilter.PageSize)
                 .Take(paginationFilter.PageSize)
                 .ToListAsync(),
                 TotalItems = await _recipeContext.Recipes.CountAsync()

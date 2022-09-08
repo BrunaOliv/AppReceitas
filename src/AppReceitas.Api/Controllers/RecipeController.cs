@@ -21,7 +21,7 @@ namespace AppReceitas.Api.Controllers
             var recipes = await _recipeService.GetRecipes(paginationFilterRequest);
 
             if(recipes == null)
-                return NotFound();
+                return NotFound("Recipe Not Found");
 
             return Ok(recipes);
         }

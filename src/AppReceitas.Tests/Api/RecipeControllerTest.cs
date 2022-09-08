@@ -23,15 +23,21 @@ namespace AppReceitas.Tests.Api
             var result = await controller.Get(paginationRequest) as OkObjectResult;
 
             Assert.Equal((int)HttpStatusCode.OK, result.StatusCode);
+            Assert.IsType<PaginationFilterResult<RecipeDTO>>(result.Value);
+
+            _recipeService.Verify(x => x.GetRecipes(paginationRequest), Times.Once);
         }
 
         [Fact]
         public async Task Get_withEmptyList_ShouldReturnNotFound()
         {
+            var paginationRequest = PaginationFilterRequestFactory();
             var controller = new RecipeController(_recipeService.Object);
-            var result = await controller.Get(null) as NotFoundResult;
+            var result = await controller.Get(paginationRequest) as NotFoundObjectResult;
 
+            Assert.Equal("Recipe Not Found", result.Value);
             Assert.Equal((int)HttpStatusCode.NotFound, result.StatusCode);
+            Assert.IsType<NotFoundObjectResult>(result);
         }
 
         [Fact]
@@ -171,6 +177,10 @@ namespace AppReceitas.Tests.Api
                 PageIndex = 0,
                 PageSize = 10
             };
+        }
+        public PaginationFilterResult<RecipeDTO> EmptyRecipesDTOFactory()
+        {
+            return new PaginationFilterResult<RecipeDTO>();
         }
     }
 }
