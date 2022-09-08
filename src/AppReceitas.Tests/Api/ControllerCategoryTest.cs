@@ -22,15 +22,21 @@ namespace AppReceitas.Tests.Api
             var result = await controller.Get() as OkObjectResult;
 
             Assert.Equal((int)HttpStatusCode.OK, result.StatusCode);
+            Assert.IsType<List<CategoryDTO>>(result.Value);
+
+            _categoryService.Verify(x => x.GetCategories(), Times.Once);
         }
 
         [Fact]
         public async Task Get_withEmptyList_ShouldReturnNotFound()
         {
             var controller = CategoryControllerFactory();
-            var result = await controller.Get() as NotFoundResult;
+            var result = await controller.Get() as NotFoundObjectResult;
 
             Assert.Equal((int)HttpStatusCode.NotFound, result.StatusCode);
+            Assert.Equal("Categories Not Found", result.Value);
+
+            _categoryService.Verify(x => x.GetCategories(), Times.Once);
         }
 
         [Fact]
@@ -42,6 +48,9 @@ namespace AppReceitas.Tests.Api
             var result = await controller.GetById(id) as OkObjectResult;
 
             Assert.Equal((int)HttpStatusCode.OK, result.StatusCode);
+            Assert.IsType<CategoryDTO>(result.Value);
+
+            _categoryService.Verify(x => x.GetById(id), Times.Once);
         }
 
         [Fact]
@@ -49,9 +58,12 @@ namespace AppReceitas.Tests.Api
         {
             var id = 1;
             var controller = CategoryControllerFactory();
-            var result = await controller.GetById(id) as NotFoundResult;
+            var result = await controller.GetById(id) as NotFoundObjectResult;
 
             Assert.Equal((int)HttpStatusCode.NotFound, result.StatusCode);
+            Assert.Equal("Category Not Found", result.Value);
+
+            _categoryService.Verify(x => x.GetById(id), Times.Once);
         }
 
         [Fact]
@@ -60,15 +72,23 @@ namespace AppReceitas.Tests.Api
             var category = CategoryDTOFactory();
             var controller = CategoryControllerFactory();
             var result = await controller.Post(category) as CreatedAtRouteResult;
+
             Assert.NotNull(result);
+            Assert.IsType<CategoryDTO>(result.Value);
+
+            _categoryService.Verify(x => x.Add(category), Times.Once);
         }
 
         [Fact]
         public async Task Post_withNullObject_ShouldReturnBadRequest()
         {
             var controller = CategoryControllerFactory();
-            var result = await controller.Post(null) as BadRequestResult;
+            var result = await controller.Post(null) as BadRequestObjectResult;
+
             Assert.Equal((int)HttpStatusCode.BadRequest, result.StatusCode);
+            Assert.IsType<BadRequestObjectResult>(result);
+
+            _categoryService.Verify(x => x.Add(null), Times.Never);
         }
 
         [Fact]
@@ -78,8 +98,11 @@ namespace AppReceitas.Tests.Api
             var id = 1;
             var controller = CategoryControllerFactory();
             var result = await controller.Update(id, category) as OkObjectResult;
+
             Assert.Equal((int)HttpStatusCode.OK, result.StatusCode);
-            Assert.NotNull(result);
+            Assert.IsType<CategoryDTO>(result.Value);
+
+            _categoryService.Verify(x => x.Update(null), Times.Never);
         }
 
         [Fact]
@@ -87,8 +110,12 @@ namespace AppReceitas.Tests.Api
         {
             var id = 1;
             var controller = CategoryControllerFactory();
-            var result = await controller.Update(id, null) as NotFoundResult;
+            var result = await controller.Update(id, null) as NotFoundObjectResult;
+
             Assert.Equal((int)HttpStatusCode.NotFound, result.StatusCode);
+            Assert.Equal("Category Not Found", result.Value);
+
+            _categoryService.Verify(x => x.GetById(id), Times.Never);
         }
         [Fact]
         public async Task Put_WithIncorrectId_ShouldReturnNotFound()
@@ -96,8 +123,12 @@ namespace AppReceitas.Tests.Api
             var id = 2;
             var category = CategoryDTOFactory();
             var controller = CategoryControllerFactory();
-            var result = await controller.Update(id, category) as NotFoundResult;
+            var result = await controller.Update(id, category) as NotFoundObjectResult;
+
             Assert.Equal((int)HttpStatusCode.NotFound, result.StatusCode);
+            Assert.Equal("Category Not Found", result.Value);
+
+            _categoryService.Verify(x => x.GetById(id), Times.Never);
         }
 
         [Fact]
@@ -107,8 +138,12 @@ namespace AppReceitas.Tests.Api
             _categoryService.Setup(x => x.GetById(id)).Returns(Task.FromResult(CategoryDTOFactory()));
             var controller = CategoryControllerFactory();
             var result = await controller.DeleteById(id) as OkObjectResult;
+
             Assert.Equal((int)HttpStatusCode.OK, result.StatusCode);
-            Assert.NotNull(result);
+            Assert.IsType<CategoryDTO>(result.Value);
+
+            _categoryService.Verify(x => x.Remove(id), Times.Once);
+            _categoryService.Verify(x => x.GetById(id), Times.Once);
         }
 
         [Fact]
@@ -116,8 +151,13 @@ namespace AppReceitas.Tests.Api
         {
             var id = 2;
             var controller = CategoryControllerFactory();
-            var result = await controller.DeleteById(id) as NotFoundResult;
+            var result = await controller.DeleteById(id) as NotFoundObjectResult;
+
             Assert.Equal((int)HttpStatusCode.NotFound, result.StatusCode);
+            Assert.Equal("Category Not Found", result.Value);
+
+            _categoryService.Verify(x => x.GetById(id), Times.Once);
+            _categoryService.Verify(x => x.Remove(id), Times.Never);
         }
 
         public IEnumerable<CategoryDTO> CategoriesDTOFactory()

@@ -21,7 +21,7 @@ namespace AppReceitas.Api.Controllers
             var categories = await _categoryService.GetCategories();
 
             if(categories == null || !categories.Any())
-                return NotFound();
+                return NotFound("Categories Not Found");
             
             return Ok(categories);  
         }
@@ -33,7 +33,7 @@ namespace AppReceitas.Api.Controllers
             var category = await _categoryService.GetById(id);
 
             if (category == null)
-                return NotFound();
+                return NotFound("Category Not Found");
 
             return Ok(category);
         }
@@ -42,7 +42,7 @@ namespace AppReceitas.Api.Controllers
         public async Task<IActionResult> Post([FromBody] CategoryDTO category)
         {
             if (category == null)
-                return BadRequest();
+                return BadRequest("Invalid Category");
 
             await _categoryService.Add(category);
             return new CreatedAtRouteResult("GetCategory", new {id = category.Id}, category);
@@ -53,10 +53,10 @@ namespace AppReceitas.Api.Controllers
         {
 
             if (category == null)
-                return NotFound();
+                return NotFound("Category Not Found");
 
             if (id != category.Id)
-                return NotFound();
+                return NotFound("Category Not Found");
 
             await _categoryService.Update(category);
 
@@ -68,7 +68,7 @@ namespace AppReceitas.Api.Controllers
         {
             var category = await _categoryService.GetById(id);
             if (category == null)
-                return NotFound();
+                return NotFound("Category Not Found");
 
             await _categoryService.Remove(id);
             return  Ok(category);
