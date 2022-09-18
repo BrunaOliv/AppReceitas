@@ -12,5 +12,6 @@ namespace AppReceitas.Domain.Filters
         public int PageIndex { get; set; }
         public int TotalItems { get; set; }
         public List<T> Data { get; set; }
+        public Filter? Filter { get; set; }
     }
 }

@@ -31,6 +31,7 @@ namespace AppReceitas.Infra.Data.Repositories
             var paginationResult = new PaginationFilter<Recipes>
             {
                 Data = await _recipeContext.Recipes
+                .Where(recipe => recipe.Name.Contains(paginationFilter.Filter.NameRecipe))
                 .Skip(paginationFilter.PageIndex * paginationFilter.PageSize)
                 .Take(paginationFilter.PageSize)
                 .ToListAsync(),
