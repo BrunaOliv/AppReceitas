@@ -16,6 +16,6 @@ namespace AppReceitas.Application.DTOs
         }
         public int PageSize { get; set; }
         public int PageIndex { get; set; }
-        public FilterRequest Filter { get; set; }
+        public FilterRequest? Filter { get; set; }
     }
 }

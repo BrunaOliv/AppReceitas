@@ -6,11 +6,9 @@ using System.Threading.Tasks;
 
 namespace AppReceitas.Application.DTOs
 {
-    public enum NivelEnum
+    public class LevelDTO
     {
-        Facil,
-        Medio,
-        Difícil,
-        MestreCuca
+        public int Id { get; set; }
+        public string Name { get; set; }
     }
 }

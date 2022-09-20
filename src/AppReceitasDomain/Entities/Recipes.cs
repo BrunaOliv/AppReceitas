@@ -25,7 +25,7 @@ namespace AppReceitas.Domain.Entities
             ValidateDomain(name, ingredients, preparationMode, image);
         }
 
-        public void Update(string name, string ingredients, string preparationMode, string image, int categoryId)
+        public void Update(string name, string ingredients, string preparationMode, string image, int categoryId, int levelId)
         {
             ValidateDomain(name, ingredients, preparationMode, image);
             CategoryId = categoryId;
@@ -49,5 +49,8 @@ namespace AppReceitas.Domain.Entities
         }
         public int CategoryId { get; set; }
         public Category Category { get; set; }
+        public int LevelId { get; set; }
+        public Level Level { get; set; }
+
     }
 }

@@ -1,11 +1,6 @@
 ﻿using AppReceitas.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AppReceitas.Infra.Data.EntitiesConfiguration
 {
@@ -17,7 +12,7 @@ namespace AppReceitas.Infra.Data.EntitiesConfiguration
             builder.Property(p => p.Ingredients).IsRequired();
             builder.Property(p => p.PreparationMode).IsRequired();
             builder.HasOne(e => e.Category).WithMany(e => e.Recipes).HasForeignKey(e => e.CategoryId);
-
+            builder.HasOne(e => e.Level).WithMany(e => e.Recipes).HasForeignKey(e => e.LevelId);
         }
     }
 }

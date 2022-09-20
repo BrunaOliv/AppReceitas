@@ -9,7 +9,7 @@ namespace AppReceitas.Application.DTOs
     public class FilterRequest
     {
         public string? NameRecipe { get; set; }
-        public string? Categoria { get; set; }
-        public string? Nivel { get; set; }
+        public string? Category { get; set; }
+        public string? Level { get; set; }
     }
 }
