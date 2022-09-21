@@ -1,0 +1,25 @@
+.banner{
+    background: url("../../../assets/image/banner.png") no-repeat center center;
+    background-size: cover;
+    height: 80vh;
+}
+.view{
+    height: 50vh;
+}
+.logo{
+    max-width: 300px;
+}
+.text-enviar-receita{
+    color: #FFF;
+    font-family:'JetBrains Mono', monospace;
+    line-height: 1;
+    font-size: 18px;
+    text-transform: uppercase;
+}
+.icone-enviar{
+    transform: rotate(-45deg);
+    font-size: 36px;
+    position: relative;
+    bottom: 5px;
+    left: 5px;
+}
