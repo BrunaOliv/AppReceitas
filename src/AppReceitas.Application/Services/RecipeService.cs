@@ -4,15 +4,10 @@ using AppReceitas.Domain.Entities;
 using AppReceitas.Domain.Filters;
 using AppReceitas.Domain.Interfaces;
 using AutoMapper;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AppReceitas.Application.Services
 {
-    public class RecipeService: IRecipeService
+    public class RecipeService : IRecipeService
     {
         private readonly IRecipesRepository _recipesRepository;
         private readonly IMapper _mapper;

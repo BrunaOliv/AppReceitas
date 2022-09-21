@@ -28,7 +28,7 @@ namespace AppReceitas.Infra.Data.Repositories
 
         public async Task<PaginationFilter<Recipes>> GetRecipesAsync(PaginationFilter<Recipes> paginationFilter)
         {
-            var recipes = GetAllRecipes();
+            var recipes = GetAllRecipes().AsNoTracking();
 
             if (paginationFilter.Filter != null)
             {
@@ -44,7 +44,6 @@ namespace AppReceitas.Infra.Data.Repositories
                 TotalItems = await _recipeContext.Recipes.CountAsync()
             };
             return paginationResult;
-
         }
 
         public IQueryable<Recipes> GetAllRecipes()

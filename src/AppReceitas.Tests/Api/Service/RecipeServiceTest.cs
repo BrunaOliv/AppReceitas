@@ -51,6 +51,23 @@ namespace AppReceitas.Tests.Api.Service
             _recipesRepository.Verify(x => x.GetByIdAsync(id), Times.Once);
         }
 
+        [Fact]
+        public async Task GetRecipeCategory_withValidId_ShouldReturnValidRecipe()
+        {
+            var id = 1;
+            var recipeDTO = RecipeDTOFactory();
+            var recipeEntity = RecipeEntityFactory();
+            _mapper.Setup(x => x.Map<RecipeDTO>(recipeEntity)).Returns(recipeDTO);
+            _recipesRepository.Setup(x => x.GetRecipesCategoryAsync(id)).Returns(Task.FromResult(recipeEntity));
+
+            var service = new RecipeService(_recipesRepository.Object, _mapper.Object);
+            var result = await service.GetRecipeCategory(id);
+
+            Assert.IsType<RecipeDTO>(result);
+            _mapper.Verify(x => x.Map<RecipeDTO>(recipeEntity), Times.Once);
+            _recipesRepository.Verify(x => x.GetRecipesCategoryAsync(id), Times.Once);
+        }
+
 
         [Fact]
         public async Task GetRecipes_withValidRequest_ShouldReturnValidRecipeList()
