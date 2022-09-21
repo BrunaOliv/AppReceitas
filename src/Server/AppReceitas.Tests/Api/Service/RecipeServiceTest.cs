@@ -5,10 +5,7 @@ using AppReceitas.Domain.Filters;
 using AppReceitas.Domain.Interfaces;
 using AutoMapper;
 using Moq;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
@@ -44,7 +41,7 @@ namespace AppReceitas.Tests.Api.Service
             _recipesRepository.Setup(x => x.GetByIdAsync(id)).Returns(Task.FromResult(recipeEntity));
 
             var service = new RecipeService(_recipesRepository.Object, _mapper.Object);
-            var result =  await service.GetById(id);
+            var result = await service.GetById(id);
 
             Assert.IsType<RecipeDTO>(result);
             _mapper.Verify(x => x.Map<RecipeDTO>(recipeEntity), Times.Once);
@@ -133,7 +130,8 @@ namespace AppReceitas.Tests.Api.Service
         }
         public static PaginationFilter<Recipes> ListRecipeEntityFactory()
         {
-            return new PaginationFilter<Recipes> {
+            return new PaginationFilter<Recipes>
+            {
                 PageSize = 10,
                 PageIndex = 1,
                 TotalItems = 1,
