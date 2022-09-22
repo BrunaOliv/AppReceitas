@@ -1,19 +1,26 @@
 <div class="banner">
-  <div class="p-5">
-    <div class="d-flex justify-content-end text-enviar-receita text">
-        <span class="material-symbols-outlined icone-enviar">
-          send
-        </span>
-        <p>Envie sua <br>receita</p>
+  <div class="p-2 p-md-5">
+    <div class="d-flex justify-content-md-end justify-content-between text-enviar-receita text">
+      <div class="d-md-none">
+        <mat-icon [matMenuTriggerFor]="menu">menu</mat-icon>
+        <mat-menu #menu="matMenu">
+          <button *ngFor="let categoria of categorias" mat-menu-item>{{categoria}}</button>
+        </mat-menu>
+      </div>
+      <div class="d-flex">
+          <span class="material-symbols-outlined icone-enviar">
+            send
+          </span>
+          <p>Envie sua <br>receita</p>
+      </div>
     </div>
       <div class="view d-flex justify-content-center align-items-center">
         <div>
-          <img class="logo" src="assets/image/receitas.png">
+          <img  class="logo" src="assets/image/receitas.png">
         </div>
       </div>
-      <div *ngIf="categorias" class="d-flex flex-row justify-content-between">
+      <div *ngIf="categorias" class="d-md-flex d-none flex-row justify-content-between">
         <div *ngFor="let categoria of categorias" >
-          <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="home"></mat-icon>
             <button mat-stroked-button class="text">{{categoria}}</button>
         </div>
       </div>

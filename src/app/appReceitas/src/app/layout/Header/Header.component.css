@@ -25,3 +25,24 @@
     bottom: 5px;
     left: 5px;
 }
+@media (max-width: 575.98px) { 
+    .logo{
+        max-width: 200px;
+    }
+    .text{
+        color: #FFF;
+        font-family:'JetBrains Mono', monospace;
+        font-size: 12px;
+        text-transform: uppercase;
+    }
+    .icone-enviar{
+        transform: rotate(-45deg);
+        font-size: 20px;
+        position: relative;
+        bottom: 5px;
+        left: 5px;
+    }
+    .banner{
+        height: 60vh;
+    }
+ }
