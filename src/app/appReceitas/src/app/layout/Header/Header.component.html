@@ -1,16 +1,21 @@
 <div class="banner">
-  <div class="d-flex justify-content-end text-enviar-receita p-4">
-      <span class="material-symbols-outlined icone-enviar">
-        send
-      </span>
-      <p>Envie sua <br>receita</p>
-  </div>
-    <div class="view d-flex justify-content-center align-items-center">
-      <div>
-        <img class="logo" src="assets/image/receitas.png">
+  <div class="p-5">
+    <div class="d-flex justify-content-end text-enviar-receita text">
+        <span class="material-symbols-outlined icone-enviar">
+          send
+        </span>
+        <p>Envie sua <br>receita</p>
+    </div>
+      <div class="view d-flex justify-content-center align-items-center">
+        <div>
+          <img class="logo" src="assets/image/receitas.png">
+        </div>
       </div>
-    </div>
-    <div>
-      categorias
-    </div>
+      <div *ngIf="categorias" class="d-flex flex-row justify-content-between">
+        <div *ngFor="let categoria of categorias" >
+          <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="home"></mat-icon>
+            <button mat-stroked-button class="text">{{categoria}}</button>
+        </div>
+      </div>
+  </div>
 </div>

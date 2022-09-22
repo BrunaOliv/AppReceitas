@@ -10,9 +10,11 @@
     max-width: 300px;
 }
 .text-enviar-receita{
+    line-height: 1;
+}
+.text{
     color: #FFF;
     font-family:'JetBrains Mono', monospace;
-    line-height: 1;
     font-size: 18px;
     text-transform: uppercase;
 }
