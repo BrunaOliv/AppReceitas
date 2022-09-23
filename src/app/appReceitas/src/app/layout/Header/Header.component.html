@@ -20,9 +20,11 @@
         </div>
       </div>
       <div *ngIf="categorias" class="d-md-flex d-none flex-row justify-content-around">
-        <carousel>
+        <carousel [height]="100" [autoplay]="true" [loop]="true" [cellWidth]="130">
           <div *ngFor="let categoria of categorias" class="carousel-cell">
+            <div style="word-wrap: break-word">
               <button mat-stroked-button class="text">{{categoria}}</button>
+            </div>
           </div>
         </carousel>
       </div>

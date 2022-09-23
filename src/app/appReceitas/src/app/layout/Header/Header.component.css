@@ -15,6 +15,10 @@
 ::ng-deep .carousel-cells{
     padding-left: 40px ;
 }
+::ng-deep .carousel-container{
+    cursor: default !important;
+    height: 100px imo !important;
+}
 .logo{
     max-width: 300px;
 }

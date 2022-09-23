@@ -6,6 +6,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import { CardReceitaComponent } from './card-receita/card-receita.component';
 import {IvyCarouselModule} from 'angular-responsive-carousel';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 @NgModule({
   imports: [
@@ -13,7 +14,8 @@ import {IvyCarouselModule} from 'angular-responsive-carousel';
     MatInputModule,
     MatButtonModule,
     MatIconModule,
-    IvyCarouselModule
+    IvyCarouselModule,
+    MatTooltipModule
   ],
   declarations: [
     ReceitasComponent,

@@ -3,6 +3,11 @@
     background-size: cover;
     height: 60vh;
     border-radius: 15px;
+    transition: all 0.5s
+}
+.card:hover{
+    -webkit-filter: blur(5px);
+    filter: blur(5px);
 }
 .nome-receita{
     background: #FFF;
@@ -20,4 +25,7 @@
 .text-level{
     font-size: 26px;
     color: #FFF;
+}
+.form-busca{
+    z-index: 9999 !important;
 }

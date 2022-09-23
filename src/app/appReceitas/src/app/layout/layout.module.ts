@@ -6,6 +6,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import {MatMenuModule} from '@angular/material/menu';
 import {IvyCarouselModule} from 'angular-responsive-carousel';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   imports: [
@@ -16,7 +17,12 @@ import {IvyCarouselModule} from 'angular-responsive-carousel';
     MatMenuModule,
     IvyCarouselModule
   ],
-  declarations: [HeaderComponent],
-  exports:[HeaderComponent]
+  declarations: [
+    HeaderComponent,
+    FooterComponent
+  ],
+  exports:[
+    HeaderComponent,
+    FooterComponent]
 })
 export class LayoutModule { }
