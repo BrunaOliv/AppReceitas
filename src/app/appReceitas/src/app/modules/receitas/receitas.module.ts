@@ -5,13 +5,15 @@ import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import { CardReceitaComponent } from './card-receita/card-receita.component';
+import {IvyCarouselModule} from 'angular-responsive-carousel';
 
 @NgModule({
   imports: [
     CommonModule,
     MatInputModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    IvyCarouselModule
   ],
   declarations: [
     ReceitasComponent,

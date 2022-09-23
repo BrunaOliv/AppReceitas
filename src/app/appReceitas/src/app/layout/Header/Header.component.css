@@ -6,6 +6,15 @@
 .view{
     height: 50vh;
 }
+::ng-deep .carousel-arrow-next{
+    top: 10px !important;
+}
+::ng-deep .carousel-arrow-prev{
+    top: 10px !important;
+}
+::ng-deep .carousel-cells{
+    padding-left: 40px ;
+}
 .logo{
     max-width: 300px;
 }

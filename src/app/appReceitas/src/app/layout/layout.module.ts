@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import {MatMenuModule} from '@angular/material/menu';
+import {IvyCarouselModule} from 'angular-responsive-carousel';
 
 @NgModule({
   imports: [
@@ -12,7 +13,8 @@ import {MatMenuModule} from '@angular/material/menu';
     CommonModule,
     MatButtonModule,
     MatIconModule,
-    MatMenuModule
+    MatMenuModule,
+    IvyCarouselModule
   ],
   declarations: [HeaderComponent],
   exports:[HeaderComponent]

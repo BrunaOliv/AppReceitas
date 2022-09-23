@@ -19,10 +19,12 @@
           <img  class="logo" src="assets/image/receitas.png">
         </div>
       </div>
-      <div *ngIf="categorias" class="d-md-flex d-none flex-row justify-content-between">
-        <div *ngFor="let categoria of categorias" >
-            <button mat-stroked-button class="text">{{categoria}}</button>
-        </div>
+      <div *ngIf="categorias" class="d-md-flex d-none flex-row justify-content-around">
+        <carousel>
+          <div *ngFor="let categoria of categorias" class="carousel-cell">
+              <button mat-stroked-button class="text">{{categoria}}</button>
+          </div>
+        </carousel>
       </div>
   </div>
 </div>

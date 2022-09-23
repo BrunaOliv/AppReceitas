@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  categorias: string[] = ["Massas", "Carnes", "Receitas Fit", "Bebidas", "Lanches", "Sopas", "Molhos e Saladas"];
+  categorias: string[] = ["Massas", "Carnes", "Receitas Fit", "Bebidas", "Lanches", "Sopas", "Molhos e Saladas", "Massas", "Carnes", "Receitas Fit", "Bebidas", "Lanches", "Sopas", "Molhos e Saladas"];
   constructor() { }
 
   ngOnInit() {

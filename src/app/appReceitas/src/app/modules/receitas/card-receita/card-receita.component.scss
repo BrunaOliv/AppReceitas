@@ -2,11 +2,22 @@
     background: url("../../../../assets/image/img-test.jpg") no-repeat center center;
     background-size: cover;
     height: 60vh;
+    border-radius: 15px;
 }
 .nome-receita{
     background: #FFF;
     padding: 8px;
     width: 70%;
     border-radius: 0 25px 25px 0;
-    font-size: 18px;
+    font-size: 24px;
+    position: relative;
+    right: 2px;
+}
+
+.img-level{
+    max-width: 50px;
+}
+.text-level{
+    font-size: 26px;
+    color: #FFF;
 }
