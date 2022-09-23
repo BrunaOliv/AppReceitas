@@ -7,6 +7,7 @@ import {MatIconModule} from '@angular/material/icon';
 import { CardReceitaComponent } from './card-receita/card-receita.component';
 import {IvyCarouselModule} from 'angular-responsive-carousel';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import { CadastroReceitaComponent } from '../cadastro-receita/cadastro-receita.component';
 
 @NgModule({
   imports: [
@@ -19,8 +20,11 @@ import {MatTooltipModule} from '@angular/material/tooltip';
   ],
   declarations: [
     ReceitasComponent,
-    CardReceitaComponent],
+    CardReceitaComponent,
+    CadastroReceitaComponent],
     
-  exports: [ReceitasComponent]
+  exports: [
+    ReceitasComponent,
+    CadastroReceitaComponent]
 })
 export class ReceitasModule { }

@@ -3,12 +3,8 @@
     background-size: cover;
     height: 60vh;
     border-radius: 15px;
-    transition: all 0.5s
 }
-.card:hover{
-    -webkit-filter: blur(5px);
-    filter: blur(5px);
-}
+
 .nome-receita{
     background: #FFF;
     padding: 8px;
@@ -29,3 +25,41 @@
 .form-busca{
     z-index: 9999 !important;
 }
+
+.flip-container {
+    display: inline-block;
+    height: 60vh;
+    perspective: 1000px; 
+  }
+  
+  .flipper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+  }
+  
+  .flip-container:nth-child(1):hover .flipper {
+    transform: rotateY(180deg);
+  }
+  
+  .front, .back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+  }
+  
+  .back {
+    transform: rotateY(180deg);
+  }
+
+  .card-text{
+    width: 100px;
+    height: 100px;
+    border-radius: 50px;
+    background-color: #FF7F00;
+    cursor: pointer;
+    color: #FFF;
+  }

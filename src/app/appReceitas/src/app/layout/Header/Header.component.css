@@ -6,6 +6,11 @@
 .view{
     height: 50vh;
 }
+.card-text{
+    width: 100px;
+    height: 100px;
+    border-radius: 50px;
+}
 ::ng-deep .carousel-arrow-next{
     top: 10px !important;
 }
