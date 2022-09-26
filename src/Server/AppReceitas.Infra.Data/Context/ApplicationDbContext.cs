@@ -14,6 +14,7 @@ namespace AppReceitas.Infra.Data.Context
         {}
         public DbSet<Category> Categories { get; set; }
         public DbSet<Recipes> Recipes { get; set; }
+        public DbSet<Level> Level { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

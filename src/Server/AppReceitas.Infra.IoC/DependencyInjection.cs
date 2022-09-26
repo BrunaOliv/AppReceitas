@@ -20,8 +20,10 @@ namespace AppReceitas.Infra.IoC
             );
             services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddScoped<IRecipesRepository, RecipeRepository>();
+            services.AddScoped<ILevelRepository, LevelRepository>();
             services.AddScoped<IRecipeService, RecipeService>();
             services.AddScoped<ICategoryService, CategoryService>();
+            services.AddScoped<ILevelService, LevelService>();
             services.AddAutoMapper(typeof(DomainToDTOMappingProfile));
 
             return services;
