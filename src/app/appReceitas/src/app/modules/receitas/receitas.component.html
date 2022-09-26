@@ -15,10 +15,9 @@
   </div>
   <div class="container mb-5">
     <div class="row">
-      <div class="col-md-4"><app-card-receita></app-card-receita></div>
-      <div class="col-md-4"><app-card-receita></app-card-receita></div>
-      <div class="col-md-4"><app-card-receita></app-card-receita></div>
-      <div class="col-md-4"><app-card-receita></app-card-receita></div>
+      <div class="col-md-4" *ngFor="let receita of receitas.data">
+        <app-card-receita [nomeReceita]="receita.name" [levelReceita]="receita.level.name"></app-card-receita>
+      </div>
     </div>
   </div>
 </div>

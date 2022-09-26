@@ -23,7 +23,7 @@
         <carousel [height]="100" [autoplay]="true" [loop]="true" [cellWidth]="130">
           <div *ngFor="let categoria of categorias" class="carousel-cell">
             <div>
-              <button mat-stroked-button class="text">{{categoria}}</button>
+              <button mat-stroked-button class="text">{{categoria.name}}</button>
             </div>
           </div>
         </carousel>

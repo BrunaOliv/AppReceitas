@@ -2,13 +2,13 @@
   <div class="flipper">
     <div class="front d-flex flex-column justify-content-between">
       <div class="d-flex nome-receita mt-5">
-        <div>Manjar de Coco</div>
+        <div>{{nomeReceita}}</div>
       </div>
       <div>
       </div>
       <div class="d-flex align-items-end mr-5 mb-2">
-        <img class="img-level" src="assets/image/facil.png">
-        <span class="text-level">Fácil</span>
+        <img class="img-level" [src]="obterIconeLevel()">
+        <span class="text-level">{{levelReceita}}</span>
       </div>
     </div>
     <div class="back d-flex flex-column justify-content-center align-items-center">

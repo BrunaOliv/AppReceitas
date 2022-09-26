@@ -7,6 +7,7 @@ import { HeaderComponent } from './layout/Header/Header.component';
 import { LayoutModule } from './layout/layout.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReceitasModule } from './modules/receitas/receitas.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { ReceitasModule } from './modules/receitas/receitas.module';
     AppRoutingModule,
     LayoutModule,
     BrowserAnimationsModule,
-    ReceitasModule
+    ReceitasModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
