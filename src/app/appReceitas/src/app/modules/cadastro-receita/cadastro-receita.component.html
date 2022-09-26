@@ -1,11 +1,39 @@
 <form>
-  <mat-form-field  appearance="fill">
-    <input type="text" matInput placeholder="Nome da receita">
-  </mat-form-field>
-  <mat-form-field  appearance="fill">
-    <textarea type="text-area" matInput placeholder="Ingredientes"></textarea>
-  </mat-form-field>
-  <mat-form-field  appearance="fill">
-    <textarea type="text-area" matInput placeholder="Modo de preparo"></textarea>
-  </mat-form-field>
+  <div class="d-flex flex-column container mt-5 mb-5">
+
+    <mat-form-field  appearance="fill">
+      <mat-label>Nome da receita</mat-label>
+      <input type="text" matInput>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Categoria</mat-label>
+      <mat-select>
+        <mat-option *ngFor="let categoria of categorias" [value]="categoria.name">
+          {{categoria.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <div class="mb-2">
+      <mat-radio-group>
+        <div>
+          <span>Nível</span>
+        </div>
+        <div>
+          <mat-radio-button color="primary" *ngFor="let level of levels" value="level" class="m-2">{{level}}</mat-radio-button>
+        </div>
+      </mat-radio-group>
+    </div>
+
+    <mat-form-field  appearance="fill">
+      <mat-label>Ingredientes</mat-label>
+      <textarea class="form-text" type="text-area" matInput></textarea>
+    </mat-form-field>
+
+      <mat-form-field  appearance="fill">
+        <mat-label>Modo de preparo</mat-label>
+        <textarea type="text-area" class="form-text" matInput></textarea>
+      </mat-form-field>
+  </div>
 </form>

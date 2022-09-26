@@ -8,6 +8,9 @@ import { CardReceitaComponent } from './card-receita/card-receita.component';
 import {IvyCarouselModule} from 'angular-responsive-carousel';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import { CadastroReceitaComponent } from '../cadastro-receita/cadastro-receita.component';
+import {MatSelectModule} from '@angular/material/select';
+import {MatRadioModule} from '@angular/material/radio';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
@@ -16,7 +19,10 @@ import { CadastroReceitaComponent } from '../cadastro-receita/cadastro-receita.c
     MatButtonModule,
     MatIconModule,
     IvyCarouselModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatSelectModule,
+    MatRadioModule,
+    FormsModule
   ],
   declarations: [
     ReceitasComponent,

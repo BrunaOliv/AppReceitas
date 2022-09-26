@@ -1,7 +1,7 @@
 .footer{
     background: url("../../../assets/image/footer.png") no-repeat center center;
     background-size: cover;
-    height: 40vh;
+    min-height: 40vh;
 }
 .text-principal-footer{
     color: #fff;
@@ -13,4 +13,5 @@
 }
 ul{
     list-style: none;
+    padding-left: 0px !important;
 }
