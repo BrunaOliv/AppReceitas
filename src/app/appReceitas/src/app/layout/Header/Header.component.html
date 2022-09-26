@@ -4,7 +4,7 @@
       <div class="d-md-none">
         <mat-icon [matMenuTriggerFor]="menu">menu</mat-icon>
         <mat-menu #menu="matMenu">
-          <button *ngFor="let categoria of categorias" mat-menu-item>{{categoria}}</button>
+          <button *ngFor="let categoria of categorias" mat-menu-item>{{categoria.name}}</button>
         </mat-menu>
       </div>
       <div class="d-flex">

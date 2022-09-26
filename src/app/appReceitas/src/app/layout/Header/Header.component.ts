@@ -9,8 +9,6 @@ import { Categoria } from 'src/app/model/Categoria';
 })
 export class HeaderComponent implements OnInit {
 
-  //categorias: string[] = ["Massas", "Carnes", "Receitas Fit", "Bebidas", "Lanches", "Sopas", "Molhos e Saladas", "Massas", "Carnes", "Receitas Fit", "Bebidas", "Lanches", "Sopas", "Molhos e Saladas"];
-
   categorias: Categoria[] = [];
   constructor(private serviceCategoria: CategoriaService) { }
 

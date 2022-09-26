@@ -10,7 +10,8 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import { CadastroReceitaComponent } from '../cadastro-receita/cadastro-receita.component';
 import {MatSelectModule} from '@angular/material/select';
 import {MatRadioModule} from '@angular/material/radio';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import {MatFormFieldModule} from '@angular/material/form-field';
 
 @NgModule({
   imports: [
@@ -22,7 +23,9 @@ import { FormsModule } from '@angular/forms';
     MatTooltipModule,
     MatSelectModule,
     MatRadioModule,
-    FormsModule
+    FormsModule,
+    MatFormFieldModule,
+    ReactiveFormsModule
   ],
   declarations: [
     ReceitasComponent,

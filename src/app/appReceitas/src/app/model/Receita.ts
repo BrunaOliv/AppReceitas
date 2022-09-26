@@ -8,6 +8,7 @@ export class Receita {
 
 export class data {
     id?: number
+    name?: string
     ingredients?: string
     preparationMode?: string
     image?: string
