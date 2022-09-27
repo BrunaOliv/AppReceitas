@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, RouterLink } from '@angular/router';
 import { CategoriaService } from 'src/app/core/services/categoria.service';
+import { HeaderService } from 'src/app/core/services/header.service';
 import { Categoria } from 'src/app/model/Categoria';
 
 @Component({
@@ -10,7 +12,10 @@ import { Categoria } from 'src/app/model/Categoria';
 export class HeaderComponent implements OnInit {
 
   categorias: Categoria[] = [];
-  constructor(private serviceCategoria: CategoriaService) { }
+  constructor(
+              private serviceCategoria: CategoriaService,
+              private headerService: HeaderService,
+              private router: Router) { }
 
   ngOnInit() {
     this.obterCategorias();
@@ -23,4 +28,12 @@ export class HeaderComponent implements OnInit {
     })
   }
 
+  filtrarPorCategoria(categoria : string){
+    this.headerService.setFiltroCategoria(categoria)
+  }
+
+  carregarPaginaInicial(): void{
+    this.headerService.setFiltroCategoria('');
+    this.router.navigate(['']);
+  }
 }

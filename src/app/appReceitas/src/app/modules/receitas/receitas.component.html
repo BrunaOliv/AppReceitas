@@ -4,13 +4,15 @@
       <h2 class="text-receitas">Receitas</h2>
     </div>
     <div class="form-busca">
-      <mat-form-field appearance="fill">
-        <mat-label>Buscar Receita</mat-label>
-        <input matInput type="text">
-        <button matSuffix mat-icon-button>
-          <mat-icon>search</mat-icon>
-        </button>
-      </mat-form-field>
+      <form [formGroup]="filtro">
+        <mat-form-field appearance="fill">
+          <mat-label>Buscar Receita</mat-label>
+          <input (input)="submitForm()" formControlName="nome" matInput type="text">
+          <button matSuffix mat-icon-button>
+            <mat-icon>search</mat-icon>
+          </button>
+        </mat-form-field>
+    </form>
     </div>
   </div>
   <div class="container mb-5">

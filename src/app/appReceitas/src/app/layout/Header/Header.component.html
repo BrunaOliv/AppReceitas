@@ -7,14 +7,14 @@
           <button *ngFor="let categoria of categorias" mat-menu-item>{{categoria.name}}</button>
         </mat-menu>
       </div>
-      <div class="d-flex">
+      <div class="d-flex link" routerLink="/cadastro">
           <span class="material-symbols-outlined icone-enviar">
             send
           </span>
           <p>Envie sua <br>receita</p>
       </div>
     </div>
-      <div class="view d-flex justify-content-center align-items-center">
+      <div class="view d-flex justify-content-center align-items-center link" (click)="carregarPaginaInicial()">
         <div>
           <img  class="logo" src="assets/image/receitas.png">
         </div>
@@ -23,7 +23,7 @@
         <carousel [height]="100" [autoplay]="true" [loop]="true" [cellWidth]="130">
           <div *ngFor="let categoria of categorias" class="carousel-cell">
             <div>
-              <button mat-stroked-button class="text">{{categoria.name}}</button>
+              <button mat-stroked-button class="text" (click)="filtrarPorCategoria(categoria.name)">{{categoria.name}}</button>
             </div>
           </div>
         </carousel>

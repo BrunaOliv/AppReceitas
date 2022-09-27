@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, tap } from 'rxjs';
 import { PaginacaoRequisicao } from 'src/app/model/PaginacaoRequisicao';
@@ -15,16 +15,25 @@ export class ReceitasService {
 constructor(private http: HttpClient) { }
 
 obterTodasReceitas(paginacaoRequisicao: PaginacaoRequisicao): Observable<Receita>{
-  return this.http.get<Receita>(url, {
-    params: {
-      PageSize: paginacaoRequisicao.pageSize,
-      PageIndex: paginacaoRequisicao.pageIndex
-    }
-  })
+  const queryParams: HttpParams = this.aplicarParametros(paginacaoRequisicao)
+
+  return this.http.get<Receita>(url, {params: queryParams})
 }
 
+  aplicarParametros(paginacaoRequisicao: PaginacaoRequisicao): HttpParams{
+    let queryParams = new HttpParams();
+    if(paginacaoRequisicao.filter?.categoria)
+        queryParams = queryParams.append('Filter.Category', paginacaoRequisicao.filter.categoria);
+
+    if(paginacaoRequisicao.filter?.nome)
+        queryParams = queryParams.append('Filter.NameRecipe', paginacaoRequisicao.filter.categoria);
+
+    queryParams = queryParams.append('PageSize', paginacaoRequisicao.pageSize);
+    queryParams = queryParams.append('PageIndex', paginacaoRequisicao.pageIndex);
+    return queryParams;
+  }
+  
   salvar(data : data): Observable<data>{
-    console.log(data)
     return this.http.post<data>(url, data);
   }
 }

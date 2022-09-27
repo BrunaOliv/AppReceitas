@@ -43,6 +43,10 @@
     bottom: 5px;
     left: 5px;
 }
+
+.link{
+    cursor: pointer;
+}
 @media (max-width: 575.98px) { 
     .logo{
         max-width: 200px;

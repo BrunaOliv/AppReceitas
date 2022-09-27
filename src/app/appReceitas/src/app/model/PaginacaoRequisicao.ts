@@ -1,5 +1,11 @@
 export class PaginacaoRequisicao {
     pageSize!: number
     pageIndex!: number
-    filter?: any
+    filter!: Filter
+}
+
+export class Filter {
+    categoria!: string
+    level!: string
+    nome!: string
 }

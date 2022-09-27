@@ -1,7 +1,9 @@
 import { Component, ContentChildren, ElementRef, OnInit, QueryList } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { PageEvent } from '@angular/material/paginator';
+import { HeaderService } from 'src/app/core/services/header.service';
 import { ReceitasService } from 'src/app/core/services/Receitas.service';
-import { PaginacaoRequisicao } from 'src/app/model/PaginacaoRequisicao';
+import { Filter, PaginacaoRequisicao } from 'src/app/model/PaginacaoRequisicao';
 import { Receita } from 'src/app/model/Receita';
 
 @Component({
@@ -11,7 +13,10 @@ import { Receita } from 'src/app/model/Receita';
 })
 export class ReceitasComponent implements OnInit {
 
-  constructor(private serviceReitas: ReceitasService) { }
+  constructor(
+              private serviceReitas: ReceitasService,
+              private headerService: HeaderService,
+              private fb: FormBuilder) { }
 
   receitas: Receita = new Receita;
   receitaLista: any[] = [];
@@ -19,9 +24,12 @@ export class ReceitasComponent implements OnInit {
   levelReceita?: string;
   imagemReceita?: string;
   paginacaoRequisicao: PaginacaoRequisicao = new PaginacaoRequisicao;
+  filtro!: FormGroup;
 
   ngOnInit() {
+    this.carregarForm();
     this.iniciarPaginaçao();
+    this.filtrarPorCategoria();
   }
 
   iniciarPaginaçao(): void{
@@ -40,5 +48,25 @@ export class ReceitasComponent implements OnInit {
     this.paginacaoRequisicao.pageIndex =  event.pageIndex,
     this.paginacaoRequisicao.pageSize = event.pageSize
     this.obterTodasReceitas(this.paginacaoRequisicao);
-}
+  }
+
+  filtrarPorCategoria(): void{
+    this.headerService.getFiltroCategoria().subscribe(categoria => {
+      this.paginacaoRequisicao.filter = new Filter
+      this.paginacaoRequisicao.filter.categoria = categoria
+
+      this.obterTodasReceitas(this.paginacaoRequisicao);
+    })
+  }
+
+  carregarForm(): void{
+    this.filtro = this.fb.group({
+      nome: ['']
+    })
+  }
+
+  submitForm(): void{
+    this.paginacaoRequisicao.filter.nome = this.filtro.value.nome;
+    console.log(this.paginacaoRequisicao)
+  }
 }
