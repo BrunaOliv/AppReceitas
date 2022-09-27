@@ -13,9 +13,11 @@ export class CardReceitaComponent implements OnInit {
 
   receitas?:Receita;
   imagemLevel?: string;
+  imagemDefault: string = 'url("assets/image/img-test.jpg")';
 
   @Input() nomeReceita?:string;
   @Input() levelReceita?:string;
+  @Input() imagemReceita?: string
 
 
   ngOnInit() {
@@ -35,5 +37,12 @@ export class CardReceitaComponent implements OnInit {
       return this.imagemLevel = "assets/image/dificil.png"
 
     return this.imagemLevel = "assets/image/mestre-cuca.png"
+  }
+
+  getUrlImagem(): string{ 
+    //if(this.imagemReceita != undefined && this.imagemReceita != '')
+      //return 'url(this.imagemReceita)'
+
+    return this.imagemDefault;
   }
 }

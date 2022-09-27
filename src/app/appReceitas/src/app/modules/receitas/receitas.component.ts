@@ -15,6 +15,7 @@ export class ReceitasComponent implements OnInit {
   receitaLista: any[] = [];
   nomeReceita?: string;
   levelReceita?: string;
+  imagemReceita?: string;
 
   ngOnInit() {
     this.obterTodasReceitas();

@@ -6,7 +6,7 @@ namespace AppReceitas.Application.DTOs
 {
     public class RecipeDTO
     {
-        public int Id { get; set; }
+        public int? Id { get; set; }
 
         [Required(ErrorMessage = "The name is required.")]
         [MinLength(3)]
@@ -26,7 +26,7 @@ namespace AppReceitas.Application.DTOs
 
         [MaxLength(250)]
         [DisplayName("Image")]
-        public string Image { get; set; }
+        public string? Image { get; set; }
 
         public CategoryDTO? Category { get; set; }
 

@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CategoriaService } from 'src/app/core/services/categoria.service';
+import { LevelService } from 'src/app/core/services/level.service';
+import { ReceitasService } from 'src/app/core/services/Receitas.service';
 import { Categoria } from 'src/app/model/Categoria';
+import { Level } from 'src/app/model/Level';
 import { data } from 'src/app/model/Receita';
 
 @Component({
@@ -13,29 +16,31 @@ export class CadastroReceitaComponent implements OnInit {
 
   constructor(
               private serviceCategoria: CategoriaService,
-              private fb: FormBuilder) {
-                //this.gerarFormulario();
+              private fb: FormBuilder,
+              private serviceLevel: LevelService,
+              private serviceReceitas: ReceitasService) {
+                this.gerarFormulario();
                }
 
   categorias: Categoria[] = [];
-  levels: string[] = ["Fácil", "Médio", "Difícil", "Mestre Cuca"];
+  levels: Level[] = [];
   levelSelecionado?: string;
   cadastroReceita!: FormGroup;
-
-
   
   ngOnInit() {
     this.obterCategorias();
+    this.obterLevels();
     this.carregarFormulario(this.gerarReceita());
   }
 
   carregarFormulario(receita: data){
     this.cadastroReceita = this.fb.group({
-      nome: [receita.name, [Validators.required, Validators.minLength(3), Validators.maxLength(256)]],
-      ingredientes: [receita.ingredients, [Validators.required, Validators.minLength(5)]],
-      modoPreparo: [receita.preparationMode, [Validators.required, Validators.minLength(5)]],
-      categoria: [receita.category?.id, [Validators.required]],
-      level: [receita.level?.id, [Validators.required]]
+      name: [receita.name, [Validators.required, Validators.minLength(3), Validators.maxLength(256)]],
+      ingredients: [receita.ingredients, [Validators.required, Validators.minLength(5)]],
+      preparationMode: [receita.preparationMode, [Validators.required, Validators.minLength(5)]],
+      categoryId: [receita.category, [Validators.required]],
+      levelId: [receita.level, [Validators.required]],
+      image: [receita.image, [Validators.required]]
     })
   }
 
@@ -49,22 +54,38 @@ export class CadastroReceitaComponent implements OnInit {
 
   private gerarReceita(): data{
     return{
-      id: undefined,
-      name: undefined,
-      ingredients: undefined,
-      preparationMode: undefined,
-      image: undefined,
-      category: undefined,
-      level: undefined
+
     } as data
   }
   private gerarFormulario(): void{
     this.cadastroReceita = this.fb.group({
-      nome: [null, [Validators.required, Validators.minLength(3), Validators.maxLength(256)]],
-      ingredientes: [null, [Validators.required, Validators.minLength(5)]],
-      modoPreparo: [null, [Validators.required, Validators.minLength(5)]],
-      categoria: [null, [Validators.required]],
-      level: [null, [Validators.required]]
+      name: [null, [Validators.required, Validators.minLength(3), Validators.maxLength(256)]],
+      ingredients: [null, [Validators.required, Validators.minLength(5)]],
+      preparationMode: [null, [Validators.required, Validators.minLength(5)]],
+      categoryId: [null, [Validators.required]],
+      levelId: [null, [Validators.required]]
     })
   }
+
+  obterLevels() : void{
+    this.serviceLevel.obterTodosLevels().subscribe(data =>{
+      this.levels = data;
+      console.log(this.levels)
+    })
+  }
+
+  submit() : void{
+    const receita = this.cadastroReceita.getRawValue() as data;
+    this.salvar(receita)
+  }
+
+  salvar(data: data): void{
+    this.serviceReceitas.salvar(data).subscribe();
+  }
+
+  selectedFile: any = null;
+
+onFileSelected(event: any): void {
+    this.selectedFile = event.target.files[0] ?? null;
+}
 }

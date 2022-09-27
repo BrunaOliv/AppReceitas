@@ -3,45 +3,49 @@
 
     <mat-form-field  appearance="fill">
       <mat-label>Nome da receita</mat-label>
-      <input formControlName="nome" type="text" matInput>
+      <input formControlName="name" type="text" matInput>
     </mat-form-field>
 
     <mat-form-field appearance="fill">
       <mat-label>Categoria</mat-label>
-      <mat-select>
-        <mat-option formControlName="categoria" *ngFor="let categoria of categorias" [value]="categoria.name">
+      <mat-select formControlName="categoryId">
+        <mat-option *ngFor="let categoria of categorias" [value]="categoria.id">
           {{categoria.name}}
         </mat-option>
       </mat-select>
     </mat-form-field>
 
-    <div class="mb-2">
-      <mat-radio-group>
-        <div>
-          <span>Nível</span>
-        </div>
-        <div>
-          <mat-radio-button formControlName="level" color="primary" *ngFor="let level of levels" value="level" class="m-2">{{level}}</mat-radio-button>
-        </div>
-      </mat-radio-group>
-    </div>
+    <mat-form-field appearance="fill">
+      <mat-label>Level</mat-label>
+      <mat-select formControlName="levelId">
+        <mat-option *ngFor="let level of levels" [value]="level.id">
+          {{level.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
 
     <mat-form-field  appearance="fill">
       <mat-label>Ingredientes</mat-label>
-      <textarea formControlName="ingredientes" class="form-text" type="text-area" matInput></textarea>
+      <textarea formControlName="ingredients" class="form-text" type="text-area" matInput></textarea>
     </mat-form-field>
 
       <mat-form-field  appearance="fill">
         <mat-label>Modo de preparo</mat-label>
-        <textarea formControlName="modoPreparo" type="text-area" class="form-text" matInput></textarea>
+        <textarea formControlName="preparationMode" type="text-area" class="form-text" matInput></textarea>
       </mat-form-field>
+
+      <div class="d-flex justify-content-start align-items-center">
+        <button type="button" mat-raised-button (click)="fileInput.click()">Choose File</button>
+        <input formControlName="image" hidden (change)="onFileSelected($event)" #fileInput type="file">
+        <span class="file-name">{{selectedFile?.name}}</span>
+      </div>
 
       <div class="d-flex justify-content-end">
         <div class="m-2">
           <button mat-stroked-button>Cancelar</button>
         </div>
         <div class="m-2">
-          <button mat-stroked-button color="primary">Salvar</button>
+          <button mat-stroked-button color="primary" (click)="submit()">Salvar</button>
         </div>
       </div>
   </div>
