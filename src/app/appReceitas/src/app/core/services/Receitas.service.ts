@@ -15,6 +15,7 @@ export class ReceitasService {
 constructor(private http: HttpClient) { }
 
 obterTodasReceitas(paginacaoRequisicao: PaginacaoRequisicao): Observable<Receita>{
+  console.log(paginacaoRequisicao)
   const queryParams: HttpParams = this.aplicarParametros(paginacaoRequisicao)
 
   return this.http.get<Receita>(url, {params: queryParams})
@@ -26,7 +27,7 @@ obterTodasReceitas(paginacaoRequisicao: PaginacaoRequisicao): Observable<Receita
         queryParams = queryParams.append('Filter.Category', paginacaoRequisicao.filter.categoria);
 
     if(paginacaoRequisicao.filter?.nome)
-        queryParams = queryParams.append('Filter.NameRecipe', paginacaoRequisicao.filter.categoria);
+        queryParams = queryParams.append('Filter.NameRecipe', paginacaoRequisicao.filter.nome);
 
     queryParams = queryParams.append('PageSize', paginacaoRequisicao.pageSize);
     queryParams = queryParams.append('PageIndex', paginacaoRequisicao.pageIndex);

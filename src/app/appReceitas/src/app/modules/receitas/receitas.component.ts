@@ -67,6 +67,6 @@ export class ReceitasComponent implements OnInit {
 
   submitForm(): void{
     this.paginacaoRequisicao.filter.nome = this.filtro.value.nome;
-    console.log(this.paginacaoRequisicao)
+    this.obterTodasReceitas(this.paginacaoRequisicao);
   }
 }
