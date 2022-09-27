@@ -20,4 +20,11 @@
       </div>
     </div>
   </div>
+  <mat-paginator  [length]="receitas.totalItems"
+                  [pageSize]="paginacaoRequisicao.pageSize"
+                  [pageIndex]="paginacaoRequisicao.pageIndex"
+                  [pageSizeOptions]="[9, 18]"
+                  (page)="onPageChange($event)"
+                 aria-label="Select page">
+</mat-paginator>
 </div>
