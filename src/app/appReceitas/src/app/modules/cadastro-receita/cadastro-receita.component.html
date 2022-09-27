@@ -1,48 +1,62 @@
 <form [formGroup]="cadastroReceita">
   <div class="d-flex flex-column container mt-5 mb-5">
 
-    <mat-form-field  appearance="fill">
+    <mat-form-field  appearance="fill" class="mb-3">
       <mat-label>Nome da receita</mat-label>
       <input formControlName="name" type="text" matInput>
+      <mat-error *ngIf="validacaoErros(form['name'], 'required')">Campo obrigatório</mat-error>
+      <mat-error *ngIf="validacaoErros(form['name'], 'minlength')">Campo precisa ter no minimo 3 caracter</mat-error>
     </mat-form-field>
 
-    <mat-form-field appearance="fill">
+    <mat-form-field appearance="fill" class="mb-3">
       <mat-label>Categoria</mat-label>
       <mat-select formControlName="categoryId">
         <mat-option *ngFor="let categoria of categorias" [value]="categoria.id">
           {{categoria.name}}
         </mat-option>
       </mat-select>
+      <mat-error *ngIf="validacaoErros(form['categoryId'], 'required')">Campo obrigatório</mat-error>
     </mat-form-field>
 
-    <mat-form-field appearance="fill">
+    <mat-form-field appearance="fill" class="mb-3">
       <mat-label>Level</mat-label>
       <mat-select formControlName="levelId">
         <mat-option *ngFor="let level of levels" [value]="level.id">
           {{level.name}}
         </mat-option>
       </mat-select>
+      <mat-error *ngIf="validacaoErros(form['levelId'], 'required')">Campo obrigatório</mat-error>
     </mat-form-field>
 
-    <mat-form-field  appearance="fill">
+    <mat-form-field  appearance="fill" class="mb-3">
       <mat-label>Ingredientes</mat-label>
       <textarea formControlName="ingredients" class="form-text" type="text-area" matInput></textarea>
+      <mat-error *ngIf="validacaoErros(form['ingredients'], 'required')">Campo obrigatório</mat-error>
+      <mat-error *ngIf="validacaoErros(form['ingredients'], 'minlength')">Campo precisa ter no minimo 5 caracter</mat-error>
     </mat-form-field>
 
-      <mat-form-field  appearance="fill">
+      <mat-form-field  appearance="fill" class="mb-3">
         <mat-label>Modo de preparo</mat-label>
         <textarea formControlName="preparationMode" type="text-area" class="form-text" matInput></textarea>
+        <mat-error *ngIf="validacaoErros(form['preparationMode'], 'required')">Campo obrigatório</mat-error>
+        <mat-error *ngIf="validacaoErros(form['preparationMode'], 'minlength')">Campo precisa ter no minimo 5 caracter</mat-error>
       </mat-form-field>
 
-      <div class="d-flex justify-content-start align-items-center">
-        <button type="button" mat-raised-button (click)="fileInput.click()">Choose File</button>
-        <input formControlName="image" hidden (change)="onFileSelected($event)" #fileInput type="file">
-        <span class="file-name">{{selectedFile?.name}}</span>
+      <div class="d-flex flex-column" class="mb-3">
+        <div class="mb-3">
+          <span class="text-img">Imagem</span>
+        </div>
+        <div class="d-flex justify-content-start align-items-center">
+            <button type="button" mat-raised-button (click)="fileInput.click()">Choose File</button>
+            <input formControlName="image" hidden (change)="onFileSelected($event)" #fileInput type="file">
+          <span class="file-name">{{selectedFile?.name}}</span>
+        </div>
+        <mat-error class="erro" *ngIf="validacaoErros(form['image'], 'required')">Campo obrigatório</mat-error>
       </div>
 
       <div class="d-flex justify-content-end">
         <div class="m-2">
-          <button mat-stroked-button>Cancelar</button>
+          <button mat-stroked-button (click)="reiniciarForm()">Cancelar</button>
         </div>
         <div class="m-2">
           <button mat-stroked-button color="primary" (click)="submit()">Salvar</button>

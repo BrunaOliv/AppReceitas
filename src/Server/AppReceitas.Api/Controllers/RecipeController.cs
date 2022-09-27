@@ -57,7 +57,8 @@ namespace AppReceitas.Api.Controllers
                 return BadRequest("Recipe invalid");
 
             await _recipeService.Add(recipe);
-            return new CreatedAtRouteResult("GetRecipe", new { id = recipe.Id }, recipe);
+            return Ok();
+            //return new CreatedAtRouteResult("GetRecipe", new { id = recipe.Id }, recipe);
         }
 
         [HttpPut]

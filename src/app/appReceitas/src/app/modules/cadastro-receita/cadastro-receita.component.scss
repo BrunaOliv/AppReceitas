@@ -1,6 +1,28 @@
 .form-text{
     min-height: 200px;
 }
+
 .file-name {
     margin-left: 1rem; /* or whatever margin you require */
 }
+
+.text-img{
+    font-size: 16px;
+}
+
+.erro{
+    font-size: 11px;
+    margin-left: 4px;
+}
+
+::ng-deep .red-snackbar {
+    background: #FF0000;
+}
+
+::ng-deep .green-snackbar {
+    background: #2E8B57;
+}
+
+::ng-deep .mat-simple-snackbar-action{
+    color: #000;
+  }
