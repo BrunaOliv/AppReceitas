@@ -40,8 +40,9 @@ export class CardReceitaComponent implements OnInit {
   }
 
   getUrlImagem(): string{ 
-    //if(this.imagemReceita != undefined && this.imagemReceita != '')
-      //return 'url(this.imagemReceita)'
+    console.log(this.imagemReceita)
+    if(this.imagemReceita != undefined && this.imagemReceita != '')
+        return `url(${this.imagemReceita})`
 
     return this.imagemDefault;
   }

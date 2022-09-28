@@ -6,6 +6,7 @@ import { CategoriaService } from 'src/app/core/services/categoria.service';
 import { LevelService } from 'src/app/core/services/level.service';
 import { ReceitasService } from 'src/app/core/services/Receitas.service';
 import { Categoria } from 'src/app/model/Categoria';
+import { GUID } from 'src/app/model/GUID';
 import { Level } from 'src/app/model/Level';
 import { data } from 'src/app/model/Receita';
 
@@ -34,6 +35,7 @@ export class CadastroReceitaComponent implements OnInit {
   filename: any = null;
   imageSource: any = null;
   urlBlob:string = "https://appreceitas.blob.core.windows.net/appreceitas/";
+  file:any = null;
 
   get form(){
       return this.cadastroReceita.controls;
@@ -89,6 +91,7 @@ export class CadastroReceitaComponent implements OnInit {
   }
 
   submit() : void{
+    this.save(this.file)
     this.cadastroReceita.markAllAsTouched();
     if(this.cadastroReceita.invalid)
       return
@@ -116,6 +119,7 @@ export class CadastroReceitaComponent implements OnInit {
       })
     });
     this.reiniciarForm();
+    console.log(this.file)
   }
 
 
@@ -138,10 +142,11 @@ onFileSelected(event: any): void {
     return false
   }
   setFilename(files: any) {
+    console.log(files)
     if (files[0]) {
       this.filename = files[0].name;
     }
-    this.cadastroReceita.value.image = this.urlBlob + this.filename;
+    this.file = files;
   }
 
   save(files:any) {
