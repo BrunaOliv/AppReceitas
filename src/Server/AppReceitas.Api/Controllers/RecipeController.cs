@@ -10,9 +10,12 @@ namespace AppReceitas.Api.Controllers
     public class RecipeController : ControllerBase
     {
         private readonly IRecipeService _recipeService;
-        public RecipeController(IRecipeService recipeService)
+
+        private IBlobService _blobService;
+        public RecipeController(IRecipeService recipeService, IBlobService blobService)
         {
             _recipeService = recipeService;
+            _blobService = blobService;
         }
 
         [HttpGet]
@@ -86,5 +89,25 @@ namespace AppReceitas.Api.Controllers
             return Ok(recipe);
         }
 
+        [HttpPost(), DisableRequestSizeLimit]
+        [Route("image")]
+        public async Task<ActionResult> UploadProfilePicture()
+        {
+            IFormFile file = Request.Form.Files[0];
+            if (file == null)
+            {
+                return BadRequest();
+            }
+
+            var result = await _blobService.UploadFileBlobAsync(
+                    "appreceitas",
+                    file.OpenReadStream(),
+                    file.ContentType,
+                    file.FileName);
+
+            var toReturn = result.AbsoluteUri;
+
+            return Ok(new { path = toReturn });
+        }
     }
 }

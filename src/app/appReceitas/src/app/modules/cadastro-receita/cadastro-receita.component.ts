@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { BlobService } from 'src/app/core/services/blob.service';
 import { CategoriaService } from 'src/app/core/services/categoria.service';
 import { LevelService } from 'src/app/core/services/level.service';
 import { ReceitasService } from 'src/app/core/services/Receitas.service';
@@ -20,7 +21,8 @@ export class CadastroReceitaComponent implements OnInit {
               private fb: FormBuilder,
               private serviceLevel: LevelService,
               private serviceReceitas: ReceitasService,
-              private _snackBar: MatSnackBar) {
+              private _snackBar: MatSnackBar,
+              private blobService: BlobService) {
                 this.gerarFormulario();
                }
 
@@ -28,6 +30,10 @@ export class CadastroReceitaComponent implements OnInit {
   levels: Level[] = [];
   levelSelecionado?: string;
   cadastroReceita!: FormGroup;
+  selectedFile: any = null;
+  filename: any = null;
+  imageSource: any = null;
+  urlBlob:string = "https://appreceitas.blob.core.windows.net/appreceitas/";
 
   get form(){
       return this.cadastroReceita.controls;
@@ -70,7 +76,8 @@ export class CadastroReceitaComponent implements OnInit {
       ingredients: [null, [Validators.required, Validators.minLength(5)]],
       preparationMode: [null, [Validators.required, Validators.minLength(5)]],
       categoryId: [null, [Validators.required]],
-      levelId: [null, [Validators.required]]
+      levelId: [null, [Validators.required]],
+      image: [null, [Validators.required]]
     })
   }
 
@@ -85,8 +92,10 @@ export class CadastroReceitaComponent implements OnInit {
     this.cadastroReceita.markAllAsTouched();
     if(this.cadastroReceita.invalid)
       return
-
     const receita = this.cadastroReceita.getRawValue() as data;
+
+    receita.image = this.urlBlob + this.filename
+
     this.salvar(receita)
   }
 
@@ -109,7 +118,6 @@ export class CadastroReceitaComponent implements OnInit {
     this.reiniciarForm();
   }
 
-  selectedFile: any = null;
 
 onFileSelected(event: any): void {
     this.selectedFile = event.target.files[0] ?? null;
@@ -129,4 +137,23 @@ onFileSelected(event: any): void {
     }
     return false
   }
+  setFilename(files: any) {
+    if (files[0]) {
+      this.filename = files[0].name;
+    }
+    this.cadastroReceita.value.image = this.urlBlob + this.filename;
+  }
+
+  save(files:any) {
+    console.log(files)
+    const formData = new FormData();
+    if (files[0]) {
+      formData.append(files[0].name, files[0]);
+    }
+
+    this.blobService
+      .upload(formData)
+      .subscribe( path => (this.imageSource = path));
+      console.log(this.imageSource)
+    }
 }

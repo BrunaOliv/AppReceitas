@@ -1,4 +1,5 @@
 using AppReceitas.Infra.IoC;
+using Azure.Storage.Blobs;
 
 var builder = WebApplication.CreateBuilder(args);
 var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";

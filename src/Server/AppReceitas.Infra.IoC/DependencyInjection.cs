@@ -4,6 +4,7 @@ using AppReceitas.Application.Services;
 using AppReceitas.Domain.Interfaces;
 using AppReceitas.Infra.Data.Context;
 using AppReceitas.Infra.Data.Repositories;
+using Azure.Storage.Blobs;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -25,7 +26,9 @@ namespace AppReceitas.Infra.IoC
             services.AddScoped<ICategoryService, CategoryService>();
             services.AddScoped<ILevelService, LevelService>();
             services.AddAutoMapper(typeof(DomainToDTOMappingProfile));
+            services.AddScoped<IBlobService, BlobService>();
 
+            services.AddScoped(x => new BlobServiceClient(configuration.GetConnectionString("AzureBlobStorage")));
             return services;
         }
     }

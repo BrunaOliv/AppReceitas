@@ -5,7 +5,6 @@ import { PaginacaoRequisicao } from 'src/app/model/PaginacaoRequisicao';
 import { data, Receita } from 'src/app/model/Receita';
 
 const url = 'http://localhost:5147/api/Recipe';
-const urlPost= "http://localhost:5147/api/Recipe";
 
 @Injectable({
   providedIn: 'root'
