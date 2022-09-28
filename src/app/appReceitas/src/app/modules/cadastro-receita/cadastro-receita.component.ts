@@ -119,16 +119,11 @@ export class CadastroReceitaComponent implements OnInit {
       })
     });
     this.reiniciarForm();
-    console.log(this.file)
   }
 
-
-onFileSelected(event: any): void {
-    this.selectedFile = event.target.files[0] ?? null;
-}
   reiniciarForm(): void{
     this.cadastroReceita.reset();
-    this.selectedFile = '';
+    this.filename = '';
   }
 
   temErro(control: AbstractControl, errorName: string):boolean{
@@ -142,7 +137,6 @@ onFileSelected(event: any): void {
     return false
   }
   setFilename(files: any) {
-    console.log(files)
     if (files[0]) {
       this.filename = files[0].name;
     }

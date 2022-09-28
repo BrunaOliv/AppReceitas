@@ -22,7 +22,10 @@
 }
 ::ng-deep .carousel-container{
     cursor: default !important;
-    height: 100px imo !important;
+}
+
+::ng-deep .mat-button-wrapper{
+    max-width: 100px;
 }
 .logo{
     max-width: 300px;
@@ -36,6 +39,12 @@
     font-size: 18px;
     text-transform: uppercase;
 }
+
+.button-categoria{
+    text-align: center;
+    cursor: pointer;
+    max-width: 100px;
+}
 .icone-enviar{
     transform: rotate(-45deg);
     font-size: 36px;
@@ -47,6 +56,7 @@
 .link{
     cursor: pointer;
 }
+
 @media (max-width: 575.98px) { 
     .logo{
         max-width: 200px;

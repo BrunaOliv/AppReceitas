@@ -15,7 +15,7 @@
     </form>
     </div>
   </div>
-  <div class="container mb-5">
+  <div class="container mb-5" *ngIf="receitas.data.length; else semRegistro">
     <div class="row">
       <div class="col-md-4" *ngFor="let receita of receitas.data">
         <app-card-receita [nomeReceita]="receita.name" [levelReceita]="receita.level?.name" [imagemReceita]="receita.image"></app-card-receita>
@@ -30,3 +30,9 @@
                  aria-label="Select page">
 </mat-paginator>
 </div>
+
+<ng-template #semRegistro>
+  <div class="container">
+    <span class="full-width main-div">Nenhum receita encontrada</span>
+  </div>
+</ng-template>

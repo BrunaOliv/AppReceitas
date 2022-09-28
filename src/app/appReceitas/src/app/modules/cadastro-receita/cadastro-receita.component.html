@@ -43,18 +43,21 @@
       </mat-form-field>
 
       <div class="d-flex flex-column" class="mb-3">
-
-
-        <button mat-raised-button type="button" (click)="fileInput.click()">Choose File</button>
-        <input
-          formControlName="image"
-          hidden
-          #fileInput
-          type="file"
-          id="file"
-          (change)="setFilename(fileInput.files)"
-        />
-        <label>{{ filename }}</label>
+        <div class="mb-3">
+          <span class="text-img">Imagem</span>
+        </div>
+        <div>
+          <button mat-raised-button type="button" (click)="fileInput.click()">Carregar arquivo</button>
+          <input
+            formControlName="image"
+            hidden
+            #fileInput
+            type="file"
+            id="file"
+            (change)="setFilename(fileInput.files)"
+          />
+          <label>{{ filename }}</label>
+        </div>
       </div>
 
       <div class="d-flex justify-content-end">

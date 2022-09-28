@@ -3,7 +3,7 @@ import { Level } from "./Level"
 
 export class Receita {
     totalItems?: number
-    data?: data[]
+    data!: data[]
 }
 
 export class data {
