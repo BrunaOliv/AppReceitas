@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BlobService } from 'src/app/core/services/blob.service';
 import { CategoriaService } from 'src/app/core/services/categoria.service';
 import { LevelService } from 'src/app/core/services/level.service';
 import { ReceitasService } from 'src/app/core/services/Receitas.service';
 import { Categoria } from 'src/app/model/Categoria';
-import { GUID } from 'src/app/model/GUID';
 import { Level } from 'src/app/model/Level';
 import { data } from 'src/app/model/Receita';
 
@@ -23,7 +23,9 @@ export class CadastroReceitaComponent implements OnInit {
               private serviceLevel: LevelService,
               private serviceReceitas: ReceitasService,
               private _snackBar: MatSnackBar,
-              private blobService: BlobService) {
+              private blobService: BlobService,
+              private activetedRoute: ActivatedRoute,
+              private router: Router,) {
                 this.gerarFormulario();
                }
 
@@ -36,26 +38,33 @@ export class CadastroReceitaComponent implements OnInit {
   imageSource: any = null;
   urlBlob:string = "https://appreceitas.blob.core.windows.net/appreceitas/";
   file:any = null;
+  id!: number;
 
   get form(){
       return this.cadastroReceita.controls;
   }
 
   ngOnInit() {
-    const f = this.form['name'];
-    console.log(f)
     this.obterCategorias();
     this.obterLevels();
+    this.id = this.activetedRoute.snapshot.params['id'];
+
+    if(this.id){
+      this.carregarReceita();
+      return
+    }
+
     this.carregarFormulario(this.gerarReceita());
   }
 
   carregarFormulario(receita: data){
     this.cadastroReceita = this.fb.group({
+      id:[receita.id],
       name: [receita.name, [Validators.required, Validators.minLength(3), Validators.maxLength(256)]],
       ingredients: [receita.ingredients, [Validators.required, Validators.minLength(5)]],
       preparationMode: [receita.preparationMode, [Validators.required, Validators.minLength(5)]],
-      categoryId: [receita.category, [Validators.required]],
-      levelId: [receita.level, [Validators.required]],
+      categoryId: [receita.categoryId, [Validators.required]],
+      levelId: [receita.levelId, [Validators.required]],
       image: [receita.image, [Validators.required]]
     })
   }
@@ -96,6 +105,11 @@ export class CadastroReceitaComponent implements OnInit {
     if(this.cadastroReceita.invalid)
       return
     const receita = this.cadastroReceita.getRawValue() as data;
+
+    if(this.id){
+      this.editar(receita);
+      return
+    }
 
     receita.image = this.urlBlob + this.filename
 
@@ -144,15 +158,34 @@ export class CadastroReceitaComponent implements OnInit {
   }
 
   save(files:any) {
-    console.log(files)
     const formData = new FormData();
-    if (files[0]) {
-      formData.append(files[0].name, files[0]);
+    if (!files) {
+      return
     }
+    formData.append(files[0].name, files[0]);
 
     this.blobService
       .upload(formData)
       .subscribe( path => (this.imageSource = path));
       console.log(this.imageSource)
+    }
+
+    carregarReceita(): void{
+      this.serviceReceitas.obterReceitaPorId(this.id).subscribe((receita : data) => {
+        this.carregarFormulario(receita)
+        this.filename = receita.image
+      })
+    }
+
+    editar(receita: data): void{
+      this.serviceReceitas.editarReceita(this.id, receita).subscribe(() => {
+        this.router.navigateByUrl('');
+        this._snackBar.open('Editado com sucesso', 'x', {
+          horizontalPosition: 'end',
+          verticalPosition: 'top',
+          duration: 1500,
+          panelClass: ['green-snackbar']
+        })
+        })
     }
 }

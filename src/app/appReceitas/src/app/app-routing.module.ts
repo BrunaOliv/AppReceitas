@@ -6,7 +6,15 @@ import { VisualizarReceitaComponent } from './modules/visualizar-receita/visuali
 
 const routes: Routes = [
   { path: '', component: ReceitasComponent },
-  { path: 'cadastro', component: CadastroReceitaComponent },
+  { path: 'cadastro',
+    children: [{
+      path: '',
+      component: CadastroReceitaComponent
+    },{
+      path: ':id',
+      component: CadastroReceitaComponent
+    }]
+ },
   { path: 'receitas/:id', component: VisualizarReceitaComponent}
 ];
 

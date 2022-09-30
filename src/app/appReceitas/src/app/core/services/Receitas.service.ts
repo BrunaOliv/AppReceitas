@@ -14,7 +14,6 @@ export class ReceitasService {
 constructor(private http: HttpClient) { }
 
 obterTodasReceitas(paginacaoRequisicao: PaginacaoRequisicao): Observable<Receita>{
-  console.log(paginacaoRequisicao)
   const queryParams: HttpParams = this.aplicarParametros(paginacaoRequisicao)
 
   return this.http.get<Receita>(url, {params: queryParams})
@@ -43,5 +42,9 @@ obterTodasReceitas(paginacaoRequisicao: PaginacaoRequisicao): Observable<Receita
 
   deletarReceita(id: number): Observable<data>{
     return this.http.delete<data>(url, {params: {id : id}});
+  }
+
+  editarReceita(id: number, receita: data): Observable<data>{
+    return this.http.put<data>(url, receita, {params: {id: id}})
   }
 }

@@ -69,4 +69,8 @@ export class VisualizarReceitaComponent implements OnInit {
           })
     })
   }
+
+  editar(): void{
+    this.router.navigateByUrl('/cadastro/' + this.id);
+  }
 }
