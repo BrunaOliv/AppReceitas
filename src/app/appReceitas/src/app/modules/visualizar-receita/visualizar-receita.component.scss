@@ -10,7 +10,7 @@
 .texto-principal{
     background-color: rgb(254, 101, 1);
     width: 85%;
-    height: 150px;
+    min-height: 150px;
     position: relative;
     color: #FFF;
     font-size: 48px;
@@ -45,4 +45,40 @@
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
+}
+
+@media (max-width: 578.98px){
+    .imagem{
+        position: static;
+        margin-top: 20px !important;
+    }
+    .texto-principal{
+        width: 100%;
+        padding-left: 5px;
+        font-size: 32px;
+    }
+    .titulo{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding-bottom: 30px;
+        padding-top: 30px;
+    }
+}
+
+@media (max-width: 767.98px){
+    .texto-principal{
+        font-size: 36px;
+        padding-left: 16px;
+    }
+
+    .imagem{
+        bottom: -180px;
+    }
+}
+@media (max-width: 991.98px){
+    .imagem{
+        bottom: -180px;
+    }
 }
