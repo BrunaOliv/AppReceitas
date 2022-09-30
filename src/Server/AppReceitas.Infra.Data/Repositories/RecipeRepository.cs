@@ -41,7 +41,7 @@ namespace AppReceitas.Infra.Data.Repositories
                 .Skip(paginationFilter.PageIndex * paginationFilter.PageSize)
                 .Take(paginationFilter.PageSize)
                 .ToListAsync(),
-                TotalItems = await _recipeContext.Recipes.CountAsync()
+                TotalItems = await recipes.CountAsync()
             };
             return paginationResult;
         }
@@ -55,11 +55,17 @@ namespace AppReceitas.Infra.Data.Repositories
 
         public IQueryable<Recipes> FilterRecipes(PaginationFilter<Recipes> paginationFilter, IQueryable<Recipes> recipes)
         {
-            var recipesFilter = recipes.Where(recipe =>
-                    recipe.Name.Contains(paginationFilter.Filter.NameRecipe) ||
-                    recipe.Category.Name.Contains(paginationFilter.Filter.Category) ||
-                    recipe.Level.Name.Contains(paginationFilter.Filter.Level));
-            return recipesFilter;
+            if (!string.IsNullOrEmpty(paginationFilter.Filter.NameRecipe))
+                recipes = recipes.Where(recipe => recipe.Name.Contains(paginationFilter.Filter.NameRecipe));
+
+            if (!string.IsNullOrEmpty(paginationFilter.Filter.Category))
+                recipes = recipes.Where(recipe => recipe.Category.Name.Contains(paginationFilter.Filter.Category));
+
+            if (!string.IsNullOrEmpty(paginationFilter.Filter.Level))
+                recipes = recipes.Where(recipe => recipe.Level.Name.Contains(paginationFilter.Filter.Level));
+
+
+            return recipes;
         }
 
         public async Task<Recipes> GetRecipesCategoryAsync(int? id)

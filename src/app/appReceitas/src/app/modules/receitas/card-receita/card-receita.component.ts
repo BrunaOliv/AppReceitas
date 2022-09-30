@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ReceitasService } from 'src/app/core/services/Receitas.service';
 import { Receita } from 'src/app/model/Receita';
 
@@ -9,7 +10,8 @@ import { Receita } from 'src/app/model/Receita';
 })
 export class CardReceitaComponent implements OnInit {
 
-  constructor(private serviceReitas: ReceitasService) { }
+  constructor(private serviceReitas: ReceitasService,
+              private router: Router) { }
 
   receitas?:Receita;
   imagemLevel?: string;
@@ -18,6 +20,7 @@ export class CardReceitaComponent implements OnInit {
   @Input() nomeReceita?:string;
   @Input() levelReceita?:string;
   @Input() imagemReceita?: string
+  @Input() idReceita?: number
 
 
   ngOnInit() {
@@ -40,10 +43,13 @@ export class CardReceitaComponent implements OnInit {
   }
 
   getUrlImagem(): string{ 
-    console.log(this.imagemReceita)
     if(this.imagemReceita != undefined && this.imagemReceita != '')
         return `url(${this.imagemReceita})`
 
     return this.imagemDefault;
+  }
+
+  abrirReceita(){
+    this.router.navigateByUrl('/receitas/' + this.idReceita)
   }
 }

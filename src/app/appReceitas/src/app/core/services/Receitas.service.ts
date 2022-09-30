@@ -36,4 +36,8 @@ obterTodasReceitas(paginacaoRequisicao: PaginacaoRequisicao): Observable<Receita
   salvar(data : data): Observable<data>{
     return this.http.post<data>(url, data);
   }
+
+  obterReceitaPorId(id: number): Observable<data>{
+    return this.http.get<data>(`${url}/${id}`)
+  }
 }

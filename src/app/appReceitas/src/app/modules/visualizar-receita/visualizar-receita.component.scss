@@ -1,0 +1,48 @@
+.body{
+    background-color: rgb(255, 253, 208);
+}
+
+.titulo{
+    padding-top: 100px;
+    padding-bottom: 100px ;
+}
+
+.texto-principal{
+    background-color: rgb(254, 101, 1);
+    width: 85%;
+    height: 150px;
+    position: relative;
+    color: #FFF;
+    font-size: 48px;
+    padding-left: 120px;
+}
+
+.imagem{
+    height: 250px;
+    width: 250px;
+    border-radius: 200px;
+    left: 75%;
+    bottom: -160px;
+    position: absolute;
+    border: solid 5px #FFF;
+}
+
+.icone{
+    max-width: 50px;
+}
+
+.texto-subtitulo{
+    margin-left: 20px;
+    font-size: 36px;
+    color: rgb(224, 127, 31);
+}
+
+.quebrar-linhas{
+    white-space: pre-line;
+  }
+
+.imagem{
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+}

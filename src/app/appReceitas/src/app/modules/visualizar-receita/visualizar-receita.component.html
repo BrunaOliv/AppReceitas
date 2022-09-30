@@ -1,0 +1,32 @@
+<div class="body" *ngIf="receita">
+  <div class="titulo">
+    <div class="texto-principal d-flex align-items-center">
+      <span>{{receita.name}}</span>
+    </div>
+    <div class="imagem" [style.background-image]="getUrlImagem()"></div>
+  </div>
+  <div class="container">
+    <div class="d-flex flex-column">
+      <div class="d-flex align-items-center mb-5">
+        <img class="icone" src="../../../assets/image/ingredientsIcon.png">
+        <span class="texto-subtitulo"> Ingredientes</span>
+      </div>
+      <div class="quebrar-linhas">
+        {{receita.ingredients}}
+      </div>
+    </div>
+    <div class="d-flex flex-column pb-5">
+      <div class="d-flex align-items-center mt-5 mb-5">
+        <img class="icone" src="../../../assets/image/preparationModeIcon.png">
+        <span class="texto-subtitulo">Modo de Prepara</span>
+      </div>
+      <div class="quebrar-linhas">
+        {{receita.preparationMode}}
+      </div>
+    </div>
+  </div>
+  <div class="d-flex justify-content-end container pb-5">
+    <button mat-stroked-button color="warn">Deletar</button>
+    <button mat-stroked-button color="primary">Editar</button>
+  </div>
+</div>

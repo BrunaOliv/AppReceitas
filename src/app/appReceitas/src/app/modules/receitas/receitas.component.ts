@@ -23,6 +23,7 @@ export class ReceitasComponent implements OnInit {
   nomeReceita?: string;
   levelReceita?: string;
   imagemReceita?: string;
+  idReceita?: number;
   paginacaoRequisicao: PaginacaoRequisicao = new PaginacaoRequisicao;
   filtro!: FormGroup;
 

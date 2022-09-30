@@ -15,6 +15,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { VisualizarReceitaComponent } from '../visualizar-receita/visualizar-receita.component';
 
 @NgModule({
   imports: [
@@ -36,10 +37,12 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
   declarations: [
     ReceitasComponent,
     CardReceitaComponent,
-    CadastroReceitaComponent],
+    CadastroReceitaComponent,
+    VisualizarReceitaComponent],
     
   exports: [
     ReceitasComponent,
-    CadastroReceitaComponent]
+    CadastroReceitaComponent,
+    VisualizarReceitaComponent]
 })
 export class ReceitasModule { }
