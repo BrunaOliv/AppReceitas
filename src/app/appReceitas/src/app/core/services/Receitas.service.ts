@@ -40,4 +40,8 @@ obterTodasReceitas(paginacaoRequisicao: PaginacaoRequisicao): Observable<Receita
   obterReceitaPorId(id: number): Observable<data>{
     return this.http.get<data>(`${url}/${id}`)
   }
+
+  deletarReceita(id: number): Observable<data>{
+    return this.http.delete<data>(url, {params: {id : id}});
+  }
 }

@@ -16,6 +16,8 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { VisualizarReceitaComponent } from '../visualizar-receita/visualizar-receita.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import { ModalConfirmacaoComponent } from 'src/app/shared/modal-confirmacao/modal-confirmacao.component';
 
 @NgModule({
   imports: [
@@ -32,13 +34,15 @@ import { VisualizarReceitaComponent } from '../visualizar-receita/visualizar-rec
     ReactiveFormsModule,
     MatSnackBarModule,
     MatPaginatorModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatDialogModule
   ],
   declarations: [
     ReceitasComponent,
     CardReceitaComponent,
     CadastroReceitaComponent,
-    VisualizarReceitaComponent],
+    VisualizarReceitaComponent,
+    ModalConfirmacaoComponent],
     
   exports: [
     ReceitasComponent,

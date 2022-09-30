@@ -14,7 +14,7 @@
     position: relative;
     color: #FFF;
     font-size: 48px;
-    padding-left: 120px;
+    padding-left: 5%;
 }
 
 .imagem{
@@ -45,6 +45,14 @@
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
+}
+
+.btn{
+    margin-right: 5px;
+}
+
+:host ::ng-deep .green-snackbar {
+    background: #2E8B57;
 }
 
 @media (max-width: 578.98px){

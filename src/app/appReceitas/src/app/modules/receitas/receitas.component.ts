@@ -70,4 +70,11 @@ export class ReceitasComponent implements OnInit {
     this.paginacaoRequisicao.filter.nome = this.filtro.value.nome;
     this.obterTodasReceitas(this.paginacaoRequisicao);
   }
+
+  verificarSeExitemReceitas(): boolean{
+    if(this.receitas.data)
+        return this.receitas.data.length != 0
+
+    return false
+  }
 }

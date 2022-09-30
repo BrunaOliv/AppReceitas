@@ -1,7 +1,9 @@
 <div class="body" *ngIf="receita">
   <div class="titulo">
     <div class="texto-principal d-flex align-items-center">
-      <span>{{receita.name}}</span>
+      <div class="container">
+        <span>{{receita.name}}</span>
+      </div>
     </div>
     <div class="imagem" [style.background-image]="getUrlImagem()"></div>
   </div>
@@ -26,7 +28,7 @@
     </div>
   </div>
   <div class="d-flex justify-content-end container pb-5">
-    <button mat-stroked-button color="warn">Deletar</button>
+    <button class="btn" mat-stroked-button (click)="excluir()" color="warn">Deletar</button>
     <button mat-stroked-button color="primary">Editar</button>
   </div>
 </div>

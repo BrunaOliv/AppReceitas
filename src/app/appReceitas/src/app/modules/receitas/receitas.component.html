@@ -1,4 +1,4 @@
-<div>
+<div autoscroll="true">
   <div class="container d-md-flex justify-content-between align-items-center mt-md-5 mt-3">
     <div>
       <h2 class="text-receitas">Receitas</h2>
@@ -15,13 +15,15 @@
     </form>
     </div>
   </div>
-  <div class="container mb-5" *ngIf="receitas.data.length; else semRegistro">
-    <div class="row">
-      <div class="col-md-4" *ngFor="let receita of receitas.data">
-        <app-card-receita [nomeReceita]="receita.name" [levelReceita]="receita.level?.name" [imagemReceita]="receita.image" [idReceita]="receita.id"></app-card-receita>
+
+    <div class="container mb-5" *ngIf="verificarSeExitemReceitas(); else semRegistro">
+      <div class="row">
+        <div class="col-md-4" *ngFor="let receita of receitas.data">
+          <app-card-receita [nomeReceita]="receita.name" [levelReceita]="receita.level?.name" [imagemReceita]="receita.image" [idReceita]="receita.id"></app-card-receita>
+        </div>
       </div>
     </div>
-  </div>
+
   <mat-paginator  [length]="receitas.totalItems"
                   [pageSize]="paginacaoRequisicao.pageSize"
                   [pageIndex]="paginacaoRequisicao.pageIndex"

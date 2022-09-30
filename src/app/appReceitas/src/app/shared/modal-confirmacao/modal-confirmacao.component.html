@@ -1,0 +1,18 @@
+<h1 mat-dialog-title>{{confirmacao.titulo}}</h1>
+<div mat-dialog-content>
+  <p>{{confirmacao.descricao}}</p>
+</div>
+<div mat-dialog-actions class="d-flex justify-content-end">
+  <button mat-raised-button
+    [mat-dialog-close]="false"
+    [color]="confirmacao.corBtnCancelar" 
+    *ngIf="confirmacao.possuiBtnFechar">
+    {{confirmacao.btnCancelar}}
+  </button>
+  <button mat-raised-button 
+          [mat-dialog-close]="true"
+          cdkFocusInitial 
+          [color]="confirmacao.corBtnSucesso" >
+    {{confirmacao.btnSucesso}}
+  </button>
+</div>
