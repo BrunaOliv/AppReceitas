@@ -137,6 +137,7 @@ export class CadastroReceitaComponent implements OnInit {
 
   reiniciarForm(): void{
     this.cadastroReceita.reset();
+    this.cadastroReceita.markAsUntouched();
     this.filename = '';
   }
 

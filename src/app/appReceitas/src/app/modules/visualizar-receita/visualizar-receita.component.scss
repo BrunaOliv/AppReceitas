@@ -15,6 +15,7 @@
     color: #FFF;
     font-size: 48px;
     padding-left: 5%;
+    line-height: 48px;;
 }
 
 .imagem{
@@ -64,6 +65,7 @@
         width: 100%;
         padding-left: 5px;
         font-size: 32px;
+        line-height: 32px
     }
     .titulo{
         display: flex;
@@ -78,6 +80,7 @@
 @media (max-width: 767.98px){
     .texto-principal{
         font-size: 36px;
+        line-height: 36px;
         padding-left: 16px;
     }
 
