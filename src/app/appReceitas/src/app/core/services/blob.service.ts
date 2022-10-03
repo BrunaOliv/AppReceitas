@@ -9,6 +9,7 @@ export class BlobService {
 constructor(private http: HttpClient) { }
 
 upload(formData: FormData) {
+  console.log(formData)
   return this.http.post<{ path: string }>(
     'http://localhost:5147/api/Recipe/image',
     formData

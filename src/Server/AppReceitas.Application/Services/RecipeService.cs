@@ -53,5 +53,6 @@ namespace AppReceitas.Application.Services
             var recipeEntity = _mapper.Map<Recipes>(recipeDTO);
             await _recipesRepository.UpdateAsync(recipeEntity);
         }
+
     }
 }

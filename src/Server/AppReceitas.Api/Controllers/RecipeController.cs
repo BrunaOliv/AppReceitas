@@ -10,12 +10,14 @@ namespace AppReceitas.Api.Controllers
     public class RecipeController : ControllerBase
     {
         private readonly IRecipeService _recipeService;
+        private readonly IImageService _imageService;
 
         private IBlobService _blobService;
-        public RecipeController(IRecipeService recipeService, IBlobService blobService)
+        public RecipeController(IRecipeService recipeService, IBlobService blobService, IImageService imageService)
         {
             _recipeService = recipeService;
             _blobService = blobService;
+            _imageService = imageService;
         }
 
         [HttpGet]
@@ -108,6 +110,28 @@ namespace AppReceitas.Api.Controllers
             var toReturn = result.AbsoluteUri;
 
             return Ok(new { path = toReturn });
+        }
+
+        [HttpPost(), DisableRequestSizeLimit]
+        [Route("upload")]
+        public IActionResult PostImage(IFormFile file)
+        {
+            try
+            {
+                if (file == null) return null;
+
+                var urlFile = _imageService.UploadFile(file);
+                return Ok(new
+                {
+                    mensagem = "Arquivo salvo com sucesso",
+                    urlImage = urlFile
+                }); ;
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "Erro no Upload: " + ex.Message);
+            }
+
         }
     }
 }

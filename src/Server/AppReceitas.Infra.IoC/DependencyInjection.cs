@@ -27,6 +27,7 @@ namespace AppReceitas.Infra.IoC
             services.AddScoped<ILevelService, LevelService>();
             services.AddAutoMapper(typeof(DomainToDTOMappingProfile));
             services.AddScoped<IBlobService, BlobService>();
+            services.AddScoped<IImageService, ImageService>();
 
             services.AddScoped(x => new BlobServiceClient(configuration.GetConnectionString("AzureBlobStorage")));
             return services;

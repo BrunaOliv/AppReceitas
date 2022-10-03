@@ -33,12 +33,12 @@ export class CadastroReceitaComponent implements OnInit {
   levels: Level[] = [];
   levelSelecionado?: string;
   cadastroReceita!: FormGroup;
-  selectedFile: any = null;
   filename: any = null;
   imageSource: any = null;
   urlBlob:string = "https://appreceitas.blob.core.windows.net/appreceitas/";
   file:any = null;
   id!: number;
+  selectFile?: any = null;
 
   get form(){
       return this.cadastroReceita.controls;
@@ -111,7 +111,7 @@ export class CadastroReceitaComponent implements OnInit {
       return
     }
 
-    receita.image = this.urlBlob + this.filename
+    receita.image = this.filename
 
     this.salvar(receita)
   }
@@ -163,12 +163,14 @@ export class CadastroReceitaComponent implements OnInit {
     if (!files) {
       return
     }
-    formData.append(files[0].name, files[0]);
+    formData.append('file', files[0]);
 
-    this.blobService
+    this.serviceReceitas
       .upload(formData)
-      .subscribe( path => (this.imageSource = path));
-      console.log(this.imageSource)
+      .subscribe((event: any) =>{
+        this.filename = event.body.urlImage;
+        console.log(this.filename);
+      });
     }
 
     carregarReceita(): void{

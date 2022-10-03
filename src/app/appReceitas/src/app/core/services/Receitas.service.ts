@@ -1,10 +1,11 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpEvent, HttpParams, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, tap } from 'rxjs';
 import { PaginacaoRequisicao } from 'src/app/model/PaginacaoRequisicao';
 import { data, Receita } from 'src/app/model/Receita';
 
 const url = 'http://localhost:5147/api/Recipe';
+const urlImage = 'http://localhost:5147/api/Recipe/upload';
 
 @Injectable({
   providedIn: 'root'
@@ -47,4 +48,12 @@ obterTodasReceitas(paginacaoRequisicao: PaginacaoRequisicao): Observable<Receita
   editarReceita(id: number, receita: data): Observable<data>{
     return this.http.put<data>(url, receita, {params: {id: id}})
   }
+
+  upload(file: any): Observable<HttpEvent<any>>{
+    const req = new HttpRequest('POST', 'http://localhost:5147/api/Recipe/upload', file, {
+      responseType: 'json'
+    });
+    return this.http.request(req);
+  }
+
 }
