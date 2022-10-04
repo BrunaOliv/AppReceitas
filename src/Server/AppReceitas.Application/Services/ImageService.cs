@@ -26,7 +26,7 @@ namespace AppReceitas.Application.Services
                                  .Save(webPFileStream);
                 }
             }
-            return $"C:/Users/bruna.oliveira/DEV/App-receitas/src/Server/AppReceitas.Api/Medias/Imagens/{urlFile}";
+            return $"http://localhost:5147/medias/imagens/{urlFile}";
         }
     }
 }

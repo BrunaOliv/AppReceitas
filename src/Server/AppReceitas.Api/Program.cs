@@ -1,5 +1,5 @@
 using AppReceitas.Infra.IoC;
-using Azure.Storage.Blobs;
+using Microsoft.Extensions.FileProviders;
 
 var builder = WebApplication.CreateBuilder(args);
 var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
@@ -39,6 +39,13 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.UseCors(MyAllowSpecificOrigins);
+
+app.UseStaticFiles(new StaticFileOptions
+{
+    FileProvider = new PhysicalFileProvider(
+           Path.Combine(builder.Environment.ContentRootPath, "Medias")),
+    RequestPath = "/medias"
+});
 
 app.MapControllers();
 

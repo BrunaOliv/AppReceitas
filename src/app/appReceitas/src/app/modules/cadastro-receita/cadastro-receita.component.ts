@@ -39,6 +39,7 @@ export class CadastroReceitaComponent implements OnInit {
   file:any = null;
   id!: number;
   selectFile?: any = null;
+  imagemDefault: string = "assets/image/default-image.jpg";
 
   get form(){
       return this.cadastroReceita.controls;
@@ -100,7 +101,6 @@ export class CadastroReceitaComponent implements OnInit {
   }
 
   submit() : void{
-    this.save(this.file)
     this.cadastroReceita.markAllAsTouched();
     if(this.cadastroReceita.invalid)
       return
@@ -156,9 +156,10 @@ export class CadastroReceitaComponent implements OnInit {
       this.filename = files[0].name;
     }
     this.file = files;
+    this.uploadImagem(files)
   }
 
-  save(files:any) {
+  uploadImagem(files:any) {
     const formData = new FormData();
     if (!files) {
       return
@@ -168,7 +169,7 @@ export class CadastroReceitaComponent implements OnInit {
     this.serviceReceitas
       .upload(formData)
       .subscribe((event: any) =>{
-        this.filename = event.body.urlImage;
+        this.filename = event.body?.urlImage;
         console.log(this.filename);
       });
     }
@@ -190,5 +191,12 @@ export class CadastroReceitaComponent implements OnInit {
           panelClass: ['green-snackbar']
         })
         })
+    }
+
+    getUrlImagem():string{
+      if(this.filename != undefined && this.filename != '')
+        return `url(${this.filename})`
+
+    return `url(${this.imagemDefault})`
     }
 }
