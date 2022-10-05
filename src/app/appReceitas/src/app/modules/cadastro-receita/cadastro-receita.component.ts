@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable, ReplaySubject } from 'rxjs';
+import { forkJoin, Observable } from 'rxjs';
 import { BlobService } from 'src/app/core/services/blob.service';
 import { CategoriaService } from 'src/app/core/services/categoria.service';
 import { LevelService } from 'src/app/core/services/level.service';
@@ -41,6 +41,7 @@ export class CadastroReceitaComponent implements OnInit {
   id!: number;
   selectFile?: any = null;
   imagemDefault: string = "assets/image/default-image.jpg";
+  receita!: data;
 
   get form(){
       return this.cadastroReceita.controls;
@@ -101,20 +102,18 @@ export class CadastroReceitaComponent implements OnInit {
     })
   }
 
-  submit() : void{
+  async submit(){
     this.cadastroReceita.markAllAsTouched();
     if(this.cadastroReceita.invalid)
       return
-    const receita = this.cadastroReceita.getRawValue() as data;
+    this.receita = this.cadastroReceita.getRawValue() as data;
 
     if(this.id){
-      this.editar(receita);
+      this.editar(this.receita);
       return
     }
 
-    receita.image = this.filename
-
-    this.salvar(receita)
+    this.uploadImagem(this.file)
   }
 
   salvar(data: data): void{
@@ -152,27 +151,26 @@ export class CadastroReceitaComponent implements OnInit {
     }
     return false
   }
+
   setFilename(files: any) {
     if (files[0]) {
       this.filename = files[0].name;
     }
     this.file = files;
     console.log(files)
-    this.uploadImagem(files)
   }
 
-  uploadImagem(files:any) {
+  uploadImagem(files:any){
     const formData = new FormData();
-    if (!files) {
-      return
-    }
+
     formData.append('file', files[0]);
 
-    this.serviceReceitas
+      this.serviceReceitas
       .upload(formData)
-      .subscribe((event: any) =>{
-        this.filename = event.body?.urlImage;
-        console.log(this.filename);
+      .subscribe((event: any) => {
+          this.receita.image = event.body?.urlImage,
+          console.log(this.receita)
+          this.salvar(this.receita);
       });
     }
 
