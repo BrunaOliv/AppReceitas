@@ -55,5 +55,4 @@ obterTodasReceitas(paginacaoRequisicao: PaginacaoRequisicao): Observable<Receita
     });
     return this.http.request(req);
   }
-
 }

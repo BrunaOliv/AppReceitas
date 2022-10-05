@@ -123,9 +123,8 @@ namespace AppReceitas.Api.Controllers
                 var urlFile = _imageService.UploadFile(file);
                 return Ok(new
                 {
-                    mensagem = "Arquivo salvo com sucesso",
                     urlImage = urlFile
-                }); ;
+                }); 
             }
             catch (Exception ex)
             {

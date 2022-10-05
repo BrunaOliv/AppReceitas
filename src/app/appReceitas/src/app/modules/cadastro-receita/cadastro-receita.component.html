@@ -58,11 +58,6 @@
            (change)="setFilename(fileInput.files)"
          />
         </div>
-        <input type="file" (change)="onFileSelected($event)" />
-        <br /><br />
-        base64 Output : <br />
-        {{base64Output}}
-        <img [src]="ImagePreview" height="200"/>
       </div>
 
       <div class="d-flex justify-content-end">

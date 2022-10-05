@@ -108,12 +108,8 @@ export class CadastroReceitaComponent implements OnInit {
       return
     this.receita = this.cadastroReceita.getRawValue() as data;
 
-    if(this.id){
-      this.editar(this.receita);
-      return
-    }
-
     this.uploadImagem(this.file)
+
   }
 
   salvar(data: data): void{
@@ -138,7 +134,7 @@ export class CadastroReceitaComponent implements OnInit {
   reiniciarForm(): void{
     this.cadastroReceita.reset();
     this.cadastroReceita.markAsUntouched();
-    this.filename = '';
+    this.ImagePreview = '';
   }
 
   temErro(control: AbstractControl, errorName: string):boolean{
@@ -155,9 +151,12 @@ export class CadastroReceitaComponent implements OnInit {
   setFilename(files: any) {
     if (files[0]) {
       this.filename = files[0].name;
+      this.file = files;
+      this.convertFile(files[0]).subscribe(base64 =>{
+        this.base64Output = base64;
+      })
     }
-    this.file = files;
-    console.log(files)
+    return
   }
 
   uploadImagem(files:any){
@@ -168,9 +167,16 @@ export class CadastroReceitaComponent implements OnInit {
       this.serviceReceitas
       .upload(formData)
       .subscribe((event: any) => {
-          this.receita.image = event.body?.urlImage,
-          console.log(this.receita)
-          this.salvar(this.receita);
+          this.receita.image = event.body?.urlImage;
+          
+          if(event.body?.urlImage){
+            if(this.id){
+              this.editar(this.receita);
+              return;
+            }
+
+            this.salvar(this.receita);
+          }
       });
     }
 
@@ -194,8 +200,8 @@ export class CadastroReceitaComponent implements OnInit {
     }
 
     getUrlImagem():string{
-      if(this.filename != undefined && this.filename != '')
-        return `url(${this.filename})`
+      if(this.ImagePreview )
+        return `url(${this.ImagePreview })`
 
     return `url(${this.imagemDefault})`
     }
@@ -217,6 +223,6 @@ export class CadastroReceitaComponent implements OnInit {
     const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = () => {this.ImagePreview = reader.result};
-    return result;
+    return this.ImagePreview;
   }
 }
