@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Observable, ReplaySubject } from 'rxjs';
 import { BlobService } from 'src/app/core/services/blob.service';
 import { CategoriaService } from 'src/app/core/services/categoria.service';
 import { LevelService } from 'src/app/core/services/level.service';
@@ -200,4 +201,24 @@ export class CadastroReceitaComponent implements OnInit {
 
     return `url(${this.imagemDefault})`
     }
+
+    base64Output! : string;
+    ImagePreview!: any;
+
+  onFileSelected(event: any) {
+    if(event.target.files[0]){
+      this.convertFile(event.target.files[0]).subscribe(base64 => {
+        this.base64Output = base64;
+      });
+    }
+    return
+  }
+
+  convertFile(file : File) : Observable<string> {
+    let result: any;
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {this.ImagePreview = reader.result};
+    return result;
+  }
 }
