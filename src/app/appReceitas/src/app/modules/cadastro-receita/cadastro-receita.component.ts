@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
-import { forkJoin, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { BlobService } from 'src/app/core/services/blob.service';
 import { CategoriaService } from 'src/app/core/services/categoria.service';
 import { LevelService } from 'src/app/core/services/level.service';
@@ -42,6 +42,8 @@ export class CadastroReceitaComponent implements OnInit {
   selectFile?: any = null;
   imagemDefault: string = "assets/image/default-image.jpg";
   receita!: data;
+  base64Output! : string;
+  ImagePreview!: any;
 
   get form(){
       return this.cadastroReceita.controls;
@@ -205,9 +207,6 @@ export class CadastroReceitaComponent implements OnInit {
 
     return `url(${this.imagemDefault})`
     }
-
-    base64Output! : string;
-    ImagePreview!: any;
 
   onFileSelected(event: any) {
     if(event.target.files[0]){
