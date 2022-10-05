@@ -1,6 +1,7 @@
 import { Component, ContentChildren, ElementRef, OnInit, QueryList } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { PageEvent } from '@angular/material/paginator';
+import { Router } from '@angular/router';
 import { HeaderService } from 'src/app/core/services/header.service';
 import { ReceitasService } from 'src/app/core/services/Receitas.service';
 import { Filter, PaginacaoRequisicao } from 'src/app/model/PaginacaoRequisicao';
@@ -16,7 +17,8 @@ export class ReceitasComponent implements OnInit {
   constructor(
               private serviceReitas: ReceitasService,
               private headerService: HeaderService,
-              private fb: FormBuilder) { }
+              private fb: FormBuilder,
+              private router: Router) { }
 
   receitas: Receita = new Receita;
   receitaLista: any[] = [];
@@ -31,6 +33,7 @@ export class ReceitasComponent implements OnInit {
     this.carregarForm();
     this.iniciarPaginaçao();
     this.filtrarPorCategoria();
+    this.iniciarEventListagemReceitas();
   }
 
   iniciarPaginaçao(): void{
@@ -53,6 +56,7 @@ export class ReceitasComponent implements OnInit {
 
   filtrarPorCategoria(): void{
     this.headerService.getFiltroCategoria().subscribe(categoria => {
+      this.router.navigate(['']);
       this.paginacaoRequisicao.filter = new Filter
       this.paginacaoRequisicao.filter.categoria = categoria
 
@@ -76,5 +80,12 @@ export class ReceitasComponent implements OnInit {
         return this.receitas.data.length != 0
 
     return false
+  }
+
+  iniciarEventListagemReceitas(): void{
+    this.headerService.getiniciarListagem().subscribe(result =>{
+      if(result == true)
+        this.iniciarPaginaçao();
+    })
   }
 }

@@ -1,17 +1,35 @@
 <div autoscroll="true">
   <div class="container d-md-flex justify-content-between align-items-center mt-md-5 mt-3">
+
     <div>
       <h2 class="text-receitas">Receitas</h2>
     </div>
+   
     <div class="form-busca">
       <form [formGroup]="filtro">
-        <mat-form-field appearance="fill">
-          <mat-label>Buscar Receita</mat-label>
-          <input (input)="submitForm()" formControlName="nome" matInput type="text">
-          <button matSuffix mat-icon-button>
-            <mat-icon>search</mat-icon>
-          </button>
-        </mat-form-field>
+        <div class="d-flex">
+          <div class="pr-2">
+            <mat-form-field appearance="fill">
+              <mat-label>Filtrar por nivel</mat-label>
+              <mat-select >
+                <mat-option value="1">Option 1</mat-option>
+                <mat-option value="2">Option 2</mat-option>
+                <mat-option value="3">Option 3</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+                  
+          <div>
+            <mat-form-field appearance="fill">
+              <mat-label>Buscar Receita</mat-label>
+              <input (input)="submitForm()" formControlName="nome" matInput type="text">
+              <button matSuffix mat-icon-button>
+                <mat-icon>search</mat-icon>
+              </button>
+            </mat-form-field>
+            </div>
+        </div>
+
     </form>
     </div>
   </div>

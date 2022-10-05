@@ -1,3 +1,4 @@
+import { ThisReceiver } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -5,6 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { BlobService } from 'src/app/core/services/blob.service';
 import { CategoriaService } from 'src/app/core/services/categoria.service';
+import { HeaderService } from 'src/app/core/services/header.service';
 import { LevelService } from 'src/app/core/services/level.service';
 import { ReceitasService } from 'src/app/core/services/Receitas.service';
 import { Categoria } from 'src/app/model/Categoria';
@@ -26,7 +28,8 @@ export class CadastroReceitaComponent implements OnInit {
               private _snackBar: MatSnackBar,
               private blobService: BlobService,
               private activetedRoute: ActivatedRoute,
-              private router: Router,) {
+              private router: Router,
+              private headerService: HeaderService) {
                 this.gerarFormulario();
                }
 
@@ -46,7 +49,7 @@ export class CadastroReceitaComponent implements OnInit {
   ImagePreview!: any;
 
   get form(){
-      return this.cadastroReceita.controls;
+    return this.cadastroReceita.controls;
   }
 
   ngOnInit() {
@@ -135,8 +138,12 @@ export class CadastroReceitaComponent implements OnInit {
 
   reiniciarForm(): void{
     this.cadastroReceita.reset();
-    this.cadastroReceita.markAsUntouched();
-    this.ImagePreview = '';
+    this.ImagePreview = null;
+    this.filename = null;
+
+    if(this.id){
+      this.iniciarPaginaIncial();
+    }
   }
 
   temErro(control: AbstractControl, errorName: string):boolean{
@@ -189,23 +196,26 @@ export class CadastroReceitaComponent implements OnInit {
       })
     }
 
-    editar(receita: data): void{
-      this.serviceReceitas.editarReceita(this.id, receita).subscribe(() => {
-        this.router.navigateByUrl('');
-        this._snackBar.open('Editado com sucesso', 'x', {
-          horizontalPosition: 'end',
-          verticalPosition: 'top',
-          duration: 1500,
-          panelClass: ['green-snackbar']
-        })
-        })
-    }
+  editar(receita: data): void{
+    this.serviceReceitas.editarReceita(this.id, receita).subscribe(() => {
+      this.iniciarPaginaIncial();
+      this._snackBar.open('Editado com sucesso', 'x', {
+        horizontalPosition: 'end',
+        verticalPosition: 'top',
+        duration: 1500,
+        panelClass: ['green-snackbar']
+      })
+    })
+  }
 
-    getUrlImagem():string{
-      if(this.ImagePreview )
-        return `url(${this.ImagePreview })`
+  getUrlImagem():string{
+    if(this.ImagePreview )
+      return `url(${this.ImagePreview })`;
+      
+    if(this.id)
+      return `url(${this.filename})`;
 
-    return `url(${this.imagemDefault})`
+    return `url(${this.imagemDefault})`;
     }
 
   onFileSelected(event: any) {
@@ -223,5 +233,11 @@ export class CadastroReceitaComponent implements OnInit {
     reader.readAsDataURL(file);
     reader.onload = () => {this.ImagePreview = reader.result};
     return this.ImagePreview;
+  }
+
+  iniciarPaginaIncial(): void{
+    this.headerService.setFiltroCategoria('');
+    this.headerService.setIniciarLitagem(true);
+    this.router.navigate(['']);
   }
 }

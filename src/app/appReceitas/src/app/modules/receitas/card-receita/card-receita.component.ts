@@ -50,6 +50,6 @@ export class CardReceitaComponent implements OnInit {
   }
 
   abrirReceita(){
-    this.router.navigateByUrl('/receitas/' + this.idReceita)
+    this.router.navigateByUrl('/receitas/' + this.idReceita);
   }
 }

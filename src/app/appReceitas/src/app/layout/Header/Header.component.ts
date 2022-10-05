@@ -35,5 +35,6 @@ export class HeaderComponent implements OnInit {
   carregarPaginaInicial(): void{
     this.headerService.setFiltroCategoria('');
     this.router.navigate(['']);
+    this.headerService.setIniciarLitagem(true);
   }
 }
