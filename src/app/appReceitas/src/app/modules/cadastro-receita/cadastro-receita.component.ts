@@ -156,6 +156,7 @@ export class CadastroReceitaComponent implements OnInit {
       this.filename = files[0].name;
     }
     this.file = files;
+    console.log(files)
     this.uploadImagem(files)
   }
 
