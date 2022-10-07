@@ -8,18 +8,19 @@
     <div class="form-busca">
       <form [formGroup]="filtro">
         <div class="d-flex">
-          <div class="pr-2">
+
+          <div class="m-1">
             <mat-form-field appearance="fill">
               <mat-label>Filtrar por nivel</mat-label>
-              <mat-select >
-                <mat-option value="1">Option 1</mat-option>
-                <mat-option value="2">Option 2</mat-option>
-                <mat-option value="3">Option 3</mat-option>
+              <mat-select formControlName="level" (selectionChange)="submitForm()">
+                <mat-option *ngFor="let level of levels" [value]="level.name">
+                  {{level.name}}
+                </mat-option>
               </mat-select>
             </mat-form-field>
           </div>
                   
-          <div>
+          <div class="m-1">
             <mat-form-field appearance="fill">
               <mat-label>Buscar Receita</mat-label>
               <input (input)="submitForm()" formControlName="nome" matInput type="text">
@@ -27,6 +28,12 @@
                 <mat-icon>search</mat-icon>
               </button>
             </mat-form-field>
+            </div>
+
+            <div class="m-1">
+              <button mat-icon-button color="primary" matTooltip="Limpar filtros" (click)="limparFiltro()">
+                <mat-icon>filter_alt_off</mat-icon>
+              </button>
             </div>
         </div>
 

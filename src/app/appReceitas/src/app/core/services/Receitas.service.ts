@@ -28,6 +28,9 @@ obterTodasReceitas(paginacaoRequisicao: PaginacaoRequisicao): Observable<Receita
     if(paginacaoRequisicao.filter?.nome)
         queryParams = queryParams.append('Filter.NameRecipe', paginacaoRequisicao.filter.nome);
 
+    if(paginacaoRequisicao.filter?.level)
+      queryParams = queryParams.append('Filter.Level', paginacaoRequisicao.filter.level);
+
     queryParams = queryParams.append('PageSize', paginacaoRequisicao.pageSize);
     queryParams = queryParams.append('PageIndex', paginacaoRequisicao.pageIndex);
     return queryParams;

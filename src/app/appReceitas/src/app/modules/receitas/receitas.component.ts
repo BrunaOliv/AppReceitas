@@ -3,7 +3,9 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { PageEvent } from '@angular/material/paginator';
 import { Router } from '@angular/router';
 import { HeaderService } from 'src/app/core/services/header.service';
+import { LevelService } from 'src/app/core/services/level.service';
 import { ReceitasService } from 'src/app/core/services/Receitas.service';
+import { Level } from 'src/app/model/Level';
 import { Filter, PaginacaoRequisicao } from 'src/app/model/PaginacaoRequisicao';
 import { Receita } from 'src/app/model/Receita';
 
@@ -18,7 +20,8 @@ export class ReceitasComponent implements OnInit {
               private serviceReitas: ReceitasService,
               private headerService: HeaderService,
               private fb: FormBuilder,
-              private router: Router) { }
+              private router: Router,
+              private serviceLevel: LevelService) { }
 
   receitas: Receita = new Receita;
   receitaLista: any[] = [];
@@ -28,17 +31,19 @@ export class ReceitasComponent implements OnInit {
   idReceita?: number;
   paginacaoRequisicao: PaginacaoRequisicao = new PaginacaoRequisicao;
   filtro!: FormGroup;
+  levels: Level[] = [];
 
   ngOnInit() {
     this.carregarForm();
     this.iniciarPaginaçao();
     this.filtrarPorCategoria();
     this.iniciarEventListagemReceitas();
+    this.obterLevels();
   }
 
   iniciarPaginaçao(): void{
     this.paginacaoRequisicao.pageIndex = 0;
-    this.paginacaoRequisicao.pageSize = 9
+    this.paginacaoRequisicao.pageSize = 9;
     this.obterTodasReceitas(this.paginacaoRequisicao);
   }
 
@@ -66,12 +71,14 @@ export class ReceitasComponent implements OnInit {
 
   carregarForm(): void{
     this.filtro = this.fb.group({
-      nome: ['']
+      nome: [''],
+      level: ['']
     })
   }
 
   submitForm(): void{
     this.paginacaoRequisicao.filter.nome = this.filtro.value.nome;
+    this.paginacaoRequisicao.filter.level = this.filtro.value.level;
     this.obterTodasReceitas(this.paginacaoRequisicao);
   }
 
@@ -85,7 +92,21 @@ export class ReceitasComponent implements OnInit {
   iniciarEventListagemReceitas(): void{
     this.headerService.getiniciarListagem().subscribe(result =>{
       if(result == true)
-        this.iniciarPaginaçao();
+        this.limparFiltro();
     })
+  }
+
+  obterLevels() : void{
+    this.serviceLevel.obterTodosLevels().subscribe(data =>{
+      this.levels = data;
+      console.log(this.levels)
+    })
+  }
+
+  limparFiltro():void{
+    this.filtro.reset();
+    this.paginacaoRequisicao.filter.nome = '';
+    this.paginacaoRequisicao.filter.level = '';
+    this.iniciarPaginaçao();
   }
 }
