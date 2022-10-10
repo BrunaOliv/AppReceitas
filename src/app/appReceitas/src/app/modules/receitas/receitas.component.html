@@ -7,7 +7,7 @@
    
     <div class="form-busca">
       <form [formGroup]="filtro">
-        <div class="d-flex">
+        <div class="d-md-flex">
 
           <div class="m-1">
             <mat-form-field appearance="fill">
@@ -20,21 +20,23 @@
             </mat-form-field>
           </div>
                   
-          <div class="m-1">
-            <mat-form-field appearance="fill">
-              <mat-label>Buscar Receita</mat-label>
-              <input (input)="submitForm()" formControlName="nome" matInput type="text">
-              <button matSuffix mat-icon-button>
-                <mat-icon>search</mat-icon>
-              </button>
-            </mat-form-field>
+          <div class="d-flex align-items-center m-1">
+            <div>
+              <mat-form-field appearance="fill">
+                <mat-label>Buscar Receita</mat-label>
+                <input (input)="submitForm()" formControlName="nome" matInput type="text">
+                <button matSuffix mat-icon-button>
+                  <mat-icon>search</mat-icon>
+                </button>
+              </mat-form-field>
             </div>
-
-            <div class="m-1">
+            <div>
               <button mat-icon-button class="btn-filtro" matTooltip="Limpar filtros" (click)="limparFiltro()">
                 <mat-icon>filter_alt_off</mat-icon>
               </button>
             </div>
+            </div>
+
         </div>
 
     </form>

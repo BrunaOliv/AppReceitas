@@ -21,12 +21,10 @@ getFiltroCategoria(): Observable<string>{
 }
 
 setIniciarLitagem(iniciar: boolean): void{
-  console.log('entrou service set')
   this.iniciarListagem.next(iniciar)
 }
 
 getiniciarListagem(): Observable<boolean>{
-  console.log('entrou service get')
   return this.iniciarListagem.asObservable();
 }
 }
