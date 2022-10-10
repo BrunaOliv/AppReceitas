@@ -20,6 +20,7 @@ namespace AppReceitas.Application.Mappings
             CreateMap<PaginationFilter<Recipes>, PaginationFilterResult<RecipeDTO>>().ReverseMap();
             CreateMap<PaginationFilter<Recipes>, PaginationFilterRequest>().ReverseMap();
             CreateMap<Filter, FilterRequest>().ReverseMap();
+            CreateMap<Evaluation, EvaluationDTO>().ReverseMap();
         }
     }
 }

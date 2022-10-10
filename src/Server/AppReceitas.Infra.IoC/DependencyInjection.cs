@@ -22,9 +22,11 @@ namespace AppReceitas.Infra.IoC
             services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddScoped<IRecipesRepository, RecipeRepository>();
             services.AddScoped<ILevelRepository, LevelRepository>();
+            services.AddScoped<IEvaluationRepository, EvaluationRepository>();
             services.AddScoped<IRecipeService, RecipeService>();
             services.AddScoped<ICategoryService, CategoryService>();
             services.AddScoped<ILevelService, LevelService>();
+            services.AddScoped<IEvaluationService, EvaluationService>();
             services.AddAutoMapper(typeof(DomainToDTOMappingProfile));
             services.AddScoped<IBlobService, BlobService>();
             services.AddScoped<IImageService, ImageService>();
