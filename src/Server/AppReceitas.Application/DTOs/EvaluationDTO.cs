@@ -8,8 +8,9 @@ namespace AppReceitas.Application.DTOs
 {
     public class EvaluationDTO
     {
-        public int Id;
-        public int Grade;
-        public string Comment;
+        public int Id { get; set; }
+        public int Grade { get; set; }
+        public string Comment { get; set; }
+        public int recipeId { get; set; }
     }
 }
