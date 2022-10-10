@@ -64,7 +64,7 @@ export class ReceitasComponent implements OnInit {
       this.router.navigate(['']);
       this.paginacaoRequisicao.filter = new Filter
       this.paginacaoRequisicao.filter.categoria = categoria
-
+      console.log(this.paginacaoRequisicao)
       this.obterTodasReceitas(this.paginacaoRequisicao);
     })
   }
@@ -99,7 +99,6 @@ export class ReceitasComponent implements OnInit {
   obterLevels() : void{
     this.serviceLevel.obterTodosLevels().subscribe(data =>{
       this.levels = data;
-      console.log(this.levels)
     })
   }
 

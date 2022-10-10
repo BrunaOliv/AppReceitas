@@ -55,17 +55,10 @@ namespace AppReceitas.Infra.Data.Repositories
 
         public IQueryable<Recipes> FilterRecipes(PaginationFilter<Recipes> paginationFilter, IQueryable<Recipes> recipes)
         {
-            if (!string.IsNullOrEmpty(paginationFilter.Filter.NameRecipe))
-                recipes = recipes.Where(recipe => recipe.Name.Contains(paginationFilter.Filter.NameRecipe));
-
-            if (!string.IsNullOrEmpty(paginationFilter.Filter.Category))
-                recipes = recipes.Where(recipe => recipe.Category.Name.Contains(paginationFilter.Filter.Category));
-
-            if (!string.IsNullOrEmpty(paginationFilter.Filter.Level))
-                recipes = recipes.Where(recipe => recipe.Level.Name.Contains(paginationFilter.Filter.Level));
-
-
-            return recipes;
+            return recipes
+            .Where(recipe => string.IsNullOrEmpty(paginationFilter.Filter.NameRecipe) || recipe.Name.Contains(paginationFilter.Filter.NameRecipe))
+            .Where(recipe => string.IsNullOrEmpty(paginationFilter.Filter.Category) || recipe.Category.Name.Contains(paginationFilter.Filter.Category))
+            .Where(recipe => string.IsNullOrEmpty(paginationFilter.Filter.Level) || recipe.Level.Name.Contains(paginationFilter.Filter.Level));
         }
 
         public async Task<Recipes> GetRecipesCategoryAsync(int? id)
