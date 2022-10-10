@@ -13,13 +13,15 @@ namespace AppReceitas.Tests.Api
     public class RecipeControllerTest
     {
         private readonly Mock<IRecipeService> _recipeService = new Mock<IRecipeService>();
+        private readonly Mock<IBlobService> _blobService = new Mock<IBlobService>();
+        private readonly Mock<IImageService> _imageService = new Mock<IImageService>();
 
         [Fact]
         public async Task Get_withValidList_shouldReturnOk()
         {
             var paginationRequest = PaginationFilterRequestFactory();
             _recipeService.Setup(x => x.GetRecipes(paginationRequest)).Returns(Task.FromResult(RecipesDTOFactory()));
-            var controller = new RecipeController(_recipeService.Object);
+            var controller = new RecipeController(_recipeService.Object, _blobService.Object, _imageService.Object);
             var result = await controller.Get(paginationRequest) as OkObjectResult;
 
             Assert.Equal((int)HttpStatusCode.OK, result.StatusCode);
@@ -32,7 +34,7 @@ namespace AppReceitas.Tests.Api
         public async Task Get_withEmptyList_ShouldReturnNotFound()
         {
             var paginationRequest = PaginationFilterRequestFactory();
-            var controller = new RecipeController(_recipeService.Object);
+            var controller = new RecipeController(_recipeService.Object, _blobService.Object, _imageService.Object);
             var result = await controller.Get(paginationRequest) as NotFoundObjectResult;
 
             Assert.Equal("Recipe Not Found", result.Value);
@@ -47,7 +49,7 @@ namespace AppReceitas.Tests.Api
         {
             var id = 1;
             _recipeService.Setup(x => x.GetById(id)).Returns(Task.FromResult(RecipeDTOFactory()));
-            var controller = new RecipeController(_recipeService.Object);
+            var controller = new RecipeController(_recipeService.Object, _blobService.Object, _imageService.Object);
             var result = await controller.GetById(id) as OkObjectResult;
 
             Assert.Equal((int)HttpStatusCode.OK, result.StatusCode);
@@ -60,7 +62,7 @@ namespace AppReceitas.Tests.Api
         public async Task GetById_withInvalidId_ShouldReturnNotound()
         {
             var id = 2;
-            var controller = new RecipeController(_recipeService.Object);
+            var controller = new RecipeController(_recipeService.Object, _blobService.Object, _imageService.Object);
             var result = await controller.GetById(id) as NotFoundObjectResult;
 
             Assert.Equal("Recipe Not Found", result.Value);
@@ -74,7 +76,7 @@ namespace AppReceitas.Tests.Api
         public async Task Post_withValidObject_SouldReturnOk()
         {
             var recipe = RecipeDTOFactory();
-            var controller = new RecipeController(_recipeService.Object);
+            var controller = new RecipeController(_recipeService.Object, _blobService.Object, _imageService.Object);
             var result = await controller.Post(recipe) as CreatedAtRouteResult;
 
             Assert.NotNull(result);
@@ -87,7 +89,7 @@ namespace AppReceitas.Tests.Api
         public async Task Post_withInvalidObject_ShouldReturnBadRequest()
         {
             RecipeDTO recipe = null;
-            var controller = new RecipeController(_recipeService.Object);
+            var controller = new RecipeController(_recipeService.Object, _blobService.Object, _imageService.Object);
             var result = await controller.Post(recipe) as BadRequestObjectResult;
 
             Assert.Equal("Recipe invalid", result.Value);
@@ -102,7 +104,7 @@ namespace AppReceitas.Tests.Api
         {
             var id = 1;
             var recipe = RecipeDTOFactory();
-            var controller = new RecipeController(_recipeService.Object);
+            var controller = new RecipeController(_recipeService.Object, _blobService.Object, _imageService.Object);
             var result = await controller.Put(id, recipe) as OkObjectResult;
 
             Assert.Equal((int)HttpStatusCode.OK, result.StatusCode);
@@ -115,7 +117,7 @@ namespace AppReceitas.Tests.Api
         {
             RecipeDTO recipe = null;
             var id = 1;
-            var controller = new RecipeController(_recipeService.Object);
+            var controller = new RecipeController(_recipeService.Object, _blobService.Object, _imageService.Object);
             var result = await controller.Put(id, recipe) as NotFoundObjectResult;
 
             Assert.Equal("Recipe Not Found", result.Value);
@@ -130,7 +132,7 @@ namespace AppReceitas.Tests.Api
         {
             var recipe = RecipeDTOFactory();
             var id = 2;
-            var controller = new RecipeController(_recipeService.Object);
+            var controller = new RecipeController(_recipeService.Object, _blobService.Object, _imageService.Object);
             var result = await controller.Put(id, recipe) as NotFoundObjectResult;
 
             Assert.Equal("Recipe Not Found", result.Value);
@@ -145,7 +147,7 @@ namespace AppReceitas.Tests.Api
         {
             var id = 1;
             _recipeService.Setup(x => x.GetById(id)).Returns(Task.FromResult(RecipeDTOFactory()));
-            var controller = new RecipeController(_recipeService.Object);
+            var controller = new RecipeController(_recipeService.Object, _blobService.Object, _imageService.Object);
             var result = await controller.Delete(id) as OkObjectResult;
 
             Assert.Equal((int)HttpStatusCode.OK, result.StatusCode);
@@ -158,7 +160,7 @@ namespace AppReceitas.Tests.Api
         public async Task Delete_withInvalidId_ShouldReturnNotFound()
         {
             var id = 2;
-            var controller = new RecipeController(_recipeService.Object);
+            var controller = new RecipeController(_recipeService.Object, _blobService.Object, _imageService.Object);
             var result = await controller.Delete(id) as NotFoundObjectResult;
 
             Assert.Equal("Recipe Not Found", result.Value);

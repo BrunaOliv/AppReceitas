@@ -1,9 +1,4 @@
 ﻿using AppReceitas.Domain.Validation;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AppReceitas.Domain.Entities
 {
@@ -12,7 +7,7 @@ namespace AppReceitas.Domain.Entities
         public string Name { get; private set; }
         public string Ingredients { get; private set; }
         public string PreparationMode { get; private set; }
-        public string  Image { get; private set; }
+        public string Image { get; private set; }
 
         public Recipes(string name, string ingredients, string preparationMode, string image)
         {
@@ -51,6 +46,6 @@ namespace AppReceitas.Domain.Entities
         public Category Category { get; set; }
         public int LevelId { get; set; }
         public Level Level { get; set; }
-
+        public ICollection<Evaluation> Evaluations { get; set; }
     }
 }
