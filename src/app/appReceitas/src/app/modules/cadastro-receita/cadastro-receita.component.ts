@@ -4,7 +4,6 @@ import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/fo
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { BlobService } from 'src/app/core/services/blob.service';
 import { CategoriaService } from 'src/app/core/services/categoria.service';
 import { HeaderService } from 'src/app/core/services/header.service';
 import { LevelService } from 'src/app/core/services/level.service';
@@ -26,7 +25,6 @@ export class CadastroReceitaComponent implements OnInit {
               private serviceLevel: LevelService,
               private serviceReceitas: ReceitasService,
               private _snackBar: MatSnackBar,
-              private blobService: BlobService,
               private activetedRoute: ActivatedRoute,
               private router: Router,
               private headerService: HeaderService) {
@@ -103,18 +101,23 @@ export class CadastroReceitaComponent implements OnInit {
   obterLevels() : void{
     this.serviceLevel.obterTodosLevels().subscribe(data =>{
       this.levels = data;
-      console.log(this.levels)
     })
   }
 
   async submit(){
     this.cadastroReceita.markAllAsTouched();
+
     if(this.cadastroReceita.invalid)
       return
+
     this.receita = this.cadastroReceita.getRawValue() as data;
 
-    this.uploadImagem(this.file)
+    if(this.receita.image != this.filename){
+      this.uploadImagem(this.file);
+      return;
+    }
 
+    this.gravarAlteracoes();
   }
 
   salvar(data: data): void{
@@ -179,14 +182,18 @@ export class CadastroReceitaComponent implements OnInit {
           this.receita.image = event.body?.urlImage;
           
           if(event.body?.urlImage){
-            if(this.id){
-              this.editar(this.receita);
-              return;
-            }
-
-            this.salvar(this.receita);
+            this.gravarAlteracoes();
           }
       });
+    }
+
+    gravarAlteracoes(): void{
+      if(this.id){
+        this.editar(this.receita);
+        return;
+      }
+
+      this.salvar(this.receita);
     }
 
     carregarReceita(): void{
