@@ -1,0 +1,11 @@
+<div class="container">
+  <form [formGroup]="form">
+    <div class="d-flex justify-content-start mb-3">
+      <ngx-star-rating formControlName="nota" [id]="'nota'"></ngx-star-rating>
+    </div>
+      <mat-form-field appearance="fill" class="mb-3">
+        <mat-label>Deixe um comentário</mat-label>
+        <textarea formControlName="comentario" class="form-text" type="text-area" matInput></textarea>
+      </mat-form-field>    
+  </form>
+</div>

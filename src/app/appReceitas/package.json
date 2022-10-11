@@ -22,6 +22,7 @@
     "@angular/router": "~13.3.0",
     "angular-responsive-carousel": "^2.1.2",
     "bootstrap": "^5.2.1",
+    "ngx-star-rating": "^2.1.0",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"

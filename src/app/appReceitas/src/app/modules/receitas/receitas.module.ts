@@ -18,6 +18,8 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { VisualizarReceitaComponent } from '../visualizar-receita/visualizar-receita.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import { ModalConfirmacaoComponent } from 'src/app/shared/modal-confirmacao/modal-confirmacao.component';
+import { NgxStarRatingModule } from 'ngx-star-rating';
+import { AvalicaoReceitaComponent } from '../visualizar-receita/avalicao-receita/avalicao-receita.component';
 
 @NgModule({
   imports: [
@@ -35,18 +37,21 @@ import { ModalConfirmacaoComponent } from 'src/app/shared/modal-confirmacao/moda
     MatSnackBarModule,
     MatPaginatorModule,
     MatProgressSpinnerModule,
-    MatDialogModule
+    MatDialogModule,
+    NgxStarRatingModule
   ],
   declarations: [
     ReceitasComponent,
     CardReceitaComponent,
     CadastroReceitaComponent,
     VisualizarReceitaComponent,
-    ModalConfirmacaoComponent],
+    ModalConfirmacaoComponent,
+    AvalicaoReceitaComponent],
     
   exports: [
     ReceitasComponent,
     CadastroReceitaComponent,
-    VisualizarReceitaComponent]
+    VisualizarReceitaComponent,
+    AvalicaoReceitaComponent]
 })
 export class ReceitasModule { }
