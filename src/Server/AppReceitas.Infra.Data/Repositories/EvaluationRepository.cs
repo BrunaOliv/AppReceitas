@@ -29,6 +29,11 @@ namespace AppReceitas.Infra.Data.Repositories
             return await _evaluationContext.Evaluation.ToListAsync();
         }
 
+        public async Task<IEnumerable<Evaluation>> GeyByIdRecipe(int? id)
+        {
+            return await _evaluationContext.Evaluation.Where(a => id == a.RecipeId).ToListAsync();
+        }
+
         public async Task<Evaluation> Remove(Evaluation evaluation)
         {
             _evaluationContext.Remove(evaluation);

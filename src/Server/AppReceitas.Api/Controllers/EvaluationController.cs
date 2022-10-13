@@ -45,5 +45,17 @@ namespace AppReceitas.Api.Controllers
             await _evaluationService.Add(evaluationDTO);
             return new CreatedAtRouteResult("GetEvaluation", new { id = evaluationDTO.Id }, evaluationDTO);
         }
+
+        [HttpGet]
+        [Route("Recipe/{id:int}")]
+        public async Task<IActionResult> GetByIdRecipe(int id)
+        {
+            var evaluations = await _evaluationService.GetEvaluationByIdRecipe(id);
+
+            if (evaluations == null)
+                return NotFound();
+
+            return Ok(evaluations);
+        }
     }
 }

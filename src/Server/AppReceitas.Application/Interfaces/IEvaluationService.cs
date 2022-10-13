@@ -14,5 +14,6 @@ namespace AppReceitas.Application.Interfaces
         Task Update(EvaluationDTO evaluationDTO);
         Task Remove(int? id);
         Task Add(EvaluationDTO evaluationDTO);
+        Task<IEnumerable<EvaluationDTO>> GetEvaluationByIdRecipe(int? id);
     }
 }

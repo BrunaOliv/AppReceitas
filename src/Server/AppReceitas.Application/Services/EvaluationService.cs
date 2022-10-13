@@ -34,6 +34,12 @@ namespace AppReceitas.Application.Services
             return _mapper.Map<IEnumerable<EvaluationDTO>>(evaluationEntity);
         }
 
+        public async Task<IEnumerable<EvaluationDTO>> GetEvaluationByIdRecipe(int? id)
+        {
+            var evaluationEntity = await _evaluationRepository.GeyByIdRecipe(id);
+            return _mapper.Map<IEnumerable<EvaluationDTO>>(evaluationEntity);
+        }
+
         public async Task Remove(int? id)
         {
             var evaluationId = _evaluationRepository.GetById(id).Result;

@@ -9,5 +9,6 @@ namespace AppReceitas.Domain.Interfaces
         Task<Evaluation> Create(Evaluation evaluation);
         Task<Evaluation> Update(Evaluation evaluation);
         Task<Evaluation> Remove(Evaluation evaluation);
+        Task<IEnumerable<Evaluation>> GeyByIdRecipe(int? id);
     }
 }
