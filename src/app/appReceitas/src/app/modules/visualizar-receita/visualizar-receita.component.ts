@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ReceitasService } from 'src/app/core/services/Receitas.service';
+import { Avaliação } from 'src/app/model/Avaliação';
 import { Confirmacao } from 'src/app/model/Confirmacao';
 import { data } from 'src/app/model/Receita';
 import { ModalConfirmacaoComponent } from 'src/app/shared/modal-confirmacao/modal-confirmacao.component';
@@ -27,6 +28,7 @@ export class VisualizarReceitaComponent implements OnInit {
   imagemDefault: string = 'url("assets/image/img-test.jpg")';
   id!: number;
   receita!: data;
+  avaliacoes?: Avaliação;
 
   ngOnInit() {
     this.id = this.activetedRoute.snapshot.params['id'];

@@ -46,6 +46,6 @@ namespace AppReceitas.Domain.Entities
         public Category Category { get; set; }
         public int LevelId { get; set; }
         public Level Level { get; set; }
-        public ICollection<Evaluation> Evaluations { get; set; }
+        public ICollection<Evaluation>? Evaluations { get; set; }
     }
 }

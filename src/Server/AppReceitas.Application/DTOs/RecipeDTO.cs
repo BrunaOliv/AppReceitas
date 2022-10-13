@@ -34,6 +34,6 @@ namespace AppReceitas.Application.DTOs
         public int CategoryId { get; set; }
         public LevelDTO? Level { get; set; }
         public int LevelId { get; set; }
-        public IEnumerable<EvaluationDTO> Evaluations { get; set; }
+        public IEnumerable<EvaluationDTO>? Evaluations { get; set; }
     }
 }

@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Avaliação } from 'src/app/model/Avaliação';
 
 const url = 'http://localhost:5147/api/Evaluation';
 
@@ -11,7 +12,7 @@ export class AvaliacaoService {
 
 constructor(private http: HttpClient) { }
 
-salvar(data : any): Observable<any>{
-  return this.http.post<any>(url, data);
+salvar(data : Avaliação): Observable<Avaliação>{
+  return this.http.post<Avaliação>(url, data);
 }
 }

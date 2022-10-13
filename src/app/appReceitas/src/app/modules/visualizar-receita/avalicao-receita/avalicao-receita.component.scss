@@ -4,3 +4,23 @@
 .form-text{
     height: 100px;
 }
+
+::ng-deep .green-snackbar {
+    background: #2E8B57;
+}
+.texto-avalicao{
+    font-size: 24px;
+    color: rgb(224, 127, 31);
+}
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 1,
+  'wght' 400,
+  'GRAD' 200,
+  'opsz' 48;
+  color: yellow;
+}
+.nota{
+    margin-top: 20px;
+    font-size: 24px;
+}

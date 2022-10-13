@@ -20,6 +20,8 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { ModalConfirmacaoComponent } from 'src/app/shared/modal-confirmacao/modal-confirmacao.component';
 import { NgxStarRatingModule } from 'ngx-star-rating';
 import { AvalicaoReceitaComponent } from '../visualizar-receita/avalicao-receita/avalicao-receita.component';
+import {MatCardModule} from '@angular/material/card';
+import {MatDividerModule} from '@angular/material/divider';
 
 @NgModule({
   imports: [
@@ -38,7 +40,9 @@ import { AvalicaoReceitaComponent } from '../visualizar-receita/avalicao-receita
     MatPaginatorModule,
     MatProgressSpinnerModule,
     MatDialogModule,
-    NgxStarRatingModule
+    NgxStarRatingModule,
+    MatCardModule,
+    MatDividerModule
   ],
   declarations: [
     ReceitasComponent,

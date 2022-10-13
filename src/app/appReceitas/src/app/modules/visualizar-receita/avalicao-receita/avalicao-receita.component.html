@@ -1,11 +1,46 @@
 <div class="container">
   <form [formGroup]="form">
-    <div class="d-flex justify-content-start mb-3">
-      <ngx-star-rating formControlName="nota" [id]="'nota'"></ngx-star-rating>
+    <div class="texto-avalicao mb-2">
+      Nos conte o que achou da receita.
     </div>
-      <mat-form-field appearance="fill" class="mb-3">
+    <div class="d-flex justify-content-start mb-3 mt-3">
+      <ngx-star-rating formControlName="grade" [id]="'grade'"></ngx-star-rating>
+    </div>
+      <mat-form-field appearance="fill" class="mb-1">
         <mat-label>Deixe um comentário</mat-label>
-        <textarea formControlName="comentario" class="form-text" type="text-area" matInput></textarea>
+        <textarea formControlName="comment" class="form-text" type="text-area" matInput></textarea>
       </mat-form-field>    
+      <div>
+        <button mat-stroked-button color="primary" (click)="submit()">Enviar Avaliação</button>
+      </div>
   </form>
+
+
+  <mat-card class="mt-3">
+    <div class="d-flex justify-content-center texto-avalicao mt-3">
+      Avaliações
+    </div>
+    <div>
+      <p class="nota">Nota da receita 5/5</p>
+      <p>Baseado em 5 avaliações</p>
+    </div>
+
+  <div *ngIf="avaliacoes">
+    <div *ngFor="let avaliacao of avaliacoes">
+      <div class="d-flex">
+        <div *ngFor="let n of numSequence(avaliacao.grade)">
+          <span class="material-symbols-outlined">
+            star
+          </span>
+        </div>
+      </div>
+      <div>
+        <p>{{avaliacao.comment}}</p>
+      </div>
+      <mat-divider></mat-divider>
+    </div>
+  </div>
+  </mat-card>
 </div>
+
+

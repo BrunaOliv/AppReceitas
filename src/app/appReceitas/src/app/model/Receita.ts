@@ -1,3 +1,4 @@
+import { Avaliação } from "./Avaliação"
 import { Categoria } from "./Categoria"
 import { Level } from "./Level"
 
@@ -16,4 +17,5 @@ export class data {
     level?: Level
     levelId?: number
     categoryId?:number
+    evaluations!: Array<Avaliação>
 }
