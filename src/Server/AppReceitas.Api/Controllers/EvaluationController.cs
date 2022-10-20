@@ -47,7 +47,7 @@ namespace AppReceitas.Api.Controllers
         }
 
         [HttpGet]
-        [Route("Recipe/{id:int}")]
+        [Route("Recipe/evaluations")]
         public async Task<IActionResult> GetByIdRecipe([FromQuery] PaginationFilterEvaluationRequest paginationFilterEvaluationRequest)
         {
             var evaluations = await _evaluationService.GetEvaluationByIdRecipe(paginationFilterEvaluationRequest);
