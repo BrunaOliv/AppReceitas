@@ -13,6 +13,7 @@ namespace AppReceitas.Infra.Data.EntitiesConfiguration
             builder.Property(p => p.PreparationMode).IsRequired();
             builder.HasOne(e => e.Category).WithMany(e => e.Recipes).HasForeignKey(e => e.CategoryId);
             builder.HasOne(e => e.Level).WithMany(e => e.Recipes).HasForeignKey(e => e.LevelId);
+            builder.Ignore(p => p.EvaluationGeneralGrade).Ignore(p => p.EvaluationTotal);
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using AppReceitas.Domain.Entities;
+using AppReceitas.Domain.Filters;
 
 namespace AppReceitas.Domain.Interfaces
 {
@@ -9,6 +10,6 @@ namespace AppReceitas.Domain.Interfaces
         Task<Evaluation> Create(Evaluation evaluation);
         Task<Evaluation> Update(Evaluation evaluation);
         Task<Evaluation> Remove(Evaluation evaluation);
-        Task<IEnumerable<Evaluation>> GeyByIdRecipe(int? id);
+        Task<PaginationEvaluationFilter<Evaluation>> GeyByIdRecipe(PaginationEvaluationFilter<Evaluation>? paginationEvaluationFilter);
     }
 }

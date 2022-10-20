@@ -1,4 +1,5 @@
 ﻿using AppReceitas.Domain.Entities;
+using AppReceitas.Domain.Filters;
 using AppReceitas.Domain.Interfaces;
 using AppReceitas.Infra.Data.Context;
 using Microsoft.EntityFrameworkCore;
@@ -29,9 +30,39 @@ namespace AppReceitas.Infra.Data.Repositories
             return await _evaluationContext.Evaluation.ToListAsync();
         }
 
-        public async Task<IEnumerable<Evaluation>> GeyByIdRecipe(int? id)
+        public async Task<PaginationEvaluationFilter<Evaluation>> GeyByIdRecipe(PaginationEvaluationFilter<Evaluation>? paginationEvaluationFilter)
         {
-            return await _evaluationContext.Evaluation.Where(a => id == a.RecipeId).ToListAsync();
+            var evaluations = GetEvaluationsById(paginationEvaluationFilter.FilterEvaluation.Id).AsNoTracking();
+
+            if(paginationEvaluationFilter.FilterEvaluation.EvaluationType != null)
+            {
+                evaluations = FilterEvaluationType(paginationEvaluationFilter.FilterEvaluation.EvaluationType, evaluations);
+            }
+
+            var paginationResult = new PaginationEvaluationFilter<Evaluation>
+            {
+                Data = await evaluations
+                .Skip(paginationEvaluationFilter.PageIndex * paginationEvaluationFilter.PageSize)
+                .Take(paginationEvaluationFilter.PageSize)
+                .ToListAsync(),
+                TotalItems = await evaluations.CountAsync()
+            };
+            return paginationResult;
+        }
+
+        public IQueryable<Evaluation> GetEvaluationsById(int? id)
+        {
+            return _evaluationContext.Evaluation.Where(evaluation => id == evaluation.RecipeId);
+        }
+
+        public IQueryable<Evaluation> FilterEvaluationType(EvaluationTypeEnum? evaluationType, IQueryable<Evaluation> evaluation)
+        {
+            if(((int)evaluationType) == 0)
+            {
+                return evaluation.Where(e => e.Grade > 2);
+            }
+
+            return evaluation.Where(e => e.Grade <= 2);      
         }
 
         public async Task<Evaluation> Remove(Evaluation evaluation)

@@ -1,6 +1,7 @@
 ﻿using AppReceitas.Application.DTOs;
 using AppReceitas.Application.Interfaces;
 using AppReceitas.Domain.Entities;
+using AppReceitas.Domain.Filters;
 using AppReceitas.Domain.Interfaces;
 using AutoMapper;
 
@@ -34,10 +35,11 @@ namespace AppReceitas.Application.Services
             return _mapper.Map<IEnumerable<EvaluationDTO>>(evaluationEntity);
         }
 
-        public async Task<IEnumerable<EvaluationDTO>> GetEvaluationByIdRecipe(int? id)
+        public async Task<PaginationFilterEvaluationResult<EvaluationDTO>> GetEvaluationByIdRecipe(PaginationFilterEvaluationRequest? paginationFilterEvaluationRequest)
         {
-            var evaluationEntity = await _evaluationRepository.GeyByIdRecipe(id);
-            return _mapper.Map<IEnumerable<EvaluationDTO>>(evaluationEntity);
+            var paginationFilter = _mapper.Map<PaginationEvaluationFilter<Evaluation>>(paginationFilterEvaluationRequest);
+            var evaluationEntity = await _evaluationRepository.GeyByIdRecipe(paginationFilter);
+            return _mapper.Map<PaginationFilterEvaluationResult<EvaluationDTO>>(evaluationEntity);
         }
 
         public async Task Remove(int? id)

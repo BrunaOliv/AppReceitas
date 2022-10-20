@@ -23,11 +23,21 @@ namespace AppReceitas.Infra.Data.Repositories
 
         public async Task<Recipes> GetByIdAsync(int? id)
         {
-            return await _recipeContext.Recipes
+            var recipe =  await _recipeContext.Recipes
                 .Include(r => r.Evaluations)
                 .Include(r => r.Category)
                 .Include(r => r.Level)
                 .SingleOrDefaultAsync(p => p.Id == id);
+
+            recipe = await GetInformationsEvaluation(recipe);
+            return recipe;
+        }
+
+        public async Task<Recipes> GetInformationsEvaluation(Recipes recipe)
+        {
+            recipe.EvaluationTotal = recipe.Evaluations.Count();
+            recipe.EvaluationGeneralGrade = recipe.Evaluations.Average(r => r.Grade);
+            return recipe;
         }
 
         public async Task<PaginationFilter<Recipes>> GetRecipesAsync(PaginationFilter<Recipes> paginationFilter)
