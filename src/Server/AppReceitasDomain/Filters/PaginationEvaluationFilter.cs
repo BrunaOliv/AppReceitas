@@ -5,6 +5,7 @@
         public int PageSize { get; set; }
         public int PageIndex { get; set; }
         public int TotalItems { get; set; }
+        public double GeneralAverage { get; set; }
         public List<T> Data { get; set; }
         public FilterEvaluation? FilterEvaluation { get; set; }
     }

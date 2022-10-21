@@ -2,9 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AvaliacaoService } from 'src/app/core/services/avaliacao.service';
 import { ReceitasService } from 'src/app/core/services/Receitas.service';
 import { Avaliação } from 'src/app/model/Avaliação';
 import { Confirmacao } from 'src/app/model/Confirmacao';
+import { PaginacaoAvaliacaoRequisicao } from 'src/app/model/PaginacaoAvaliacaoRequisicao';
+import { PaginacaoAvaliacaoResultado } from 'src/app/model/PaginacaoAvaliacaoResultado';
 import { data } from 'src/app/model/Receita';
 import { ModalConfirmacaoComponent } from 'src/app/shared/modal-confirmacao/modal-confirmacao.component';
 
@@ -20,7 +23,8 @@ export class VisualizarReceitaComponent implements OnInit {
               private activetedRoute: ActivatedRoute,
               private router: Router,
               public dialog: MatDialog,
-              private _snackBar: MatSnackBar) { 
+              private _snackBar: MatSnackBar,
+              private serviceAvaliacao: AvaliacaoService) { 
                 
               }
 

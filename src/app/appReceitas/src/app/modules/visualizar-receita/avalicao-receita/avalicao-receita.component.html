@@ -21,8 +21,8 @@
       Avaliações
     </div>
     <div>
-      <p class="nota">Nota da receita 5/5</p>
-      <p>Baseado em 5 avaliações</p>
+      <p class="nota">Nota da receita {{paginacaoAvaliacaoResultado.generalAverage}}/5</p>
+      <p>Baseado em {{paginacaoAvaliacaoResultado.totalItems}} avaliações</p>
     </div>
 
   <div *ngIf="avaliacoes">

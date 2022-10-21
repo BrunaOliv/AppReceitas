@@ -1,6 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Avaliação } from 'src/app/model/Avaliação';
 import { PaginacaoAvaliacaoRequisicao } from 'src/app/model/PaginacaoAvaliacaoRequisicao';
 import { PaginacaoAvaliacaoResultado } from 'src/app/model/PaginacaoAvaliacaoResultado';
 
@@ -15,7 +16,7 @@ constructor(private http: HttpClient) { }
 
 obterAvaliacoesPorIdReceita(paginacaoAvaliacaoRequisicao: PaginacaoAvaliacaoRequisicao): Observable<PaginacaoAvaliacaoResultado>{
   const queryParams: HttpParams = this.aplicarParametros(paginacaoAvaliacaoRequisicao);
-  return this.http.get<PaginacaoAvaliacaoResultado>(`${url}/Recipe/evaluations`, {params: queryParams});
+  return this.http.get<PaginacaoAvaliacaoResultado>(`${url}Recipe/evaluations`, {params: queryParams});
 }
 
 aplicarParametros(paginacaoAvaliacaoRequisicao: PaginacaoAvaliacaoRequisicao): HttpParams{
@@ -30,5 +31,9 @@ aplicarParametros(paginacaoAvaliacaoRequisicao: PaginacaoAvaliacaoRequisicao): H
   }
 
   return queryParams;
+}
+
+salvar(avaliacao: Avaliação): Observable<Avaliação>{
+  return this.http.post<Avaliação>(url, avaliacao);
 }
 }

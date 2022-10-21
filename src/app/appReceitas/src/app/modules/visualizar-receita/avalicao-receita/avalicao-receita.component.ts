@@ -3,6 +3,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AvaliacaoService } from 'src/app/core/services/avaliacao.service';
 import { Avaliação } from 'src/app/model/Avaliação';
+import { PaginacaoAvaliacaoRequisicao } from 'src/app/model/PaginacaoAvaliacaoRequisicao';
+import { PaginacaoAvaliacaoResultado } from 'src/app/model/PaginacaoAvaliacaoResultado';
+import { FiltroAvaliacao } from 'src/app/model/FiltroAvaliacao';
 
 @Component({
   selector: 'app-avalicao-receita',
@@ -17,12 +20,15 @@ export class AvalicaoReceitaComponent implements OnInit {
 
   form!: FormGroup;
   avalicao!: Avaliação
+  avaliacoes: Array<Avaliação> = [];
+  paginacaoAvalicaoRequisicao: PaginacaoAvaliacaoRequisicao = new PaginacaoAvaliacaoRequisicao;
+  paginacaoAvaliacaoResultado!: PaginacaoAvaliacaoResultado;
 
-  @Input() id?: number;
-  @Input() avaliacoes: Array<Avaliação> = [];
+  @Input() id!: number;
 
   ngOnInit() {
     this.carregarFormAvalicao();
+    this.obterAvaliacoes();
   }
 
   carregarFormAvalicao(){
@@ -53,5 +59,22 @@ export class AvalicaoReceitaComponent implements OnInit {
   
   numSequence(n: number): Array<number> {
     return Array(n);
+  }
+
+  obterAvaliacoes(): void{
+    this.iniciarPaginacaoAvalicao();
+
+    this.avalicaoService.obterAvaliacoesPorIdReceita(this.paginacaoAvalicaoRequisicao).subscribe(data => {
+      this.paginacaoAvaliacaoResultado = data;
+      this.avaliacoes = data.data;
+      console.log(this.paginacaoAvaliacaoResultado)
+    })
+  }
+
+  iniciarPaginacaoAvalicao(): void{
+    this.paginacaoAvalicaoRequisicao.pageIndex = 0;
+    this.paginacaoAvalicaoRequisicao.pageSize = 10;
+    this.paginacaoAvalicaoRequisicao.filterEvaluation = new FiltroAvaliacao;
+    this.paginacaoAvalicaoRequisicao.filterEvaluation.id = this.id;
   }
 }

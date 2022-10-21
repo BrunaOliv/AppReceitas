@@ -45,7 +45,8 @@ namespace AppReceitas.Infra.Data.Repositories
                 .Skip(paginationEvaluationFilter.PageIndex * paginationEvaluationFilter.PageSize)
                 .Take(paginationEvaluationFilter.PageSize)
                 .ToListAsync(),
-                TotalItems = await evaluations.CountAsync()
+                TotalItems = await evaluations.CountAsync(),
+                GeneralAverage = evaluations.Average(e => e.Grade)
             };
             return paginationResult;
         }
