@@ -24,3 +24,18 @@
     margin-top: 20px;
     font-size: 24px;
 }
+
+:host ::ng-deep #select .mat-form-field-wrapper{
+    width: 200px;
+}
+
+.btn-exibir{
+    margin-left: 5px;
+    margin-top: 25px;
+}
+
+@media (max-width: 578.98px){
+    :host ::ng-deep .mat-form-field-wrapper{
+        width: 300px;
+    }
+}

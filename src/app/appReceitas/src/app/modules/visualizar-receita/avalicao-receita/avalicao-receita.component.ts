@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AvaliacaoService } from 'src/app/core/services/avaliacao.service';
 import { Avaliação } from 'src/app/model/Avaliação';
@@ -23,6 +23,10 @@ export class AvalicaoReceitaComponent implements OnInit {
   avaliacoes: Array<Avaliação> = [];
   paginacaoAvalicaoRequisicao: PaginacaoAvaliacaoRequisicao = new PaginacaoAvaliacaoRequisicao;
   paginacaoAvaliacaoResultado!: PaginacaoAvaliacaoResultado;
+  filtroAvaliacao = new FormControl('');
+  pageIndex: number = 0;
+  pageSize: number = 5;
+  exibirMais: boolean = false;
 
   @Input() id!: number;
 
@@ -54,6 +58,7 @@ export class AvalicaoReceitaComponent implements OnInit {
         panelClass: ['green-snackbar']
       })
       this.form.reset();
+      this.obterAvaliacoes();
     })
   }
   
@@ -67,14 +72,32 @@ export class AvalicaoReceitaComponent implements OnInit {
     this.avalicaoService.obterAvaliacoesPorIdReceita(this.paginacaoAvalicaoRequisicao).subscribe(data => {
       this.paginacaoAvaliacaoResultado = data;
       this.avaliacoes = data.data;
-      console.log(this.paginacaoAvaliacaoResultado)
     })
   }
 
   iniciarPaginacaoAvalicao(): void{
-    this.paginacaoAvalicaoRequisicao.pageIndex = 0;
-    this.paginacaoAvalicaoRequisicao.pageSize = 10;
+    this.paginacaoAvalicaoRequisicao.pageIndex = this.pageIndex;
+    this.paginacaoAvalicaoRequisicao.pageSize = this.pageSize;
     this.paginacaoAvalicaoRequisicao.filterEvaluation = new FiltroAvaliacao;
     this.paginacaoAvalicaoRequisicao.filterEvaluation.id = this.id;
+    this.paginacaoAvalicaoRequisicao.filterEvaluation.EvaluationType = this.filtroAvaliacao.value;
+  }
+
+  exibirMaisAvaliacoes(): void{
+    this.exibirMais = true;
+    this.pageSize = this.pageSize + 5;
+    this.obterAvaliacoes();
+  }
+
+  verificarQuantidadeDeAvaliacoes(): boolean{
+    if(this.paginacaoAvaliacaoResultado?.totalItems)
+      return this.paginacaoAvaliacaoResultado.totalItems > 5
+
+    return false
+  }
+
+  exibirMenosAvaliacoes(): void{
+    this.pageSize = 5;
+    this.obterAvaliacoes();
   }
 }

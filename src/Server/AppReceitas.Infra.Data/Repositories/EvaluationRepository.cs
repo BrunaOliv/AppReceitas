@@ -33,21 +33,22 @@ namespace AppReceitas.Infra.Data.Repositories
         public async Task<PaginationEvaluationFilter<Evaluation>> GeyByIdRecipe(PaginationEvaluationFilter<Evaluation>? paginationEvaluationFilter)
         {
             var evaluations = GetEvaluationsById(paginationEvaluationFilter.FilterEvaluation.Id).AsNoTracking();
+            var paginationResult = new PaginationEvaluationFilter<Evaluation>
+            {
+                TotalItems = await evaluations.CountAsync(),
+                GeneralAverage = evaluations.Average(e => e.Grade)
+            };
 
-            if(paginationEvaluationFilter.FilterEvaluation.EvaluationType != null)
+            if (paginationEvaluationFilter.FilterEvaluation.EvaluationType != null)
             {
                 evaluations = FilterEvaluationType(paginationEvaluationFilter.FilterEvaluation.EvaluationType, evaluations);
             }
 
-            var paginationResult = new PaginationEvaluationFilter<Evaluation>
-            {
-                Data = await evaluations
+            paginationResult.Data = await evaluations
                 .Skip(paginationEvaluationFilter.PageIndex * paginationEvaluationFilter.PageSize)
                 .Take(paginationEvaluationFilter.PageSize)
-                .ToListAsync(),
-                TotalItems = await evaluations.CountAsync(),
-                GeneralAverage = evaluations.Average(e => e.Grade)
-            };
+                .ToListAsync();
+
             return paginationResult;
         }
 

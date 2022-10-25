@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container mb-3">
   <form [formGroup]="form">
     <div class="texto-avalicao mb-2">
       Nos conte o que achou da receita.
@@ -20,27 +20,53 @@
     <div class="d-flex justify-content-center texto-avalicao mt-3">
       Avaliações
     </div>
+
     <div>
-      <p class="nota">Nota da receita {{paginacaoAvaliacaoResultado.generalAverage}}/5</p>
-      <p>Baseado em {{paginacaoAvaliacaoResultado.totalItems}} avaliações</p>
+      <mat-form-field id="select" class="mt-2" appearance="fill">
+        <mat-label>Filtrar avalições</mat-label>
+        <mat-select [formControl]="filtroAvaliacao" (selectionChange)="obterAvaliacoes()">
+          <mat-option value="0">Positivas</mat-option>
+          <mat-option value="1">Negativas</mat-option>
+        </mat-select>
+      </mat-form-field>
     </div>
 
-  <div *ngIf="avaliacoes">
-    <div *ngFor="let avaliacao of avaliacoes">
-      <div class="d-flex">
-        <div *ngFor="let n of numSequence(avaliacao.grade)">
-          <span class="material-symbols-outlined">
-            star
-          </span>
+    <div>
+      <div *ngIf="paginacaoAvaliacaoResultado; else semRegistro">
+        <p class="nota">Nota da receita {{paginacaoAvaliacaoResultado.generalAverage | number: '1.1-1'}}/5</p>
+        <p>Baseado em {{paginacaoAvaliacaoResultado.totalItems}} avaliações</p>
+      </div>
+  
+    <div *ngIf="avaliacoes">
+      <div *ngFor="let avaliacao of avaliacoes">
+
+        <div class="d-flex">
+          <div *ngFor="let n of numSequence(avaliacao.grade)">
+            <span class="material-symbols-outlined">
+              star
+            </span>
+          </div>
         </div>
+
+        <div>
+          <p>{{ avaliacao.comment ? avaliacao.comment : '**A pessoa não deixou nenhum comentário.' }}</p>
+        </div>
+
+        <mat-divider></mat-divider>
       </div>
-      <div>
-        <p>{{avaliacao.comment}}</p>
-      </div>
-      <mat-divider></mat-divider>
     </div>
-  </div>
+    </div>
+    <div *ngIf="verificarQuantidadeDeAvaliacoes()" class="d-flex justify-content-center mt-2">
+      <button mat-raised-button (click)="exibirMaisAvaliacoes()" class="btn-exibir">Exibir mais</button>
+      <button *ngIf="exibirMais" mat-raised-button (click)="exibirMenosAvaliacoes()" class="btn-exibir">Exibir menos</button>
+    </div>
   </mat-card>
 </div>
+
+<ng-template #semRegistro>
+  <div class="container">
+    <span class="full-width main-div">Nenhum avaliação encontrada</span>
+  </div>
+</ng-template>
 
 
