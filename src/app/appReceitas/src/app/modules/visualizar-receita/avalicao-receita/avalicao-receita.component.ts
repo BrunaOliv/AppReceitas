@@ -90,14 +90,25 @@ export class AvalicaoReceitaComponent implements OnInit {
   }
 
   verificarQuantidadeDeAvaliacoes(): boolean{
-    if(this.paginacaoAvaliacaoResultado?.totalItems)
-      return this.paginacaoAvaliacaoResultado.totalItems > 5
-
+    if(this.paginacaoAvaliacaoResultado?.totalItems){
+      console.log(this.exibirMais)
+      return this.paginacaoAvaliacaoResultado.totalItems > 5 && !(this.paginacaoAvaliacaoResultado.data.length == this.paginacaoAvaliacaoResultado.totalItems);
+    }
+    
+    console.log(this.exibirMais)
     return false
   }
 
   exibirMenosAvaliacoes(): void{
     this.pageSize = 5;
     this.obterAvaliacoes();
+    this.exibirMais = false;
+  }
+
+  verificarSeExistemRegistros(): boolean{
+    if(this.paginacaoAvaliacaoResultado?.data)
+      return this.paginacaoAvaliacaoResultado.data.length > 0
+
+    return false
   }
 }

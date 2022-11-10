@@ -32,7 +32,7 @@
     </div>
 
     <div>
-      <div *ngIf="paginacaoAvaliacaoResultado; else semRegistro">
+      <div *ngIf="verificarSeExistemRegistros(); else semRegistro">
         <p class="nota">Nota da receita {{paginacaoAvaliacaoResultado.generalAverage | number: '1.1-1'}}/5</p>
         <p>Baseado em {{paginacaoAvaliacaoResultado.totalItems}} avaliações</p>
       </div>
@@ -56,8 +56,8 @@
       </div>
     </div>
     </div>
-    <div *ngIf="verificarQuantidadeDeAvaliacoes()" class="d-flex justify-content-center mt-2">
-      <button mat-raised-button (click)="exibirMaisAvaliacoes()" class="btn-exibir">Exibir mais</button>
+    <div class="d-flex justify-content-center mt-2">
+      <button *ngIf="verificarQuantidadeDeAvaliacoes()" mat-raised-button (click)="exibirMaisAvaliacoes()" class="btn-exibir">Exibir mais</button>
       <button *ngIf="exibirMais" mat-raised-button (click)="exibirMenosAvaliacoes()" class="btn-exibir">Exibir menos</button>
     </div>
   </mat-card>

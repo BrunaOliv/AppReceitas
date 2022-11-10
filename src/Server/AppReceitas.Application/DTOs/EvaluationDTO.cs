@@ -10,7 +10,7 @@ namespace AppReceitas.Application.DTOs
     {
         public int Id { get; set; }
         public int Grade { get; set; }
-        public string Comment { get; set; }
+        public string? Comment { get; set; }
         public int recipeId { get; set; }
     }
 }
