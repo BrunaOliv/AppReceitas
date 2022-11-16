@@ -24,7 +24,7 @@
     <div>
       <mat-form-field id="select" class="mt-2" appearance="fill">
         <mat-label>Filtrar avalições</mat-label>
-        <mat-select [formControl]="filtroAvaliacao" (selectionChange)="obterAvaliacoes()">
+        <mat-select [formControl]="filtroAvaliacao" (selectionChange)="filtrarAvalicao()">
           <mat-option value="0">Positivas</mat-option>
           <mat-option value="1">Negativas</mat-option>
         </mat-select>

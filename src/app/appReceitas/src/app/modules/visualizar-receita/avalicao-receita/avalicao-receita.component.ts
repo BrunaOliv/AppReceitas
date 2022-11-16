@@ -66,6 +66,11 @@ export class AvalicaoReceitaComponent implements OnInit {
     return Array(n);
   }
 
+  filtrarAvalicao(): void{
+    this.exibirMais = false;
+    this.obterAvaliacoes();
+  }
+  
   obterAvaliacoes(): void{
     this.iniciarPaginacaoAvalicao();
 
@@ -91,11 +96,9 @@ export class AvalicaoReceitaComponent implements OnInit {
 
   verificarQuantidadeDeAvaliacoes(): boolean{
     if(this.paginacaoAvaliacaoResultado?.totalItems){
-      console.log(this.exibirMais)
-      return this.paginacaoAvaliacaoResultado.totalItems > 5 && !(this.paginacaoAvaliacaoResultado.data.length == this.paginacaoAvaliacaoResultado.totalItems);
+      return this.paginacaoAvaliacaoResultado.totalItems > 5 && !(this.paginacaoAvaliacaoResultado.data.length == this.paginacaoAvaliacaoResultado.totalItems) && this.paginacaoAvaliacaoResultado.data.length >= 5;
     }
-    
-    console.log(this.exibirMais)
+
     return false
   }
 
