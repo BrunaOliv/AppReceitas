@@ -1,11 +1,12 @@
 ﻿using AutoMapper;
 using ProductCatalog.Application.DTOs;
+using ProductCatalog.Application.Interfaces;
 using ProductCatalog.Domain.Entities;
 using ProductCatalog.Domain.Intefaces;
 
 namespace ProductCatalog.Application.Service
 {
-    public class CategoryService
+    public class CategoryService: ICategoryService
     {
         private ICategoryRepository _categoryRepository;
         private readonly IMapper _mapper;
