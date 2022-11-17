@@ -21,12 +21,12 @@ namespace ProductCatalog.Infra.Data.Repositories
 
         public async Task<Category> GetById(int? id)
         {
-            return await _categoryContext.Categories.FindAsync(id);
+            return await _categoryContext.ProductsCategories.FindAsync(id);
         }
 
         public async Task<IEnumerable<Category>> GetCategories()
         {
-            return await _categoryContext.Categories.ToListAsync();
+            return await _categoryContext.ProductsCategories.ToListAsync();
         }
 
         public async Task<Category> Remove(Category category)

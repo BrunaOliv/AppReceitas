@@ -39,7 +39,7 @@ namespace ProductCatalog.Application.DTOs
 
         public string Image { get; set; }
 
-        public CategoryDTO Category { get; set; }
+        public CategoryDTO? Category { get; set; }
 
         [DisplayName("Categories")]
 

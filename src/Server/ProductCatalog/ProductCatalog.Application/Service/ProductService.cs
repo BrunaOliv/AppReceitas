@@ -13,7 +13,7 @@ namespace ProductCatalog.Application.Service
 
         public ProductService(IProductRepository productRepository, IMapper mapper)
         {
-            _productRepository = productRepository ?? throw new ArgumentNullException(nameof(productService));
+            _productRepository = productRepository ?? throw new ArgumentNullException(nameof(productRepository));
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
 

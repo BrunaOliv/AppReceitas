@@ -4,7 +4,7 @@ using ProductCatalog.Domain.Entities;
 
 namespace ProductCatalog.Infra.Data.EntitiesConfiguration
 {
-    internal class CategoryConfiguration : IEntityTypeConfiguration<Category>
+    public class CategoryConfiguration : IEntityTypeConfiguration<Category>
     {
         public void Configure(EntityTypeBuilder<Category> builder)
         {
