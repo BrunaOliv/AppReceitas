@@ -3,43 +3,43 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32319.34
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppReceitas.Domain", "AppReceitasDomain\AppReceitas.Domain.csproj", "{91F3F778-0622-48A0-900B-29DA5292DBC0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppReceitas.Domain", "Recipes\AppReceitasDomain\AppReceitas.Domain.csproj", "{91F3F778-0622-48A0-900B-29DA5292DBC0}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{DA5AC3E7-194D-4929-8FCE-388C923F2B24}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Recipes\Core", "{DA5AC3E7-194D-4929-8FCE-388C923F2B24}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppReceitas.Application", "AppReceitas.Application\AppReceitas.Application.csproj", "{9C342A09-3FD7-48F2-AF83-21D5BB4A20D0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppReceitas.Application", "Recipes\AppReceitas.Application\AppReceitas.Application.csproj", "{9C342A09-3FD7-48F2-AF83-21D5BB4A20D0}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{91F3065B-4A22-41D5-8993-D5A2BA7ABD55}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Recipes\Infrastructure", "{91F3065B-4A22-41D5-8993-D5A2BA7ABD55}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppReceitas.Infra.Data", "AppReceitas.Infra.Data\AppReceitas.Infra.Data.csproj", "{0EA5DC95-7588-4581-B173-2E6F79A79B5F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppReceitas.Infra.Data", "Recipes\AppReceitas.Infra.Data\AppReceitas.Infra.Data.csproj", "{0EA5DC95-7588-4581-B173-2E6F79A79B5F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppReceitas.Infra.IoC", "AppReceitas.Infra.IoC\AppReceitas.Infra.IoC.csproj", "{414618F0-A9A9-4C9B-B005-DC1B2AF71D03}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppReceitas.Infra.IoC", "Recipes\AppReceitas.Infra.IoC\AppReceitas.Infra.IoC.csproj", "{414618F0-A9A9-4C9B-B005-DC1B2AF71D03}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppReceitas.Tests", "AppReceitas.Tests\AppReceitas.Tests.csproj", "{B4F2AEC8-4D55-4E4E-B8CF-89A95752CB09}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppReceitas.Tests", "Recipes\AppReceitas.Tests\AppReceitas.Tests.csproj", "{B4F2AEC8-4D55-4E4E-B8CF-89A95752CB09}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppReceitas.Api", "AppReceitas.Api\AppReceitas.Api.csproj", "{ACC52585-514C-4A15-9C45-CA453E8D9A07}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppReceitas.Api", "Recipes\AppReceitas.Api\AppReceitas.Api.csproj", "{ACC52585-514C-4A15-9C45-CA453E8D9A07}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{66DB527D-E0A2-4993-BF62-1AC15AB0E42D}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Recipes\Tests", "{66DB527D-E0A2-4993-BF62-1AC15AB0E42D}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Recipes", "Recipes", "{C7C9F775-C67C-42CF-98C4-0EAEE75E6739}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Recipes", "Recipes\Recipes", "{C7C9F775-C67C-42CF-98C4-0EAEE75E6739}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "productCatalog", "productCatalog", "{53C167EB-0EA2-4029-8A25-2FEBDF6A56C4}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "productCatalog", "ProductCatalog\productCatalog", "{53C167EB-0EA2-4029-8A25-2FEBDF6A56C4}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{672BFE86-3F9E-45FE-A675-FE61CA4BE926}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "ProductCatalog\Core", "{672BFE86-3F9E-45FE-A675-FE61CA4BE926}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{223ABCF8-2834-4BCB-B383-1AC31AA06D91}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "ProductCatalog\Infrastructure", "{223ABCF8-2834-4BCB-B383-1AC31AA06D91}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{D304D4C9-3549-48C5-B6BB-55597884BD59}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "ProductCatalog\Tests", "{D304D4C9-3549-48C5-B6BB-55597884BD59}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductCatalog.Domain", "productCatalog.Domain\ProductCatalog.Domain.csproj", "{94D114A6-ED03-4E88-82EC-D8441CACDE6E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductCatalog.Domain", "ProductCatalog\productCatalog.Domain\ProductCatalog.Domain.csproj", "{94D114A6-ED03-4E88-82EC-D8441CACDE6E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductCatalog.Application", "ProductCatalog.Application\ProductCatalog.Application.csproj", "{FDCDB16D-A778-4EAA-AA8B-2F6D2D77707F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductCatalog.Application", "ProductCatalog\ProductCatalog.Application\ProductCatalog.Application.csproj", "{FDCDB16D-A778-4EAA-AA8B-2F6D2D77707F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductCatalog.Infra.Data", "ProductCatalog.Infra.Data\ProductCatalog.Infra.Data.csproj", "{FFB1D832-7826-4CE9-9488-A4AE850CB365}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductCatalog.Infra.Data", "ProductCatalog\ProductCatalog.Infra.Data\ProductCatalog.Infra.Data.csproj", "{FFB1D832-7826-4CE9-9488-A4AE850CB365}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductCatalog.Infra.IoC", "ProductCatalog.Infra.IoC\ProductCatalog.Infra.IoC.csproj", "{A1D207C4-DB9F-486A-844A-6C571BD5AF65}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductCatalog.Infra.IoC", "ProductCatalog\ProductCatalog.Infra.IoC\ProductCatalog.Infra.IoC.csproj", "{A1D207C4-DB9F-486A-844A-6C571BD5AF65}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductCatalog.WebAPI", "ProductCatalog.WebAPI\ProductCatalog.WebAPI.csproj", "{A08C3E67-76C8-469D-A70B-2FA1767BF41A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductCatalog.WebAPI", "ProductCatalog\ProductCatalog.WebAPI\ProductCatalog.WebAPI.csproj", "{A08C3E67-76C8-469D-A70B-2FA1767BF41A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
