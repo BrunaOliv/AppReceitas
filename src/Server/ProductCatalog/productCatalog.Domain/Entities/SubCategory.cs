@@ -2,25 +2,22 @@
 
 namespace ProductCatalog.Domain.Entities
 {
-    public class Category : Entity
+    public class SubCategory : Entity
     {
         public string Name { get; private set; }
-        public ICollection<SubCategory> SubCategories { get; set; }
+        public Category Category { get; set; }
+        public int CategoryId { get; set; }
         public ICollection<Product> Products { get; private set; }
 
-        public Category(string name)
+        public SubCategory(string name)
         {
             ValidationDomain(name);
         }
-        public Category(int id, string name)
+
+        public SubCategory(int id, string name)
         {
             DomainExceptionValidation.When(id < 0, "Invalid Id value");
             Id = id;
-            ValidationDomain(name);
-        }
-
-        public void Update(string name)
-        {
             ValidationDomain(name);
         }
 

@@ -9,6 +9,7 @@ namespace ProductCatalog.Infra.Data.Context
         { }
         public DbSet<Category> ProductsCategories { get; set; }
         public DbSet<Product> Products { get; set; }
+        public DbSet<SubCategory> ProductsSubCategories { get; set; }
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);

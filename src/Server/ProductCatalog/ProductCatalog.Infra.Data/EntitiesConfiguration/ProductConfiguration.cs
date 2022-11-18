@@ -16,6 +16,9 @@ namespace ProductCatalog.Infra.Data.EntitiesConfiguration
 
             builder.HasOne(e => e.Category).WithMany(e => e.Products)
                 .HasForeignKey(e => e.CategoryId);
+
+            builder.HasOne(e => e.SubCategory).WithMany(e => e.Products)
+               .HasForeignKey(e => e.SubCategoryId);
         }
     }
 }
