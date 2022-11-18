@@ -24,6 +24,8 @@ namespace ProductCatalog.Infra.IoC
             services.AddScoped<ICategoryService, CategoryService>();
             services.AddScoped<IProductService, ProductService>();
             services.AddAutoMapper(typeof(DomainToDTOMappingProfile));
+            services.AddScoped<ISubCategoryRepository, SubCategoryRepository>();
+            services.AddScoped<ISubCategoryService, SubCategoryService>();
 
             return services;
         }

@@ -26,7 +26,7 @@ namespace ProductCatalog.Infra.Data.Repositories
             return await _applicationDbContext.ProductsSubCategories.FindAsync(id);
         }
 
-        public async Task<IEnumerable<SubCategory>> GetCategories()
+        public async Task<IEnumerable<SubCategory>> GetSubCategories()
         {
             return await _applicationDbContext.ProductsSubCategories.ToListAsync();
         }
