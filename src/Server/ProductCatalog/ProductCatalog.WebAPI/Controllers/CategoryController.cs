@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using ProductCatalog.Application.DTOs;
 using ProductCatalog.Application.Interfaces;
 
@@ -21,7 +20,7 @@ namespace ProductCatalog.WebAPI.Controllers
         {
             var categories = await _categoryService.GetCategories();
 
-            if(categories == null || !categories.Any())
+            if (categories == null || !categories.Any())
                 return NotFound("Category not found");
 
             return Ok(categories);

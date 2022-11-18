@@ -29,7 +29,7 @@ namespace ProductCatalog.Application.Service
             return _mapper.Map<SubCategoryDTO>(subCategoryEntity);
         }
 
-        public async Task<IEnumerable<SubCategoryDTO>> GetCategories()
+        public async Task<IEnumerable<SubCategoryDTO>> GetSubCategories()
         {
             var subCategoryEntity = await _subCategoryRepository.GetSubCategories();
             return _mapper.Map<IEnumerable<SubCategoryDTO>>(subCategoryEntity);

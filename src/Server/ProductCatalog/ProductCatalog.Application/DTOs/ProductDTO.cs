@@ -44,5 +44,10 @@ namespace ProductCatalog.Application.DTOs
         [DisplayName("Categories")]
 
         public int CategoryId { get; set; }
+        public SubCategoryDTO? SubCategory { get; set; }
+
+        [DisplayName("Categories")]
+
+        public int SubCategoryId { get; set; }
     }
 }

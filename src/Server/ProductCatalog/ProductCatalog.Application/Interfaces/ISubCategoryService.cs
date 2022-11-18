@@ -9,7 +9,7 @@ namespace ProductCatalog.Application.Interfaces
 {
     public interface ISubCategoryService
     {
-        Task<IEnumerable<SubCategoryDTO>> GetCategories();
+        Task<IEnumerable<SubCategoryDTO>> GetSubCategories();
         Task<SubCategoryDTO> GetById(int? id);
         Task Add(SubCategoryDTO subCategoryDTO);
         Task Update(SubCategoryDTO subCategoryDTO);
