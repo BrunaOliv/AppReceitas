@@ -10,6 +10,7 @@ namespace ProductCatalog.Application.Mapping
         {
             CreateMap<Category, CategoryDTO>().ReverseMap();
             CreateMap<Product, ProductDTO>().ReverseMap();
+            CreateMap<SubCategory, SubCategoryDTO>().ReverseMap();
         }
     }
 }
