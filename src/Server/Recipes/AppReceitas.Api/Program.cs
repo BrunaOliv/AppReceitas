@@ -1,3 +1,5 @@
+using AppReceitas.Domain.Account;
+using AppReceitas.Infra.Data.Indentity;
 using AppReceitas.Infra.IoC;
 using Microsoft.Extensions.FileProviders;
 
@@ -26,6 +28,10 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+var seedInitialRole = builder.Services.BuildServiceProvider().GetService<ISeedUserRoleInitial>();
+
+seedInitialRole.SeedRoles();
+seedInitialRole.SeedUsers();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -36,6 +42,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.UseCors(MyAllowSpecificOrigins);
