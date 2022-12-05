@@ -3,11 +3,11 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './layout/Header/Header.component';
 import { LayoutModule } from './layout/layout.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReceitasModule } from './modules/receitas/receitas.module';
 import { HttpClientModule } from '@angular/common/http';
+import { CatalogoDeProdutosModule } from './modules/CatalogoDeProdutos/CatalogoDeProdutos.module';
 
 @NgModule({
   declarations: [
@@ -19,7 +19,8 @@ import { HttpClientModule } from '@angular/common/http';
     LayoutModule,
     BrowserAnimationsModule,
     ReceitasModule,
-    HttpClientModule
+    HttpClientModule,
+    CatalogoDeProdutosModule
   ],
   providers: [],
   bootstrap: [AppComponent]
